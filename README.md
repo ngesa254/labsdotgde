@@ -11,16 +11,14 @@ Check out the latest notebooks that show how to optimize and deploy popular mode
 | **Notebook / Workshop** | **Description** | **Complementary Materials** | **Quiz / Exercise / Labs** |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | Unlocking the power of Generative AI with Gemini <br>Campus Connect - CUEA<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lnjeo-pk4XHp1ZBwm7DTV2mXnt_lBN23)| The hands-on session was based on Generative AI. Beginning with an introduction to Deep Learning and the foundational principles of neural networks using Keras and TensorFlow, participants gained insight into the building blocks of modern AI. I then transitioned into Large Language Models (LLMs), neural networks trained on massive datasets, unleashing capabilities for content generation. Developers were then introduced to the landscape of available foundational models, with a special focus on Gemini. Through live demonstrations, developers were guided through the practical application of Gemini, both within Google AI Studio and through APIs in VS Code and Colab. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Keras 3 - A Spectrum of Workflows <br> Zindi <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lnjeo-pk4XHp1ZBwm7DTV2mXnt_lBN23)| The workshop will explore the powerful Keras 3 API and walk through deep learning best practices, how to write a simple model, and run it with a backend of your choice, including PyTorch, TensorFlow, or JAX. | <img src=https://user-images.githubusercontent.com/29454499/231468849-1cd11e68-21e2-44ed-8088-b792ef50c32d.png width=300> |  [Blog - SAM: Segment Anything Model — Versatile by itself and Faster by OpenVINO](https://medium.com/@paularamos_5416/sam-segment-anything-model-versatile-by-itself-and-faster-by-openvino-50175f06cd24)  |
+| Keras 3 - A Spectrum of Workflows <br> Zindi <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1T8LA5bygK4p2L5GyR8V1xSF9tu6KxFxJ)| The workshop will explore the powerful Keras 3 API and walk through deep learning best practices, how to write a simple model, and run it with a backend of your choice, including PyTorch, TensorFlow, or JAX. | <img src=https://user-images.githubusercontent.com/29454499/231468849-1cd11e68-21e2-44ed-8088-b792ef50c32d.png width=300> |  [Blog - SAM: Segment Anything Model — Versatile by itself and Faster by OpenVINO](https://medium.com/@paularamos_5416/sam-segment-anything-model-versatile-by-itself-and-faster-by-openvino-50175f06cd24)  |
 | Creating beautiful art with Stable Diffusion <br> AMLD  <br>| Workshop Summary
 
 KerasCV and KerasNLP from Keras API are easy-to-use libraries for state-of-the-art computer vision and natural language processing. I will show developers how with just a few lines of code, they can employ the latest techniques and models for data augmentation, object detection, image and text generation, and text classification. I will demonstrate API integration with the broader TensorFlow ecosystem including TFLite. The workshop will also walk the developers through enabling diffusion models to generate images, explores some advanced uses of text to image models. It will show developers how to get started with generating images using KerasCV, the most optimized implementation of StableDiffusion available to date By attending this Keras API workshop, developers will gain practical knowledge and real-world examples that enable them to hit the ground running with KerasCV and KerasNLP.
 
 Workshop Outcome
 
-It will show developers how to get started with generating images using KerasCV, the most optimized implementation of StableDiffusion available to date By attending this Keras API workshop, developers will gain practical knowledge and real-world examples that enable them to hit the ground running with KerasCV and KerasNLP.
-
-| <img src=https://user-images.githubusercontent.com/29454499/224541412-9d13443e-0e42-43f2-8210-aa31820c5b44.png width=300> | [Blog - Control your Stable Diffusion Model with ControlNet and OpenVINO](https://medium.com/@paularamos_5416/control-your-stable-diffusion-model-with-controlnet-and-openvino-f2aa7e6b1ebd)  |
+It will show developers how to get started with generating images using KerasCV, the most optimized implementation of StableDiffusion available to date By attending this Keras API workshop, developers will gain practical knowledge and real-world examples that enable them to hit the ground running with KerasCV and KerasNLP.| <img src=https://user-images.githubusercontent.com/29454499/224541412-9d13443e-0e42-43f2-8210-aa31820c5b44.png width=300> | [Blog - Control your Stable Diffusion Model with ControlNet and OpenVINO](https://medium.com/@paularamos_5416/control-your-stable-diffusion-model-with-controlnet-and-openvino-f2aa7e6b1ebd)  |
 | [Stable Diffusion v2](notebooks/236-stable-diffusion-v2/)<br>| Text-to-Image Generation and Infinite Zoom with Stable Diffusion v2 and OpenVINO™ |  <img src=https://user-images.githubusercontent.com/1720147/229233760-79c9425e-5691-4114-ad13-7e33f9327b52.gif width=300>  | [Blog - How to run Stable Diffusion on Intel GPUs with OpenVINO](https://medium.com/openvino-toolkit/how-to-run-stable-diffusion-on-intel-gpus-with-openvino-840714f122b4)  |
 | [Whisper - Subtitles generation](notebooks/227-whisper-subtitles-generation/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/227-whisper-subtitles-generation/227-whisper-convert.ipynb) | Generate subtitles for video with OpenAI Whisper and OpenVINO | <img src=https://user-images.githubusercontent.com/29454499/204548693-1304ef33-c790-490d-8a8b-d5766acb6254.png  width=300>  |   |
 | [CLIP - zero-shot-image-classification](notebooks/228-clip-zero-shot-image-classification)<br> | Perform Zero-shot Image Classification with CLIP and OpenVINO | <img src=https://user-images.githubusercontent.com/29454499/207795060-437b42f9-e801-4332-a91f-cc26471e5ba2.png width=300>  | [Blog - Generative AI and Explainable AI with OpenVINO ](https://medium.com/@paularamos_5416/generative-ai-and-explainable-ai-with-openvino-2b5f8e4e720b#:~:text=pix2pix%2Dimage%2Dediting-,Explainable%20AI%20with%20OpenVINO,-Explainable%20AI%20is)  |
@@ -317,60 +315,6 @@ In your browser, select a notebook from the file browser in Jupyter Lab using th
 [![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
 <div id='-cleaning-up'></div>
 
-## 🧹 Cleaning Up
-
-<div id='-shut-down-jupyter-kernel' markdown="1">
-
-1. Shut Down Jupyter Kernel
-
-	To end your Jupyter session, press `Ctrl-c`. This will prompt you to `Shutdown this Jupyter server (y/[n])?` enter `y` and hit `Enter`.
-</div>	
-	
-<div id='-deactivate-virtual-environment' markdown="1">
-
-2. Deactivate Virtual Environment
-
-	To deactivate your virtualenv, simply run `deactivate` from the terminal window where you activated `openvino_env`. This will deactivate your environment.
-
-	To reactivate your environment, run `source openvino_env/bin/activate` on Linux or `openvino_env\Scripts\activate` on Windows, then type `jupyter lab` or `jupyter notebook` to launch the notebooks again.
-</div>	
-
-<div id='-delete-virtual-environment' markdown="1">
-
-3. Delete Virtual Environment _(Optional)_
-
-	To remove your virtual environment, simply delete the `openvino_env` directory:
-</div>
-
-<div id='-on-linux-and-macos' markdown="1">
-
-  - On Linux and macOS:
-
-	```bash
-	rm -rf openvino_env
-	```
-</div>
-
-<div id='-on-windows' markdown="1">
-
-  - On Windows:
-
-	```bash
-	rmdir /s openvino_env
-	```
-</div>
-
-<div id='-remove-openvino-env-kernel' markdown="1">
-
-  - Remove `openvino_env` Kernel from Jupyter
-
-	```bash
-	jupyter kernelspec remove openvino_env
-	```
-</div>
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-<div id='-troubleshooting'></div>
 
 ## ⚠️ Troubleshooting
 
