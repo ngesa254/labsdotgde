@@ -50,7 +50,7 @@ model = genai.GenerativeModel(model_name="gemini-pro",
                               safety_settings=safety_settings)
 
 prompt_parts = [
-  "What is Google GDSC?",
+  "What is CUEA Kenya?",
 ]
 
 response = model.generate_content(prompt_parts)
