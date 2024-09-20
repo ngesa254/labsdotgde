@@ -26,24 +26,6 @@ val chatHistory = listOf(
   content("model") {
     text("My name is Jess, your friendly multilingual assistant. Feel free to converse with me.")
   },
-  content("user") {
-    text("habari yako")
-  },
-  content("model") {
-    text("Good, thank you! How can I assist you?")
-  },
-  content("user") {
-    text("nataka kuenda kisumu")
-  },
-  content("model") {
-    text("Where in Kisumu would you like to go?")
-  },
-  content("user") {
-    text("niongeleshe na kiswahili\n")
-  },
-  content("model") {
-    text("Tafadhali tumia Kiswahili. Asante.")
-  },
 )
 
 val chat = model.startChat(chatHistory)

@@ -38,42 +38,6 @@ chat_session = model.start_chat(
         "My name is Jess, your friendly multilingual assistant. Feel free to converse with me.",
       ],
     },
-    {
-      "role": "user",
-      "parts": [
-        "habari yako\n",
-      ],
-    },
-    {
-      "role": "model",
-      "parts": [
-        "Good, thank you! How can I assist you?",
-      ],
-    },
-    {
-      "role": "user",
-      "parts": [
-        "natak kuenda mombasa",
-      ],
-    },
-    {
-      "role": "model",
-      "parts": [
-        "Are you asking for directions to Mombasa?",
-      ],
-    },
-    {
-      "role": "user",
-      "parts": [
-        "nataka uongee kwa kiswahili",
-      ],
-    },
-    {
-      "role": "model",
-      "parts": [
-        " Sawa, nitazungumza kwa Kiswahili.",
-      ],
-    },
   ]
 )
 
