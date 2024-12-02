@@ -1,4 +1,14 @@
-# Effective Prompting Workshop Guide
+![alt text](image.png)
+
+# Welcome to Effective Prompting Guide with Gemma
+
+⚔️ I am your hosts, [Ngesa Marvin ](https://twitter.com/Ngesa254)!🐍
+
+🏹 Our goal is to get you started with Prompt Engineering with Gemmma
+
+Level: Beginner - Intermediate (No previous experience necessary)
+
+
 ## Open Digital Health Summit '24: Building with FHIR Track
 
 ### Step 1: Define the Task and Persona
