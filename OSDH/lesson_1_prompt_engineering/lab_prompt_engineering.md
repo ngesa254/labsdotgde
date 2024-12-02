@@ -170,3 +170,16 @@ Remember that effective prompting for healthcare implementations requires:
 - Focus on practical implementation details
 
 These skills will be particularly valuable as you work to implement FHIR-based solutions in your own contexts.
+
+## Thank you 💖✨✨
+
+Congratulations on finalizing effective prompting Guide with Gemma
+
+And thank you for your time and attention!
+
+Questions? Comments? Ideas? Inspos?
+
+*   Let me know [@ngesa254]( https://twitter.com/Ngesa254 ), [@GoogleDevExpert
+]( https://x.com/GoogleDevExpert)!
+
+Keep Building!
