@@ -1,0 +1,240 @@
+Metadata-Version: 2.4
+Name: google-adk
+Version: 1.5.0
+Summary: Agent Development Kit
+Author-email: Google LLC <googleapis-packages@google.com>
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Classifier: Typing :: Typed
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: Apache Software License
+License-File: LICENSE
+Requires-Dist: PyYAML>=6.0.2
+Requires-Dist: anyio>=4.9.0;python_version>='3.10'
+Requires-Dist: authlib>=1.5.1
+Requires-Dist: click>=8.1.8
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: google-api-python-client>=2.157.0
+Requires-Dist: google-cloud-aiplatform[agent-engines]>=1.95.1
+Requires-Dist: google-cloud-secret-manager>=2.22.0
+Requires-Dist: google-cloud-speech>=2.30.0
+Requires-Dist: google-cloud-storage>=2.18.0, <3.0.0
+Requires-Dist: google-genai>=1.21.1
+Requires-Dist: graphviz>=0.20.2
+Requires-Dist: mcp>=1.8.0;python_version>='3.10'
+Requires-Dist: opentelemetry-api>=1.31.0
+Requires-Dist: opentelemetry-exporter-gcp-trace>=1.9.0
+Requires-Dist: opentelemetry-sdk>=1.31.0
+Requires-Dist: pydantic>=2.0, <3.0.0
+Requires-Dist: python-dateutil>=2.9.0.post0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: requests>=2.32.4
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: starlette>=0.46.2
+Requires-Dist: typing-extensions>=4.5, <5
+Requires-Dist: tzlocal>=5.3
+Requires-Dist: uvicorn>=0.34.0
+Requires-Dist: websockets>=15.0.1
+Requires-Dist: a2a-sdk>=0.2.7 ; extra == "a2a" and (python_version>='3.10')
+Requires-Dist: flit>=3.10.0 ; extra == "dev"
+Requires-Dist: isort>=6.0.0 ; extra == "dev"
+Requires-Dist: mypy>=1.15.0 ; extra == "dev"
+Requires-Dist: pyink>=24.10.0 ; extra == "dev"
+Requires-Dist: pylint>=2.6.0 ; extra == "dev"
+Requires-Dist: autodoc_pydantic ; extra == "docs"
+Requires-Dist: furo ; extra == "docs"
+Requires-Dist: myst-parser ; extra == "docs"
+Requires-Dist: sphinx ; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints ; extra == "docs"
+Requires-Dist: sphinx-rtd-theme ; extra == "docs"
+Requires-Dist: google-cloud-aiplatform[evaluation]>=1.87.0 ; extra == "eval"
+Requires-Dist: pandas>=2.2.3 ; extra == "eval"
+Requires-Dist: tabulate>=0.9.0 ; extra == "eval"
+Requires-Dist: rouge-score>=0.1.2 ; extra == "eval"
+Requires-Dist: anthropic>=0.43.0 ; extra == "extensions"
+Requires-Dist: beautifulsoup4>=3.2.2 ; extra == "extensions"
+Requires-Dist: crewai[tools] ; extra == "extensions" and (python_version>='3.10')
+Requires-Dist: docker>=7.0.0 ; extra == "extensions"
+Requires-Dist: langgraph>=0.2.60 ; extra == "extensions"
+Requires-Dist: litellm>=1.63.11 ; extra == "extensions"
+Requires-Dist: llama-index-readers-file>=0.4.0 ; extra == "extensions"
+Requires-Dist: lxml>=5.3.0 ; extra == "extensions"
+Requires-Dist: toolbox-core>=0.1.0 ; extra == "extensions"
+Requires-Dist: anthropic>=0.43.0 ; extra == "test"
+Requires-Dist: langchain-community>=0.3.17 ; extra == "test"
+Requires-Dist: langgraph>=0.2.60 ; extra == "test"
+Requires-Dist: litellm>=1.71.2 ; extra == "test"
+Requires-Dist: llama-index-readers-file>=0.4.0 ; extra == "test"
+Requires-Dist: pytest-asyncio>=0.25.0 ; extra == "test"
+Requires-Dist: pytest-mock>=3.14.0 ; extra == "test"
+Requires-Dist: pytest-xdist>=3.6.1 ; extra == "test"
+Requires-Dist: pytest>=8.3.4 ; extra == "test"
+Project-URL: changelog, https://github.com/google/adk-python/blob/main/CHANGELOG.md
+Project-URL: documentation, https://google.github.io/adk-docs/
+Project-URL: homepage, https://google.github.io/adk-docs/
+Project-URL: repository, https://github.com/google/adk-python
+Provides-Extra: a2a
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: eval
+Provides-Extra: extensions
+Provides-Extra: test
+
+# Agent Development Kit (ADK)
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python Unit Tests](https://github.com/google/adk-python/actions/workflows/python-unit-tests.yml/badge.svg)](https://github.com/google/adk-python/actions/workflows/python-unit-tests.yml)
+[![r/agentdevelopmentkit](https://img.shields.io/badge/Reddit-r%2Fagentdevelopmentkit-FF4500?style=flat&logo=reddit&logoColor=white)](https://www.reddit.com/r/agentdevelopmentkit/)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/google/adk-python)
+
+<html>
+    <h2 align="center">
+      <img src="https://raw.githubusercontent.com/google/adk-python/main/assets/agent-development-kit.png" width="256"/>
+    </h2>
+    <h3 align="center">
+      An open-source, code-first Python toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control.
+    </h3>
+    <h3 align="center">
+      Important Links:
+      <a href="https://google.github.io/adk-docs/">Docs</a>, 
+      <a href="https://github.com/google/adk-samples">Samples</a>,
+      <a href="https://github.com/google/adk-java">Java ADK</a> &
+      <a href="https://github.com/google/adk-web">ADK Web</a>.
+    </h3>
+</html>
+
+Agent Development Kit (ADK) is a flexible and modular framework for developing and deploying AI agents. While optimized for Gemini and the Google ecosystem, ADK is model-agnostic, deployment-agnostic, and is built for compatibility with other frameworks. ADK was designed to make agent development feel more like software development, to make it easier for developers to create, deploy, and orchestrate agentic architectures that range from simple tasks to complex workflows.
+
+
+---
+
+## ✨ Key Features
+
+- **Rich Tool Ecosystem**: Utilize pre-built tools, custom functions,
+  OpenAPI specs, or integrate existing tools to give agents diverse
+  capabilities, all for tight integration with the Google ecosystem.
+
+- **Code-First Development**: Define agent logic, tools, and orchestration
+  directly in Python for ultimate flexibility, testability, and versioning.
+
+- **Modular Multi-Agent Systems**: Design scalable applications by composing
+  multiple specialized agents into flexible hierarchies.
+
+- **Deploy Anywhere**: Easily containerize and deploy agents on Cloud Run or
+  scale seamlessly with Vertex AI Agent Engine.
+
+## 🤖 Agent2Agent (A2A) Protocol and ADK Integration
+
+For remote agent-to-agent communication, ADK integrates with the
+[A2A protocol](https://github.com/google-a2a/A2A/).
+See this [example](https://github.com/google-a2a/a2a-samples/tree/main/samples/python/agents/google_adk)
+for how they can work together.
+
+## 🚀 Installation
+
+### Stable Release (Recommended)
+
+You can install the latest stable version of ADK using `pip`:
+
+```bash
+pip install google-adk
+```
+
+The release cadence is weekly.
+
+This version is recommended for most users as it represents the most recent official release.
+
+### Development Version
+Bug fixes and new features are merged into the main branch on GitHub first. If you need access to changes that haven't been included in an official PyPI release yet, you can install directly from the main branch:
+
+```bash
+pip install git+https://github.com/google/adk-python.git@main
+```
+
+Note: The development version is built directly from the latest code commits. While it includes the newest fixes and features, it may also contain experimental changes or bugs not present in the stable release. Use it primarily for testing upcoming changes or accessing critical fixes before they are officially released.
+
+## 📚 Documentation
+
+Explore the full documentation for detailed guides on building, evaluating, and
+deploying agents:
+
+* **[Documentation](https://google.github.io/adk-docs)**
+
+## 🏁 Feature Highlight
+
+### Define a single agent:
+
+```python
+from google.adk.agents import Agent
+from google.adk.tools import google_search
+
+root_agent = Agent(
+    name="search_assistant",
+    model="gemini-2.0-flash", # Or your preferred Gemini model
+    instruction="You are a helpful assistant. Answer user questions using Google Search when needed.",
+    description="An assistant that can search the web.",
+    tools=[google_search]
+)
+```
+
+### Define a multi-agent system:
+
+Define a multi-agent system with coordinator agent, greeter agent, and task execution agent. Then ADK engine and the model will guide the agents works together to accomplish the task.
+
+```python
+from google.adk.agents import LlmAgent, BaseAgent
+
+# Define individual agents
+greeter = LlmAgent(name="greeter", model="gemini-2.0-flash", ...)
+task_executor = LlmAgent(name="task_executor", model="gemini-2.0-flash", ...)
+
+# Create parent agent and assign children via sub_agents
+coordinator = LlmAgent(
+    name="Coordinator",
+    model="gemini-2.0-flash",
+    description="I coordinate greetings and tasks.",
+    sub_agents=[ # Assign sub_agents here
+        greeter,
+        task_executor
+    ]
+)
+```
+
+### Development UI
+
+A built-in development UI to help you test, evaluate, debug, and showcase your agent(s).
+
+<img src="https://raw.githubusercontent.com/google/adk-python/main/assets/adk-web-dev-ui-function-call.png"/>
+
+###  Evaluate Agents
+
+```bash
+adk eval \
+    samples_for_testing/hello_world \
+    samples_for_testing/hello_world/hello_world_eval_set_001.evalset.json
+```
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Whether it's bug reports, feature requests, documentation improvements, or code contributions, please see our
+- [General contribution guideline and flow](https://google.github.io/adk-docs/contributing-guide/).
+- Then if you want to contribute code, please read [Code Contributing Guidelines](./CONTRIBUTING.md) to get started.
+
+## 📄 License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+*Happy Agent Building!*
+
