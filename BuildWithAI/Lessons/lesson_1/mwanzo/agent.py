@@ -29,5 +29,5 @@ root_agent = Agent(
     name='root_agent',
     description='Agent to answer questions and roll dice.',
     instruction='You are a helpful agent who can roll dice with any number of sides for games or random number generation.',
-    tools=[roll_dice],
+    tools=[roll_dice]
 )
