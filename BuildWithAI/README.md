@@ -136,5 +136,6 @@ BuildWithAI/
 │   └── Kisumu_buildwithai_liveapi_fundamentals.ipynb
 └── README.md
 ```
+source .venv/bin/activate
 
 **Happy building!** 🚀
