@@ -74,7 +74,7 @@ Hands-on codelab to build a DevFest Assistant using Gemini + LlamaIndex:
 
 ### 3.6 Multimodal Live API Quickstart (Prep Lab)
 
-📁 `Lessons/adk-mcp/036-gemini-liveapi-fundamentals.md`  
+📁 `Lessons/adk-gemini-live/036-gemini-liveapi-fundamentals.md`  
 📓 `Kisumu_buildwithai_liveapi_fundermentals.ipynb`  
 **Colab:** https://colab.research.google.com/drive/1v6JnpWr3xDBFip6HRxBHiQWxe6-N9jMc
 
@@ -86,6 +86,32 @@ Experiment with Gemini 2.5 Flash Live API (preview) in Colab:
 - Path toward async, real-time streaming
 
 **Outcome:** You'll understand Live API basics and have a working Colab demo before moving to full ADK integration.
+
+### 3.7 Multimodal Live API With Tools (Prep Lab)
+
+📁 `Lessons/adk-gemini-live/037-gemini-liveapi-tools.md`  
+📓 `gemini_liveapi_tools.ipynb`  
+**Colab:** https://colab.research.google.com/drive/1Rn6SM4yKCKftM6zz2EN0P5uNw98vtKmO
+
+Add tools to your multimodal agent and watch Gemini 2.5 use them in real time:
+
+- Register mock tools and system tools (code execution)
+- Test blocking vs. non-blocking behavior
+- Combine multiple tools in single interactions
+- Experience async function calling and interruptible responses
+
+### 3.8 Video Understanding with Gemini Live API (Prep Lab) 
+
+📁 `Lessons/adk-gemini-live/038-gemini-liveapi-video-understanding.md`  
+📓 `kisumu_video_understanding.ipynb`  
+**Colab:** https://colab.research.google.com/drive/1uIsAzF5dKUs-6Jdnaa7FGnCJobme6rDA
+
+Teach your agent to analyze video streams using Gemini 2.5:
+
+- Scene captioning and object detection
+- Text extraction from video frames
+- Video summarization and timeline searching
+- YouTube video analysis with custom time offsets
 
 ## Lesson 4: Multimodal Streaming Agents with ADK and Gemini Live API
 
@@ -111,7 +137,7 @@ Build a comprehensive agent that can:
 - Generate social media content
 - Handle multi-turn conversations with memory
 
-Use the tech covered in Lessons 1–4 and the prep labs (3.5 & 3.6)
+Use the tech covered in Lessons 1–4 and the prep labs (3.5, 3.6, 3.7 & 3.8)
 
 ## Repo Structure
 
@@ -119,23 +145,33 @@ Use the tech covered in Lessons 1–4 and the prep labs (3.5 & 3.6)
 BuildWithAI/
 ├── .venv/                           # Python virtual environment
 ├── Lessons/
-│   ├── adk-gemini-live/            # Lesson 4: Multimodal streaming agents
+│   ├── adk-gemini-live/            # Lesson 4: Multimodal streaming agents & prep labs
+│   │   ├── 035-agentic-workflows-prep.md
+│   │   ├── 036-gemini-liveapi-fundamentals.md
+│   │   ├── 037-gemini-liveapi-tools.md
+│   │   └── 038-gemini-liveapi-video-understanding.md
 │   ├── adk-intro/                  # Lesson 1: ADK fundamentals
 │   │   ├── 01-local-setup.md
 │   │   ├── 02-first-tool.md
 │   │   ├── 03-multiple-tools-city-status.md
 │   │   └── 04-first-cloud-deployment.md
-│   └── adk-mcp/                    # Lesson 3: MCP integrations & prep labs
-│       ├── 035-agentic-workflows-prep.md
-│       └── 036-gemini-liveapi-fundamentals.md
+│   └── adk-mcp/                    # Lesson 3: MCP integrations
+│       └── 035-agentic-workflows-prep.md
 ├── Samples/
 │   ├── adk_intro/                  # Sample code for intro lessons
-│   └── adk_mcp/                    # Sample MCP implementations
+│   │   └── demo/                   # Working ADK demo agent
+│   ├── adk_mcp/                    # Sample MCP implementations
+│   └── adk-gemini-live/            # Live API code samples
+│       ├── gemini_live_01.py
+│       └── gemini_live_audio_02.py
 ├── notebooks/
 │   ├── Kisumu_buildwithai_agentic_workflows_with_gemini.ipynb
-│   └── Kisumu_buildwithai_liveapi_fundamentals.ipynb
+│   ├── Kisumu_buildwithai_liveapi_fundamentals.ipynb
+│   ├── gemini_liveapi_tools.ipynb
+│   └── kisumu_video_understanding.ipynb
 └── README.md
 ```
+
 source .venv/bin/activate
 
 **Happy building!** 🚀
