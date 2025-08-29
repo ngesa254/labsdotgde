@@ -1,12 +1,14 @@
 
-<h1>📚 LabDotGDE™ Notebooks</h1>
+<h1> LabDotGDE™ Workshops and Notebooks</h1>
 
-A collection of ready-to-run Jupyter notebooks for learning and experimenting with Deep Learning.
+Workshops around Google AI specifically on Building AI Agents with Google's Agent Development Kit (ADK) and Google Live APIs
+
++ A collection of ready-to-run Jupyter notebooks for learning and experimenting with Deep Learning.
 
 
 [![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
 
-## 🚀 2025 - Labs and Notebooks
+## 2025 - Labs and Notebooks
 Check out the latest notebooks that show how to optimize and deploy popular models on Intel CPU and GPU. 
 
 | **Notebook / Workshop** | **Description** | **Complementary Materials** | **Quiz / Exercise / Labs** |
