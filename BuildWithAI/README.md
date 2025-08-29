@@ -62,7 +62,7 @@ Extend ADK agents with Model Context Protocol (MCP) integrations.
 ### 3.5 Agentic Workflows with Gemini (Prep Lab)
 
 📁 `Lessons/adk-mcp/035-agentic-workflows-prep.md`  
-📓 `Kisumu_buildwithai_agentic_workflows_with_gemini.ipynb`  
+📓 `035_buildwithai_agentic_workflows_with_gemini.ipynb`  
 **Colab:** https://colab.research.google.com/drive/1LkY6OG9H7R2NvsgzdCYVJ7QKIfStYgSr
 
 Hands-on codelab to build a DevFest Assistant using Gemini + LlamaIndex:
@@ -75,7 +75,7 @@ Hands-on codelab to build a DevFest Assistant using Gemini + LlamaIndex:
 ### 3.6 Multimodal Live API Quickstart (Prep Lab)
 
 📁 `Lessons/adk-gemini-live/036-gemini-liveapi-fundamentals.md`  
-📓 `Kisumu_buildwithai_liveapi_fundermentals.ipynb`  
+📓 `036_buildwithai_liveapi_fundermentals.ipynb`  
 **Colab:** https://colab.research.google.com/drive/1v6JnpWr3xDBFip6HRxBHiQWxe6-N9jMc
 
 Experiment with Gemini 2.5 Flash Live API (preview) in Colab:
@@ -90,7 +90,7 @@ Experiment with Gemini 2.5 Flash Live API (preview) in Colab:
 ### 3.7 Multimodal Live API With Tools (Prep Lab)
 
 📁 `Lessons/adk-gemini-live/037-gemini-liveapi-tools.md`  
-📓 `gemini_liveapi_tools.ipynb`  
+📓 `037_buildwithai_gemini_liveapi_tools.ipynb`  
 **Colab:** https://colab.research.google.com/drive/1Rn6SM4yKCKftM6zz2EN0P5uNw98vtKmO
 
 Add tools to your multimodal agent and watch Gemini 2.5 use them in real time:
@@ -103,7 +103,7 @@ Add tools to your multimodal agent and watch Gemini 2.5 use them in real time:
 ### 3.8 Video Understanding with Gemini Live API (Prep Lab) 
 
 📁 `Lessons/adk-gemini-live/038-gemini-liveapi-video-understanding.md`  
-📓 `kisumu_video_understanding.ipynb`  
+📓 `038_buildwithai_video_understanding.ipynb`  
 **Colab:** https://colab.research.google.com/drive/1uIsAzF5dKUs-6Jdnaa7FGnCJobme6rDA
 
 Teach your agent to analyze video streams using Gemini 2.5:
