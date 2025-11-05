@@ -1,0 +1,8 @@
+# Ignore logs
+BuildWithAI/Samples/mpesa_ocr_agent.log
+
+# Ignore Python cache files
+BuildWithAI/Samples/multi-agents/__pycache__/
+*.pyc
+
+
