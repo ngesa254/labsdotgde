@@ -26,6 +26,8 @@ After running the command, click the **Web Preview** button at the top of the Cl
 
 You will see a simple chat interface for your travel app.
 
+![alt text](image-8.png)
+
 ### 3. Test the Application
 
 Type any message (e.g., `Hi!`) and press **ENTER**. 

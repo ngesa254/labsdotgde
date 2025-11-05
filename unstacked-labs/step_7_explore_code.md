@@ -31,6 +31,8 @@ If the Gemini Code Assist Chat is not already open, you can open it with the fol
 
 2. Select **Open Gemini Code Assist Chat**.
 
+![alt text](image-6.png)
+
 ### Use Gemini Code Assist to Understand the Code
 
 You can use Gemini Code Assist Chat to better understand the code.
@@ -43,6 +45,7 @@ You can use Gemini Code Assist Chat to better understand the code.
 
 3. Click **Enter** to submit.
 
+![alt text](image-7.png)
 ---
 
 > **💡 Tip**  
