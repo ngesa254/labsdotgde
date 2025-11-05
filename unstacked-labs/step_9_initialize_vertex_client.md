@@ -8,6 +8,8 @@ Google Cloud's Vertex AI platform provides access to a variety of generative AI 
 
 1. From the Google Cloud Console, navigate to **Model Garden**. You can do this by searching for "Model Garden" in the search bar at the top of the screen and selecting **Vertex AI**.
 
+![alt text](image-9.png)
+
 2. Browse the available models. You can filter by things like:
    - Modalities
    - Task types
