@@ -1,2 +1,5 @@
 .env
 .env
+BuildWithAI/Samples/mpesa_ocr_agent.log
+BuildWithAI/Samples/multi-agents/__pycache__/
+
