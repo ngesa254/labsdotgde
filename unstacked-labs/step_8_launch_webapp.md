@@ -14,6 +14,27 @@ From within the `wanderbot` directory, run the following command in the terminal
 streamlit run app.py --browser.serverAddress=localhost --server.enableCORS=false --server.enableXsrfProtection=false --server.port 8080
 ```
 
+or 
+
+Restart Streamlit with websocket-safe flags
+
+In the terminal (keep this tab running):
+
+cd ~/wanderbot
+source .venv/bin/activate 2>/dev/null || true
+pkill -f streamlit || true
+
+```python -m streamlit run app.py \
+  --server.address=0.0.0.0 \
+  --server.headless=true \
+  --server.port=8081 \
+  --server.enableCORS=false \
+  --server.enableXsrfProtection=false \
+  --server.enableWebsocketCompression=false
+
+
+Disabling websocket compression avoids some proxies/extensions that break the socket.```
+
 > **📌 Important**  
 > Keep this terminal window open, as the Streamlit application will continue to run. You can open a new terminal window in Cloud Shell to run other commands.
 

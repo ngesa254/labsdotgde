@@ -16,6 +16,9 @@ The `cloudshell edit` command will open the `app.py` file in the editor above th
 
 Paste the following app starter code into `app.py`:
 
+
+
+
 ```python
 import streamlit as st
 from google import genai
