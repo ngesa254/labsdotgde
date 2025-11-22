@@ -8,27 +8,27 @@ Think of it like a **pop-up shop**: it only opens and uses resources when custom
 
 ## Key Features
 
-### 🐳 Runs Containers Anywhere
+### Runs Containers Anywhere
 
 - You bring a container (Docker image) that has your app inside
 - Cloud Run runs it on Google's infrastructure
 - No OS patching, VM setup, or scaling headaches
 
-### 📈 Automatic Scaling
+### Automatic Scaling
 
 - If **0 people** are using your app → **0 instances** run (scales down to zero, which is cost effective)
 - If **1000 requests** hit it → it spins up as many copies as needed
 
-### 🔄 Stateless by Default
+### Stateless by Default
 
 - Each request could go to a different instance
 - If you need to store state, use an external service like Cloud SQL, Firestore, or Memorystore
 
-### 🌐 Supports Any Language or Framework
+### Supports Any Language or Framework
 
 - As long as it runs in a Linux container, Cloud Run doesn't care if it's Python, Go, Node.js, Java, or .NET
 
-### 💰 Pay for What You Use
+### Pay for What You Use
 
 | Billing Model | Description |
 |---------------|-------------|

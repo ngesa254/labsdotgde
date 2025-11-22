@@ -15,6 +15,8 @@ We will use [FastMCP](https://github.com/jlowin/fastmcp) to create a zoo MCP ser
 
 FastMCP provides a quick, Pythonic way to build MCP servers and clients.
 
+![alt text](image.png)
+
 ### What You'll Learn
 
 - Deploy the MCP server to Cloud Run

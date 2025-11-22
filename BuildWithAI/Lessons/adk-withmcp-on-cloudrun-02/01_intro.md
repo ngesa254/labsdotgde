@@ -13,6 +13,7 @@ In this lab, we are building a **tour guide agent** for the fictional zoo. The a
 - Use the same MCP server from Lab 1 to access details about the zoo animals
 - Use Wikipedia to create the best tour guide experience
 - Be deployed to Cloud Run for access by all zoo visitors
+![alt text](image.png)
 
 ## Architecture
 
