@@ -10,8 +10,6 @@ Connecting AI applications to external systems to bring rich context to LLMs has
 
 MCP is an open protocol that standardizes how LLMs access tools, data, and prompts from external sources, simplifying how new context is integrated into AI applications. Developed by Anthropic, MCP is based on a client-server architecture that defines the communication details between an MCP client (hosted inside the AI application) and an MCP server (which exposes tools, resources, and prompt templates).
 
----
-
 ## The Problem: Fragmented AI Development
 
 Connecting AI applications to external systems to bring rich context to LLMs has often meant **writing custom integrations for each use case**. This has fragmented AI development:
@@ -20,8 +18,6 @@ Connecting AI applications to external systems to bring rich context to LLMs has
 - Across the industry
 
 Every new tool, database, or API required custom code, making it difficult to reuse integrations and slowing down development.
-
----
 
 ## What is MCP?
 
@@ -44,8 +40,6 @@ The server can be:
 
 > **Note:** Anthropic launched MCP in November 2024, and the ecosystem has been growing rapidly since then.
 
----
-
 ### What You'll Do
 
 In this hands-on course, you'll:
@@ -66,8 +60,6 @@ In this hands-on course, you'll:
 - Configure Claude Desktop to work with MCP servers
 - Deploy MCP servers remotely for production use
 - Understand the roadmap for future MCP development: multi-agent architecture, MCP registry API, server discovery, authorization, and authentication
-
----
 
 ## The MCP Ecosystem
 
@@ -96,15 +88,11 @@ The MCP ecosystem includes a growing number of MCP servers developed by:
 - The open source community
 - Anthropic's MCP team
 
----
-
 ## Reference Servers You'll Use
 
 | Server | Purpose |
 |--------|---------|
 | **filesystem** | Implements filesystem operations (read, write, list files) |
 | **fetch** | Extracts contents from the web as markdown |
-
----
 
 By the end of the Lab, you'll be able to build **rich-context AI applications** that can connect to a growing ecosystem of MCP servers, with minimal integration work.
