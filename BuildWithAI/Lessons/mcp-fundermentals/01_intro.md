@@ -1,4 +1,4 @@
-# MCP Fundamentals: Build Rich-Context AI Apps
+# MCP Fundamentals
 
 ## Introduction
 
@@ -9,6 +9,27 @@ In this Lab, you'll learn the core concepts of the **Model Context Protocol (MCP
 Connecting AI applications to external systems to bring rich context to LLMs has often meant writing custom integrations for each use case. This has fragmented AI development between teams within a company and across the industry.
 
 MCP is an open protocol that standardizes how LLMs access tools, data, and prompts from external sources, simplifying how new context is integrated into AI applications. Developed by Anthropic, MCP is based on a client-server architecture that defines the communication details between an MCP client (hosted inside the AI application) and an MCP server (which exposes tools, resources, and prompt templates).
+
+### What You'll Do
+
+In this hands-on course, you'll:
+
+- **Make a chatbot MCP-compatible** — Build a chatbot with custom tools for searching academic papers, and transform it into an MCP-compatible application
+- **Build an MCP server** — Create a local MCP server that exposes tools, resources, and prompt templates using [FastMCP](https://github.com/jlowin/fastmcp), and test it using MCP Inspector
+- **Create an MCP client** — Build an MCP client inside your chatbot to dynamically connect to your server
+- **Connect to reference servers** — Connect your chatbot to servers built by Anthropic's MCP team such as `filesystem` (implements filesystem operations) and `fetch` (extracts contents from the web as markdown)
+- **Configure Claude Desktop** — Connect to your server and explore how it abstracts away the low-level logic of MCP clients
+- **Deploy remotely** — Deploy your MCP server remotely and test it with the Inspector or other MCP-compatible applications
+
+### What You'll Learn
+
+- Understand why MCP makes AI development less fragmented and how it standardizes connections between AI applications and external data sources
+- Learn the core components of the client-server architecture of MCP and the underlying communication mechanism
+- Build and test MCP servers using FastMCP and MCP Inspector
+- Connect MCP clients to multiple servers (your own and third-party)
+- Configure Claude Desktop to work with MCP servers
+- Deploy MCP servers remotely for production use
+- Understand the roadmap for future MCP development: multi-agent architecture, MCP registry API, server discovery, authorization, and authentication
 
 ## The Problem: Fragmented AI Development
 
@@ -39,27 +60,6 @@ The server can be:
 - An **independent process** running remotely
 
 > **Note:** Anthropic launched MCP in November 2024, and the ecosystem has been growing rapidly since then.
-
-### What You'll Do
-
-In this hands-on course, you'll:
-
-- **Make a chatbot MCP-compatible** — Build a chatbot with custom tools for searching academic papers, and transform it into an MCP-compatible application
-- **Build an MCP server** — Create a local MCP server that exposes tools, resources, and prompt templates using [FastMCP](https://github.com/jlowin/fastmcp), and test it using MCP Inspector
-- **Create an MCP client** — Build an MCP client inside your chatbot to dynamically connect to your server
-- **Connect to reference servers** — Connect your chatbot to servers built by Anthropic's MCP team such as `filesystem` (implements filesystem operations) and `fetch` (extracts contents from the web as markdown)
-- **Configure Claude Desktop** — Connect to your server and explore how it abstracts away the low-level logic of MCP clients
-- **Deploy remotely** — Deploy your MCP server remotely and test it with the Inspector or other MCP-compatible applications
-
-### What You'll Learn
-
-- Understand why MCP makes AI development less fragmented and how it standardizes connections between AI applications and external data sources
-- Learn the core components of the client-server architecture of MCP and the underlying communication mechanism
-- Build and test MCP servers using FastMCP and MCP Inspector
-- Connect MCP clients to multiple servers (your own and third-party)
-- Configure Claude Desktop to work with MCP servers
-- Deploy MCP servers remotely for production use
-- Understand the roadmap for future MCP development: multi-agent architecture, MCP registry API, server discovery, authorization, and authentication
 
 ## The MCP Ecosystem
 
