@@ -11,13 +11,13 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 In this hands-on lab, you will build and deploy a **Model Context Protocol (MCP) server** as a secure, production-ready service on Google Cloud Run. MCP servers enable LLMs to access external tools and services, extending their capabilities beyond their training data.
 
 You'll create a "Zoo MCP Server" with tools to query animal information, deploy it securely with authentication, and connect to it using **Gemini CLI**.
 
-## ⏱️ Duration
+## Duration
 
 | Experience Level | Estimated Time |
 |-----------------|----------------|
@@ -25,7 +25,7 @@ You'll create a "Zoo MCP Server" with tools to query animal information, deploy 
 | Intermediate | 30-45 minutes |
 | Experienced | 20-30 minutes |
 
-## 🎓 What You'll Learn
+## What You'll Learn
 
 - ✅ Create an MCP server using **FastMCP** (Python)
 - ✅ Deploy to **Cloud Run** with authentication
@@ -34,7 +34,7 @@ You'll create a "Zoo MCP Server" with tools to query animal information, deploy 
 - ✅ Create custom MCP prompts for faster workflows
 - ✅ Verify tool calls via Cloud Run logs
 
-## 📋 Prerequisites
+## Prerequisites
 
 - A Google Account (personal account recommended)
 - Basic familiarity with Python and command line
@@ -43,7 +43,7 @@ You'll create a "Zoo MCP Server" with tools to query animal information, deploy 
 
 ---
 
-## 📚 Lab Structure
+## Lab Structure
 
 | Step | Title | Description |
 |------|-------|-------------|
@@ -83,7 +83,7 @@ You'll create a "Zoo MCP Server" with tools to query animal information, deploy 
                             └─────────────────┘
 ```
 
-## 🛠️ MCP Tools You'll Build
+## MCP Tools You'll Build
 
 | Tool | Description |
 |------|-------------|
@@ -92,7 +92,7 @@ You'll create a "Zoo MCP Server" with tools to query animal information, deploy 
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 **Already familiar with GCP?** Here's the speed run:
 
@@ -120,7 +120,7 @@ gcloud run deploy zoo-mcp-server \
 
 ---
 
-## 🔗 Related Labs
+## Related Labs
 
 This lab is part of a series:
 
@@ -132,7 +132,7 @@ This lab is part of a series:
 
 ---
 
-## 📖 Resources
+## Resources
 
 - [Model Context Protocol Documentation](https://modelcontextprotocol.io/)
 - [FastMCP GitHub Repository](https://github.com/jlowin/fastmcp)
@@ -142,7 +142,7 @@ This lab is part of a series:
 
 ---
 
-## 🆘 Getting Help
+## Getting Help
 
 - **Stuck for more than 20 seconds?** Raise your hand — we're here to help!
 - Check the troubleshooting sections in each step
@@ -150,7 +150,7 @@ This lab is part of a series:
 
 ---
 
-## 🧹 Cleanup
+##  Cleanup
 
 When you're done, clean up to avoid charges:
 
