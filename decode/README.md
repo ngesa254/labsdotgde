@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/badge/Safaricom-DARAJA%20%2B%20DECODE-1B5E20?style=for-the-badge" alt="Safaricom DARAJA and DECODE">
 </p>
 
+![From Code to Cash workshop overview](artifacts/gemini_lab_main.png)
+
 ---
 
 ## Overview
