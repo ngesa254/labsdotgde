@@ -196,6 +196,4 @@ When the workshop is complete:
 
 ---
 
-<p align="center">
-  <strong>Build secure fintech agents. Start with Lab 1, then move to Lab 2.</strong>
-</p>
+**Build secure fintech agents. Start with Lab 1, then move to Lab 2.**
