@@ -8,7 +8,7 @@ In this lab, you will build and deploy a Model Context Protocol (MCP) server. MC
 
 ### What You'll Do
 
-We will use [FastMCP](https://github.com/jlowin/fastmcp) to create a zoo MCP server that has two tools:
+We will use [FastMCP](https://github.com/PrefectHQ/FastMCP) to create a zoo MCP server that has two tools:
 
 - `get_animals_by_species` — Retrieve animals filtered by species
 - `get_animal_details` — Get detailed information about a specific animal

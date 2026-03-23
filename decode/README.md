@@ -1,6 +1,6 @@
-# Lab: DECODE Builders Lab - Safaricom MPESA + DARAJA with Google ADK, MCP, Apigee, and Cloud Run
+# From Code to Cash: Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud
 
-> **A two-part Builders Lab for secure fintech tooling, API governance, and agent deployment**
+> **Build a secure MPESA Express MCP server and a Google ADK agent on Cloud Run**
 
 <p align="center">
   <img src="https://img.shields.io/badge/Cloud%20Run-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Cloud Run">
@@ -16,7 +16,7 @@
 
 This repository contains the **DECODE Builders Lab** for building secure fintech agents on Google Cloud with Safaricom APIs and Google tooling. The workshop is organized into **two connected labs**:
 
-- **Lab 1:** Deploy a secure **Safaricom MPESA + DARAJA MCP server** on Cloud Run with an **Apigee-ready** edge
+- **Lab 1:** Deploy a secure **MPESA Express MCP server** on Cloud Run with an **Apigee-ready** edge
 - **Lab 2:** Build and deploy a **Google ADK agent** that calls that MCP server securely on Google Cloud
 
 The intended flow is simple:
@@ -38,7 +38,7 @@ The intended flow is simple:
 
 Use this workshop like a guided build, not a reference dump.
 
-- Start with **Lab 1** unless you already have a deployed MCP endpoint for Safaricom MPESA and DARAJA
+- Start with **Lab 1** unless you already have a deployed MCP endpoint for MPESA Express and DARAJA
 - Use the copied lab files as working material and adapt them to the DECODE fintech use case as you go
 - If you get stuck for more than 20 seconds in a live session, ask for help and keep moving
 - Use the official docs when you need answers: ADK, MCP, Cloud Run, Apigee, Gemini CLI, and Safaricom DARAJA
@@ -46,7 +46,7 @@ Use this workshop like a guided build, not a reference dump.
 
 ## What You'll Build
 
-- A secure Cloud Run MCP server that exposes MPESA/DARAJA capabilities as tools
+- A secure Cloud Run MCP server that exposes MPESA Express and DARAJA capabilities as tools
 - An Apigee-ready API surface in front of the MCP workflow for governance and future production controls
 - A Cloud Run ADK agent that connects to the MCP server over authenticated service-to-service calls
 - A reusable reference architecture for fintech agents on Google Cloud

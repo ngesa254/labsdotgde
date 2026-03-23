@@ -19,7 +19,7 @@ In this lab, you:
 
 This lab is the first in a three-part series. In the second lab, you will use the MCP server you created with an ADK Agent.
 
-**Next:** [Use an MCP Server on Cloud Run with an ADK Agent](#)
+**Next:** [Build the Google ADK agent for MPESA + DARAJA MCP](../02-google-adk-agent-for-mpesa-daraja-mcp/readme.md)
 
 ---
 
