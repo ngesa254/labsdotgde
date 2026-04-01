@@ -56,25 +56,6 @@ This gives the agent enough context to:
 
 For this lab, the MCP server is modeling the **LIPA NA M-PESA ONLINE API**, also known as **M-PESA Express / STK Push**.
 
-## Safaricom Sandbox Values for This Lab
-
-Use the following **STK Push-relevant** sandbox values in the examples and prompts for this workshop:
-
-- `BusinessShortCode`: `174379`
-- `PhoneNumber`: `254708374149`
-- `PartyA`: `254708374149`
-- `PartyB`: `174379`
-- `Passkey`: `bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919`
-
-Important boundary:
-
-- `Initiator Name`: `testapi`
-- `Initiator Password`: `Safaricom123!!`
-- `Party A`: `600992`
-- `Party B`: `600000`
-
-These values are **not used by the STK Push flow implemented in this lab**. They are associated with other Safaricom API patterns and should not replace the phone-number and shortcode values used for MPESA Express payload validation in this workshop.
-
 Core request concepts:
 
 - `BusinessShortCode`
@@ -102,6 +83,121 @@ Core callback concepts:
 - `ResultCode`
 - `ResultDesc`
 - `CallbackMetadata`
+
+## Test the APIs Before Coding
+
+Before writing any server code, confirm that the Safaricom sandbox APIs work from your Cloud Shell. This builds confidence that the credentials, endpoints, and payload structure are correct.
+
+### Set Your Daraja Credentials
+
+Export your Consumer Key and Consumer Secret. For this workshop, use the shared **decodegemini** sandbox app:
+
+```bash
+export MPESA_CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
+export MPESA_CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
+```
+
+> **Want to use your own?** Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps), find your sandbox app, and copy the Consumer Key and Consumer Secret.
+
+### Step 1: Generate an Access Token
+
+The DARAJA API uses OAuth 2.0 client credentials. Send your Consumer Key and Secret via HTTP Basic Auth:
+
+```bash
+ACCESS_TOKEN=$(curl -s -u "$MPESA_CONSUMER_KEY:$MPESA_CONSUMER_SECRET" \
+  "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials" \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
+
+echo "Access Token: $ACCESS_TOKEN"
+```
+
+You should see a token like:
+
+```text
+Access Token: 8vpffLWLY6txqb3xxLqWqA2XSCeT
+```
+
+> **What's happening:** You're exchanging your app credentials for a short-lived bearer token. This token is required for all subsequent API calls.
+
+### Step 2: Compute the Password and Timestamp
+
+The STK Push API requires a `Password` field that is the Base64 encoding of `BusinessShortCode + Passkey + Timestamp`. The `Timestamp` must match the current UTC time:
+
+```bash
+TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+PASSKEY="bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+PASSWORD=$(echo -n "174379${PASSKEY}${TIMESTAMP}" | base64)
+
+echo "Timestamp: $TIMESTAMP"
+echo "Password: $PASSWORD"
+```
+
+> **Why this matters:** A missing or stale Password is the #1 cause of `400.002.02` errors. The MCP server code will auto-compute this using a Pydantic model so it is **never** missing.
+
+### Step 3: Send an STK Push Request
+
+Replace `YOUR_PHONE_NUMBER` with your own Safaricom M-PESA registered number in the format `2547XXXXXXXX`:
+
+```bash
+curl -s -X POST "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"BusinessShortCode\": \"174379\",
+    \"Password\": \"${PASSWORD}\",
+    \"Timestamp\": \"${TIMESTAMP}\",
+    \"TransactionType\": \"CustomerPayBillOnline\",
+    \"Amount\": \"1\",
+    \"PartyA\": \"YOUR_PHONE_NUMBER\",
+    \"PartyB\": \"174379\",
+    \"PhoneNumber\": \"YOUR_PHONE_NUMBER\",
+    \"CallBackURL\": \"https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59\",
+    \"AccountReference\": \"DECODE2026\",
+    \"TransactionDesc\": \"decode pay\"
+  }"
+```
+
+Expected response:
+
+```json
+{
+  "MerchantRequestID": "59b5-44b3-a37b-3dad8b1200e34702",
+  "CheckoutRequestID": "ws_CO_01042026184420639727668102",
+  "ResponseCode": "0",
+  "ResponseDescription": "Success. Request accepted for processing",
+  "CustomerMessage": "Success. Request accepted for processing"
+}
+```
+
+A `ResponseCode` of `0` means the request was **accepted for processing**. Your phone will receive an M-PESA PIN prompt. Enter your PIN to complete the simulated payment.
+
+> **No real money will be deducted.** The sandbox simulates the full flow without debiting your M-PESA wallet.
+
+### Step 4: Check the Callback
+
+After you enter your M-PESA PIN, Safaricom posts the transaction result to the callback URL. Open your webhook.site URL in a browser:
+
+```text
+https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59
+```
+
+> **Tip:** Visit [webhook.site](https://webhook.site) to get your own unique callback URL.
+
+## How This Maps to the MCP Server Code
+
+Now that you've tested the APIs manually, here's how each curl step becomes an MCP tool in the server code:
+
+| Manual curl step | MCP tool | What the tool adds |
+|---|---|---|
+| Generate access token (Step 1) | `generate_access_token_request()` | Reads credentials from environment variables instead of hardcoding |
+| Compute Password + Timestamp (Step 2) | `STKPushRequest` Pydantic model | **Auto-computes** Password and Timestamp — they are never missing |
+| Send STK Push (Step 3) | `initiate_stk_push()` | Validates all fields via Pydantic, then sends the request |
+| Check callback (Step 4) | `parse_stk_callback()` | Extracts receipt number, amount, and status from the callback JSON |
+| Debug errors | `explain_stk_error()` | Maps error codes to plain-language guidance |
+| Browse products | `list_products()`, `get_product()` | Returns catalog data so the agent can look up prices |
+| Calculate total | `calculate_order_total()` | Sums product prices × quantities for the Amount field |
+
+The key insight: **the MCP server wraps the exact same API calls you just tested**, but adds validation, auto-computation, and error handling so an AI agent can use them reliably without constructing raw HTTP requests.
 
 ## Add FastMCP and HTTP Client Dependencies
 
@@ -162,21 +258,11 @@ server.py
 uv.lock
 ```
 
-![alt text](image-6.png)
-
-
-![alt text](image-7.png)
-
-
-![alt text](image-8.png)
-
-
 ## Add the Server Code
 
 Add the following MPESA Express MCP server source code in the `server.py` file:
 
 ```python
-
 import asyncio
 import base64
 import logging
@@ -368,13 +454,8 @@ def calculate_order_total(items: list[dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
-@mcp.tool()
-def generate_access_token_request() -> Dict[str, Any]:
-    """
-    Generates a DARAJA access token using environment-provided consumer credentials.
-    """
-    logger.info(">>> Tool called: generate_access_token_request")
-
+def _fetch_access_token() -> Dict[str, Any]:
+    """Private helper: fetches a DARAJA access token. Called by both the MCP tool and initiate_stk_push."""
     try:
         consumer_key = get_env_value("MPESA_CONSUMER_KEY", "CONSUMER_KEY")
         consumer_secret = get_env_value("MPESA_CONSUMER_SECRET", "CONSUMER_SECRET")
@@ -413,6 +494,15 @@ def generate_access_token_request() -> Dict[str, Any]:
 
 
 @mcp.tool()
+def generate_access_token_request() -> Dict[str, Any]:
+    """
+    Generates a DARAJA access token using environment-provided consumer credentials.
+    """
+    logger.info(">>> Tool called: generate_access_token_request")
+    return _fetch_access_token()
+
+
+@mcp.tool()
 def validate_stk_push_payload(
     phone_number: str,
     amount: int,
@@ -426,8 +516,15 @@ def validate_stk_push_payload(
 ) -> Dict[str, Any]:
     """
     Validates an MPESA Express STK Push payload using Pydantic.
+
+    IMPORTANT: Before calling this tool, you MUST ask the user for their
+    Safaricom M-PESA phone number in the format 2547XXXXXXXX.
+    Do NOT assume, guess, or hardcode a phone number.
+
     Only phone_number and amount are required - all other fields have sandbox defaults.
     Returns the COMPLETE Safaricom payload including auto-computed Password and Timestamp.
+    This is a VALIDATION-ONLY tool. To actually send the payment, call initiate_stk_push.
+    Do NOT use Shell or curl to send the request yourself.
     """
     logger.info(">>> Tool called: validate_stk_push_payload")
 
@@ -471,7 +568,12 @@ def initiate_stk_push(
 ) -> Dict[str, Any]:
     """
     Initiates a Safaricom MPESA Express STK Push payment.
-    Only phone_number (format 2547XXXXXXXX) and amount are required.
+
+    IMPORTANT: Before calling this tool, you MUST ask the user for their
+    Safaricom M-PESA phone number in the format 2547XXXXXXXX.
+    Do NOT assume, guess, or hardcode a phone number.
+
+    Only phone_number and amount are required.
     All other parameters have sandbox defaults built in.
     Password and Timestamp are auto-computed by the Pydantic model.
     """
@@ -493,7 +595,7 @@ def initiate_stk_push(
     except ValidationError as exc:
         return {"valid": False, "errors": [e["msg"] for e in exc.errors()]}
 
-    token_info = generate_access_token_request()
+    token_info = _fetch_access_token()
     if "error" in token_info:
         return {"error": f"Could not get access token: {token_info['error']}"}
 
@@ -623,6 +725,30 @@ cat ~/mpesa-mcp-server/server.py
 
 If the file prints the Python source code you just pasted, you are ready for the next step.
 
+## What to Customize
+
+The server code works **out of the box** for this workshop with the shared sandbox credentials. If you want to use your own setup, here's exactly what to change:
+
+| What | Where in `server.py` | Default (works for workshop) | Change to |
+|---|---|---|---|
+| **Callback URL** | `STKPushRequest.callback_url` field default (line ~35 of the class) | `https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59` | Your own [webhook.site](https://webhook.site) URL |
+| **Product catalog** | `PRODUCTS` list | 3 workshop items at KES 5, 3, 1 | Your own products and prices |
+| **Account reference** | `STKPushRequest.account_reference` field default | `DECODE2026` | Your own reference (max 12 chars) |
+
+### What You Do NOT Change in server.py
+
+These values are either **auto-computed** or **set at deploy time**, not in the source code:
+
+| What | Why you don't touch it |
+|---|---|
+| **Consumer Key / Secret** | Passed as environment variables at deploy time (`MPESA_CONSUMER_KEY`, `MPESA_CONSUMER_SECRET`). Never hardcode credentials in source files. |
+| **Password** | Auto-computed by the `STKPushRequest` Pydantic model from `BusinessShortCode + Passkey + Timestamp`. It is **never** missing. |
+| **Timestamp** | Auto-computed at request time using UTC. Always fresh. |
+| **Phone number** | Passed as a tool parameter when calling `initiate_stk_push`. The agent or user provides it at runtime. |
+| **BusinessShortCode / Passkey** | Sandbox defaults (`174379` / standard sandbox passkey). Only change these when moving to production Go Live. |
+
+> **For this workshop:** You can paste the code exactly as-is and proceed to the next step. No changes are required.
+
 ## Understanding the Code
 
 The server defines eight MCP tools:
@@ -646,285 +772,6 @@ This structure is deliberate:
 - **credentials** stay in environment variables instead of source code
 
 That separation makes the MCP tools easier for both humans and agents to use correctly.
-
-## Why This Is Better Than a Raw REST Wrapper
-
-The point of MCP is not to mirror every HTTP endpoint 1:1. The point is to expose the **useful capabilities** of a system as composable tools.
-
-For this lab, the most useful capabilities are:
-
-- listing products
-- retrieving prices
-- calculating an order total
-- understanding what a valid request looks like
-- constructing a correct STK Push payload
-- interpreting asynchronous results
-- explaining failures quickly
-
-That is what the tools above are designed to do.
-
-## Where Apigee Fits
-
-You are building the MCP server on Cloud Run in this lab, but the production pattern should assume **Apigee** in front of the service for:
-
-- quota enforcement
-- spike arrest
-- authentication and policy mediation
-- observability
-- partner-facing API productization
-
-For the workshop, think of the architecture like this:
-
-```text
-Gemini CLI / ADK Agent
-        |
-        v
-Apigee
-        |
-        v
-Cloud Run MCP Server
-        |
-        +--> Static Product Catalog
-        |
-        v
-Safaricom DARAJA APIs
-```
-
-## Sample MPESA Express Request
-
-Here is a clean example of the request body your MCP server is helping to build after an order total has already been calculated:
-
-```json
-{
-  "BusinessShortCode": "174379",
-  "Password": "<base64_shortcode_passkey_timestamp>",
-  "Timestamp": "20210628092408",
-  "TransactionType": "CustomerPayBillOnline",
-  "Amount": "1",
-  "PartyA": "254708374149",
-  "PartyB": "174379",
-  "PhoneNumber": "254708374149",
-  "CallBackURL": "https://example.com/mpesa/callback",
-  "AccountReference": "DECODE2026",
-  "TransactionDesc": "decode pay"
-}
-```
-
-## Tested Sandbox curl Flow
-
-The following sandbox flow was validated against the Safaricom Daraja STK Push sandbox using:
-
-- `BusinessShortCode`: `174379`
-- `PartyA`: `254708374149`
-- `PartyB`: `174379`
-- `PhoneNumber`: `254708374149`
-- `TransactionType`: `CustomerPayBillOnline`
-- `Amount`: `1`
-
-Do **not** hardcode your Daraja app credentials in source files. Export them in the terminal first.
-
-### Where to Find Your Credentials
-
-1. Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps)
-2. Log in with your Daraja account
-3. Find your sandbox app under **My Apps** (for this workshop, use the shared app **decodegemini**)
-4. Click the copy icon next to **Consumer Key** and **Consumer Secret**
-
-![Daraja My Apps Dashboard](image-daraja-myapps.png)
-
-For this workshop, use the shared **decodegemini** sandbox app credentials:
-
-```bash
-export CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
-export CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
-```
-
-> **Want to use your own?** Click **Create Sandbox App** on the Daraja portal, select **M-PESA EXPRESS Sandbox** as the product, and copy the generated Consumer Key and Consumer Secret.
-
-Generate an access token:
-
-```bash
-curl -s -u "$CONSUMER_KEY:$CONSUMER_SECRET" \
-  "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-```
-
-Expected response shape:
-
-```json
-{
-  "access_token": "<access_token>",
-  "expires_in": "3599"
-}
-```
-
-Then create the timestamp and password:
-
-```bash
-TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
-PASSWORD=$(printf "174379bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919${TIMESTAMP}" | base64)
-```
-
-Set the token returned by the previous step:
-
-```bash
-export ACCESS_TOKEN="paste_access_token_here"
-```
-
-Submit the STK Push request.
-
-> **Use your own phone number:** Replace `YOUR_PHONE_NUMBER` below with your Safaricom M-PESA registered number in the format `2547XXXXXXXX` (e.g. `254727668102`). You will receive an M-PESA PIN prompt on your phone.
-
-> **Callback URL:** Visit [webhook.site](https://webhook.site) to get a free unique callback URL, or use the shared workshop one below. After the payment completes, the transaction result will appear on that page.
-
-```bash
-export MY_PHONE="YOUR_PHONE_NUMBER"
-export CALLBACK_URL="https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59"
-
-curl -s -X POST "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest" \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"BusinessShortCode\": \"174379\",
-    \"Password\": \"${PASSWORD}\",
-    \"Timestamp\": \"${TIMESTAMP}\",
-    \"TransactionType\": \"CustomerPayBillOnline\",
-    \"Amount\": \"1\",
-    \"PartyA\": \"${MY_PHONE}\",
-    \"PartyB\": \"174379\",
-    \"PhoneNumber\": \"${MY_PHONE}\",
-    \"CallBackURL\": \"${CALLBACK_URL}\",
-    \"AccountReference\": \"DECODE2026\",
-    \"TransactionDesc\": \"decode pay\"
-  }"
-```
-
-Expected acceptance response shape:
-
-```json
-{
-  "MerchantRequestID": "<merchant_request_id>",
-  "CheckoutRequestID": "<checkout_request_id>",
-  "ResponseCode": "0",
-  "ResponseDescription": "Success. Request accepted for processing",
-  "CustomerMessage": "Success. Request accepted for processing"
-}
-```
-
-### Verify Payment via Callback
-
-After you enter your M-PESA PIN on your phone, Safaricom posts the transaction result to your callback URL. Open your webhook.site URL in a browser to see the callback payload and confirm the payment succeeded.
-
-### Important Notes
-
-- A `ResponseCode` of `0` means the request was **accepted for processing**, not that the payment fully completed. The final result arrives on the callback URL.
-- **No real money will be deducted.** The sandbox simulates the full flow without debiting your M-PESA wallet. Any amount shown is simulated and will be automatically reversed.
-- If you are testing against a **production (Go Live)** short code, real money is involved. **Any test transactions will be reversed** — contact [apisupport@safaricom.co.ke](mailto:apisupport@safaricom.co.ke) if needed.
-- Keep your `CONSUMER_KEY` and `CONSUMER_SECRET` in environment variables or Secret Manager, not in source code or markdown checked into git.
-
-## Sample Submission Response
-
-```json
-{
-  "MerchantRequestID": "2654-4b64-97ff-b827b542881d3130",
-  "CheckoutRequestID": "ws_CO_1007202409152617172396192",
-  "ResponseCode": "0",
-  "ResponseDescription": "Success. Request accepted for processing",
-  "CustomerMessage": "Success. Request accepted for processing"
-}
-```
-
-## Sample Successful Callback
-
-```json
-{
-  "Body": {
-    "stkCallback": {
-      "MerchantRequestID": "29115-34620561-1",
-      "CheckoutRequestID": "ws_CO_191220191020363925",
-      "ResultCode": 0,
-      "ResultDesc": "The service request is processed successfully.",
-      "CallbackMetadata": {
-        "Item": [
-          { "Name": "Amount", "Value": 1.0 },
-          { "Name": "MpesaReceiptNumber", "Value": "NLJ7RT61SV" },
-          { "Name": "TransactionDate", "Value": 20191219102115 },
-          { "Name": "PhoneNumber", "Value": 254708374149 }
-        ]
-      }
-    }
-  }
-}
-```
-
-## Set Up Your Callback URL with webhook.site
-
-The STK Push API is **asynchronous** — when you submit a request, you get an acknowledgment (`ResponseCode: 0`), but the actual payment result (success, cancelled, timeout) arrives later on the **CallBackURL** you provided.
-
-To receive and inspect callbacks during development:
-
-1. Open [webhook.site](https://webhook.site) in your browser
-2. A unique URL is generated automatically (e.g. `https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59`)
-3. Copy that URL and use it as your `CallBackURL` in the STK Push request
-4. After the customer enters their M-PESA PIN (or cancels), the callback payload appears on the webhook.site page
-
-> **Why this matters:** In production, your backend server receives this callback and updates the order status. During development, webhook.site lets you see the raw payload without building a server.
-
-## Personalizing the Test Request
-
-When testing the STK Push, you should change **two fields** to use your own values:
-
-| Field | What to change | Why |
-|-------|---------------|-----|
-| `PartyA` and `PhoneNumber` | Replace with **your own** Safaricom M-PESA number in `2547XXXXXXXX` format | So the PIN prompt arrives on your phone |
-| `CallBackURL` | Replace with **your own** webhook.site URL | So you can see the callback payload |
-
-All other sandbox values (`BusinessShortCode`, `PartyB`, `Passkey`) stay the same for everyone.
-
-## Common API Error Codes
-
-| Code | Meaning | What to do |
-|------|---------|------------|
-| `400.002.02` | Invalid request payload | Check required fields, data types, and `Content-Type: application/json` header |
-| `404.001.01` | Resource not found | Verify you are calling the correct API endpoint |
-| `404.001.03` | Invalid access token | Generate a fresh token — tokens expire every hour |
-| `405.001` | Method not allowed | Ensure you are sending a POST, not GET |
-| `500.001.1001` | Merchant does not exist / wrong credentials / subscriber locked | Verify BusinessShortCode, Password encoding, or wait 1 min between retries |
-| `500.003.02` | System busy / spike arrest violation | Retry with backoff, reduce request rate |
-| `500.003.03` | Quota violation | Too many requests — reduce volume |
-
-## Transaction Result Codes
-
-These arrive on the **callback URL** after the customer interacts with the STK Push prompt:
-
-| Code | Description | Explanation |
-|------|-------------|-------------|
-| `0` | Processed successfully | Payment completed |
-| `1` | Insufficient balance | Customer doesn't have enough M-PESA balance |
-| `2` | Below minimum amount | Amount is less than KES 1 |
-| `3` | Exceeds maximum amount | Amount exceeds C2B transaction maximum |
-| `4` | Exceeds daily limit | Would exceed customer's KES 500,000 daily limit |
-| `8` | Exceeds account balance limit | Would exceed the Pay Bill/Till account balance limit |
-| `17` | Duplicate transaction | Same amount to same customer within 2 minutes — wait and retry |
-| `1019` | Transaction expired | Customer did not respond in time |
-| `1025` | Push request failed | USSD prompt too long (over 182 chars) — shorten AccountReference |
-| `1032` | Cancelled by user | Customer dismissed the PIN prompt |
-| `1037` | Customer unreachable | Phone offline, busy, or in another M-PESA session |
-| `2001` | Invalid PIN | Customer entered wrong M-PESA PIN |
-| `2028` | Not permitted | Wrong TransactionType or PartyB for the short code type |
-| `8006` | Credential locked | Customer should contact Safaricom Care (100 or 200) |
-
-## Transaction Limits
-
-| Limit | Value |
-|-------|-------|
-| Maximum per transaction | KES 250,000 |
-| Maximum account balance | KES 500,000 |
-| Daily transaction limit | KES 500,000 |
-| Minimum transaction | KES 1 |
-
-## Official Reference
-
-Full API documentation: [Safaricom Daraja — M-Pesa Express](https://developer.safaricom.co.ke/APIs/MpesaExpressSimulate)
 
 ## Why This Matters for the Rest of the Lab
 

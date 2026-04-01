@@ -2,6 +2,18 @@
 
 Now that you've successfully deployed a remote MCP server, connect to it using Gemini CLI.
 
+## Grant Invoke Permission
+
+Give your user account permission to call the remote MCP server:
+
+```bash
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+    --member=user:$(gcloud config get-value account) \
+    --role='roles/run.invoker'
+```
+
+> **Why this is needed:** The MCP server was deployed with `--no-allow-unauthenticated`, which means only users with the `roles/run.invoker` role can call it. Without this step, your ID token will be rejected with a `403 Forbidden` error.
+
 ## Generate an ID Token
 
 ```bash
@@ -87,38 +99,39 @@ Ask Gemini:
 List the products in the catalog and their prices.
 ```
 
-### Step 2: Build an Order
+Gemini should call the `list_products` tool and return the three workshop products with their prices.
+
+### Step 2: Buy a Product
+
+Now ask Gemini to buy something — **do not include your phone number**:
 
 ```text
-I want to buy 1 coffee. Send the STK Push to 254727668102.
+I want to buy 1 coffee.
 ```
-
-Gemini should use the MCP server tools to inspect the product catalog and calculate the order total.
-
-### Step 3: Initiate a Real STK Push (Sandbox)
-
-Now test the full payment flow. The sandbox defaults (BusinessShortCode, passkey, PartyB, CallBackURL, etc.) are already embedded in the tool descriptions — you don't need to type them.
-
-> **Important:** Use your own Safaricom M-PESA registered phone number in the format `2547XXXXXXXX` (e.g. `254727668102`). You will receive an M-PESA PIN prompt on your phone. This is the sandbox — **no real money will be deducted. Any amount shown is simulated and will be automatically reversed.**
-
-Ask Gemini:
-
-```text
-I want to buy 1 coffee. Send the STK Push to 254727668102.
-```
-
-Replace `254727668102` with **your own** Safaricom M-PESA number.
-
-The agent already knows the sandbox shortcode, passkey, callback URL, and other defaults from the tool descriptions — you only need to say **what to buy** and **your phone number**.
 
 The agent should:
 
-1. Look up the product price from the catalog
-2. Validate the STK Push payload
-3. Initiate the STK Push request
-4. Return a `ResponseCode: 0` confirmation
+1. Look up the coffee price from the catalog
+2. Calculate the order total
+3. **Ask you for your M-PESA phone number** before initiating payment
 
-You will see the M-PESA PIN prompt appear on your phone. Enter your PIN to complete the payment.
+When Gemini asks for your number, reply with your own Safaricom M-PESA registered number in `2547XXXXXXXX` format. For example:
+
+```text
+254712345678
+```
+
+> **Important:** Use your **real** Safaricom M-PESA number. You will receive an M-PESA PIN prompt on your phone. This is the sandbox — **no real money will be deducted. Any amount shown is simulated and will be automatically reversed.**
+
+### Step 3: Complete the Payment
+
+After you provide your phone number, the agent should:
+
+1. Validate the STK Push payload
+2. Initiate the STK Push request
+3. Return a `ResponseCode: 0` confirmation
+
+You will see the M-PESA PIN prompt appear on your phone. Enter your PIN to complete the simulated payment.
 
 ### Step 4: Verify Payment via Callback
 
