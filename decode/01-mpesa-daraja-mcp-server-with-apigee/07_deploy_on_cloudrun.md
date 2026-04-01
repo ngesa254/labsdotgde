@@ -57,9 +57,44 @@ server.py
 uv.lock
 ```
 
+## Set Daraja Sandbox Credentials
+
+The MCP server reads consumer credentials from environment variables at runtime. Before deploying, you need to get your **Consumer Key** and **Consumer Secret** from the Safaricom Daraja developer portal.
+
+### How to Get Your Credentials
+
+1. Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps)
+2. Log in with your Daraja account (or create one if you haven't already)
+3. You will see your sandbox apps listed under **My Apps**
+
+![Daraja My Apps Dashboard](image-daraja-myapps.png)
+
+4. Find your sandbox app (for this workshop, use the shared app **decodegemini**)
+5. Click the copy icon next to **Consumer Key** and **Consumer Secret** to copy them
+
+### Export Your Credentials
+
+Replace the values below with the Consumer Key and Consumer Secret from your Daraja app:
+
+```bash
+export MPESA_CONSUMER_KEY="your_consumer_key_here"
+export MPESA_CONSUMER_SECRET="your_consumer_secret_here"
+```
+
+For this workshop, we are sharing the **decodegemini** sandbox app. Use these credentials:
+
+```bash
+export MPESA_CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
+export MPESA_CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
+```
+
+> **Want to use your own app?** Click **Create Sandbox App** on the Daraja portal, select **M-PESA EXPRESS Sandbox** as the product, and copy the generated Consumer Key and Consumer Secret.
+
+> **Will I be charged real money?** No. The sandbox environment does not process real M-PESA transactions. However, when you move to **production Go Live**, real money is involved. **Any test transactions made against a live short code will be reversed** — but always use the sandbox for development and testing.
+
 ## Deploy to Cloud Run
 
-Run the `gcloud` command to deploy the application to Cloud Run:
+Run the `gcloud` command to deploy the application to Cloud Run, passing the Daraja credentials as environment variables:
 
 ```bash
 cd ~/mpesa-mcp-server
@@ -68,10 +103,12 @@ gcloud run deploy safaricom-mpesa-mcp-server \
     --no-allow-unauthenticated \
     --region=europe-west1 \
     --source=. \
+    --set-env-vars="MPESA_CONSUMER_KEY=${MPESA_CONSUMER_KEY},MPESA_CONSUMER_SECRET=${MPESA_CONSUMER_SECRET}" \
     --labels=dev-tutorial=codelab-mcp
 ```
 
 > **Important:** The `--no-allow-unauthenticated` flag requires authentication. This is critical for security.
+> The `--set-env-vars` flag passes your Daraja credentials to the running container. In production, use **Secret Manager** instead of plain environment variables.
 
 ## Confirm Artifact Registry Creation
 

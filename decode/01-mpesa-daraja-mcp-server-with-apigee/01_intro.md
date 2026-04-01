@@ -18,9 +18,11 @@ We will use [FastMCP](https://github.com/PrefectHQ/FastMCP) to create a single M
 - `list_products` — list products from a static merchant catalog
 - `get_product` — fetch a specific product by ID
 - `calculate_order_total` — compute a basket total from line items
+- `generate_access_token_request` — generate a DARAJA OAuth access token
 - `validate_stk_push_payload` — validate a payment request before submission
-- `initiate_stk_push` — construct an MPESA Express request
+- `initiate_stk_push` — construct and send an MPESA Express request
 - `parse_stk_callback` — interpret the callback payload
+- `explain_stk_error` — translate error codes into actionable guidance
 
 FastMCP provides a quick, Pythonic way to build MCP servers and clients.
 

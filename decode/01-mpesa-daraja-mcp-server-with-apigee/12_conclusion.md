@@ -18,3 +18,5 @@ In this lab, you:
 In Lab 2, you will build a Google ADK agent with Safaricom MCP access that uses the single MCP server you created in this lab.
 
 **Next:** [Build the Google ADK agent for MPESA + DARAJA MCP](../02-google-adk-agent-for-mpesa-daraja-mcp/readme.md)
+
+If you want to clean up these resources and rerun Lab 1 from scratch, see [Outro](./13_outro.md).

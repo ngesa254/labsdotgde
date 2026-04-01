@@ -115,17 +115,20 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudb
 # 2. Create project
 mkdir mpesa-mcp-server && cd mpesa-mcp-server
 uv init --description "Safaricom M-PESA Express MCP server on Cloud Run" --bare --python 3.13
-uv add fastmcp==2.12.4 --no-sync
+uv add fastmcp==2.12.4 httpx==0.28.1 --no-sync
 
 # 3. Create server.py and Dockerfile (see step 06 & 07)
 
 # 4. Deploy
 gcloud iam service-accounts create mcp-server-sa --display-name="MCP Server Service Account"
+export MPESA_CONSUMER_KEY="your_consumer_key"
+export MPESA_CONSUMER_SECRET="your_consumer_secret"
 gcloud run deploy safaricom-mpesa-mcp-server \
     --service-account=mcp-server-sa@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com \
     --no-allow-unauthenticated \
     --region=europe-west1 \
-    --source=.
+    --source=. \
+    --set-env-vars="MPESA_CONSUMER_KEY=${MPESA_CONSUMER_KEY},MPESA_CONSUMER_SECRET=${MPESA_CONSUMER_SECRET}"
 
 # 5. Configure Gemini CLI (see step 08)
 ```

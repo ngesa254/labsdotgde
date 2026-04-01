@@ -56,6 +56,25 @@ This gives the agent enough context to:
 
 For this lab, the MCP server is modeling the **LIPA NA M-PESA ONLINE API**, also known as **M-PESA Express / STK Push**.
 
+## Safaricom Sandbox Values for This Lab
+
+Use the following **STK Push-relevant** sandbox values in the examples and prompts for this workshop:
+
+- `BusinessShortCode`: `174379`
+- `PhoneNumber`: `254708374149`
+- `PartyA`: `254708374149`
+- `PartyB`: `174379`
+- `Passkey`: `bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919`
+
+Important boundary:
+
+- `Initiator Name`: `testapi`
+- `Initiator Password`: `Safaricom123!!`
+- `Party A`: `600992`
+- `Party B`: `600000`
+
+These values are **not used by the STK Push flow implemented in this lab**. They are associated with other Safaricom API patterns and should not replace the phone-number and shortcode values used for MPESA Express payload validation in this workshop.
+
 Core request concepts:
 
 - `BusinessShortCode`
@@ -84,12 +103,12 @@ Core callback concepts:
 - `ResultDesc`
 - `CallbackMetadata`
 
-## Add FastMCP Dependency
+## Add FastMCP and HTTP Client Dependencies
 
-Run the following command to add FastMCP as a dependency in the `pyproject.toml` file:
+Run the following command to add FastMCP and `httpx` as dependencies in the `pyproject.toml` file:
 
 ```bash
-uv add fastmcp==2.12.4 --no-sync
+uv add fastmcp==2.12.4 httpx==0.28.1 --no-sync
 ```
 
 You should see output similar to:
@@ -99,7 +118,7 @@ Using CPython 3.13.2
 Resolved 65 packages in 933ms
 ```
 
-This will also add a `uv.lock` file to your project.
+This will also add `httpx` to your dependencies and create a `uv.lock` file for the project.
 
 ## Create the Server File
 
@@ -143,6 +162,15 @@ server.py
 uv.lock
 ```
 
+![alt text](image-6.png)
+
+
+![alt text](image-7.png)
+
+
+![alt text](image-8.png)
+
+
 ## Add the Server Code
 
 Add the following MPESA Express MCP server source code in the `server.py` file:
@@ -150,13 +178,13 @@ Add the following MPESA Express MCP server source code in the `server.py` file:
 ```python
 import asyncio
 import base64
-import json
 import logging
 import os
 from datetime import datetime, timezone
 from typing import Any, Dict
 
 from fastmcp import FastMCP
+import httpx
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
@@ -164,14 +192,16 @@ logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
 mcp = FastMCP("MPESA Express MCP Server")
 
 SANDBOX_BASE_URL = "https://sandbox.safaricom.co.ke"
+TOKEN_PATH = "/oauth/v1/generate?grant_type=client_credentials"
 STK_PUSH_PATH = "/mpesa/stkpush/v1/processrequest"
+DEFAULT_TIMEOUT_SECONDS = 30.0
 
 PRODUCTS = [
     {
         "id": "conf-pass-001",
         "name": "Build With AI Conference Pass",
         "category": "event",
-        "price_kes": 2500,
+        "price_kes": 5,
         "currency": "KES",
         "inventory_status": "in_stock",
     },
@@ -179,7 +209,7 @@ PRODUCTS = [
         "id": "tee-001",
         "name": "DECODE Workshop T-Shirt",
         "category": "merch",
-        "price_kes": 1800,
+        "price_kes": 3,
         "currency": "KES",
         "inventory_status": "in_stock",
     },
@@ -187,7 +217,7 @@ PRODUCTS = [
         "id": "coffee-001",
         "name": "Single Origin Coffee Beans",
         "category": "retail",
-        "price_kes": 1200,
+        "price_kes": 1,
         "currency": "KES",
         "inventory_status": "low_stock",
     },
@@ -201,6 +231,18 @@ def current_timestamp() -> str:
 def build_password(shortcode: str, passkey: str, timestamp: str) -> str:
     raw_value = f"{shortcode}{passkey}{timestamp}".encode("utf-8")
     return base64.b64encode(raw_value).decode("utf-8")
+
+
+def get_env_value(*names: str) -> str:
+    for name in names:
+        value = os.getenv(name)
+        if value:
+            return value
+    raise ValueError(f"Missing required environment variable. Expected one of: {', '.join(names)}")
+
+
+def get_http_timeout() -> float:
+    return float(os.getenv("MPESA_HTTP_TIMEOUT_SECONDS", DEFAULT_TIMEOUT_SECONDS))
 
 
 @mcp.tool()
@@ -259,17 +301,43 @@ def calculate_order_total(items: list[dict[str, Any]]) -> Dict[str, Any]:
 @mcp.tool()
 def generate_access_token_request() -> Dict[str, Any]:
     """
-    Returns the OAuth endpoint and auth mode required to obtain a DARAJA access token.
-
-    In a production implementation, this tool would make the outbound token request
-    using the consumer key and consumer secret stored in Secret Manager.
+    Generates a DARAJA access token using environment-provided consumer credentials.
     """
     logger.info(">>> Tool called: generate_access_token_request")
+
+    try:
+        consumer_key = get_env_value("MPESA_CONSUMER_KEY", "CONSUMER_KEY")
+        consumer_secret = get_env_value("MPESA_CONSUMER_SECRET", "CONSUMER_SECRET")
+    except ValueError as exc:
+        logger.error("Missing credentials: %s", exc)
+        return {"error": str(exc)}
+
+    token_url = f"{SANDBOX_BASE_URL}{TOKEN_PATH}"
+
+    try:
+        response = httpx.get(
+            token_url,
+            auth=(consumer_key, consumer_secret),
+            timeout=get_http_timeout(),
+        )
+        response.raise_for_status()
+        token_payload = response.json()
+    except httpx.TimeoutException:
+        logger.error("Token request timed out")
+        return {"error": "Token request timed out. Safaricom sandbox may be slow — retry."}
+    except httpx.HTTPStatusError as exc:
+        logger.error("Token request failed: %s %s", exc.response.status_code, exc.response.text)
+        return {"error": f"Token request failed with HTTP {exc.response.status_code}: {exc.response.text}"}
+    except httpx.HTTPError as exc:
+        logger.error("Token request error: %s", exc)
+        return {"error": f"Token request network error: {exc}"}
+
     return {
         "environment": "sandbox",
-        "token_url": f"{SANDBOX_BASE_URL}/oauth/v1/generate?grant_type=client_credentials",
+        "token_url": token_url,
         "auth_mode": "basic_auth",
-        "required_secrets": ["consumer_key", "consumer_secret"],
+        "access_token": token_payload["access_token"],
+        "expires_in": token_payload.get("expires_in"),
         "next_step": "Use the generated token as a Bearer token for MPESA Express requests.",
     }
 
@@ -288,6 +356,18 @@ def validate_stk_push_payload(
 ) -> Dict[str, Any]:
     """
     Performs basic validation for an MPESA Express request before it is sent.
+
+    Sandbox defaults (use these unless the user specifies otherwise):
+    - business_shortcode: "174379"
+    - party_b: "174379"
+    - transaction_type: "CustomerPayBillOnline"
+    - callback_url: "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59"
+    - account_reference: "DECODE2026"
+    - transaction_desc: "decode pay"
+
+    The agent MUST ask the user for their phone_number (format 2547XXXXXXXX).
+    party_a should be set to the same value as phone_number.
+    amount should come from the product catalog via calculate_order_total.
     """
     logger.info(">>> Tool called: validate_stk_push_payload")
 
@@ -339,17 +419,45 @@ def initiate_stk_push(
     transaction_desc: str,
 ) -> Dict[str, Any]:
     """
-    Builds the MPESA Express request body and returns the target endpoint.
+    Calls the live Safaricom sandbox MPESA Express endpoint and returns the API response.
 
-    In production, this tool would:
-    1. fetch an access token
-    2. call the DARAJA STK Push endpoint
-    3. return the live API response
+    Sandbox defaults (use these unless the user specifies otherwise):
+    - business_shortcode: "174379"
+    - passkey: "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+    - party_b: "174379"
+    - transaction_type: "CustomerPayBillOnline"
+    - callback_url: "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59"
+    - account_reference: "DECODE2026"
+    - transaction_desc: "decode pay"
+
+    The agent MUST ask the user for their phone_number (format 2547XXXXXXXX).
+    party_a should be set to the same value as phone_number.
+    amount should come from the product catalog via calculate_order_total.
     """
     logger.info(">>> Tool called: initiate_stk_push")
 
+    validation = validate_stk_push_payload(
+        business_shortcode=business_shortcode,
+        transaction_type=transaction_type,
+        amount=amount,
+        party_a=party_a,
+        party_b=party_b,
+        phone_number=phone_number,
+        callback_url=callback_url,
+        account_reference=account_reference,
+        transaction_desc=transaction_desc,
+    )
+    if not validation["valid"]:
+        return validation
+
     timestamp = current_timestamp()
     password = build_password(business_shortcode, passkey, timestamp)
+    token_info = generate_access_token_request()
+
+    if "error" in token_info:
+        return {"error": f"Could not get access token: {token_info['error']}"}
+
+    access_token = token_info["access_token"]
 
     request_body = {
         "BusinessShortCode": business_shortcode,
@@ -365,18 +473,39 @@ def initiate_stk_push(
         "TransactionDesc": transaction_desc,
     }
 
+    try:
+        response = httpx.post(
+            f"{SANDBOX_BASE_URL}{STK_PUSH_PATH}",
+            headers={
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json",
+            },
+            json=request_body,
+            timeout=get_http_timeout(),
+        )
+        response.raise_for_status()
+        response_payload = response.json()
+    except httpx.TimeoutException:
+        logger.error("STK Push request timed out")
+        return {"error": "STK Push request timed out. Safaricom sandbox may be slow — retry."}
+    except httpx.HTTPStatusError as exc:
+        logger.error("STK Push failed: %s %s", exc.response.status_code, exc.response.text)
+        return {"error": f"STK Push failed with HTTP {exc.response.status_code}: {exc.response.text}"}
+    except httpx.HTTPError as exc:
+        logger.error("STK Push network error: %s", exc)
+        return {"error": f"STK Push network error: {exc}"}
+
     return {
         "environment": "sandbox",
         "endpoint": f"{SANDBOX_BASE_URL}{STK_PUSH_PATH}",
-        "method": "POST",
-        "headers": {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer <access_token>",
-        },
         "request_body": request_body,
+        "response": response_payload,
+        "accepted_for_processing": response_payload.get("ResponseCode") == "0",
+        "checkout_request_id": response_payload.get("CheckoutRequestID"),
+        "merchant_request_id": response_payload.get("MerchantRequestID"),
         "notes": [
             "This API is asynchronous.",
-            "A successful submission only means the request was accepted for processing.",
+            "A ResponseCode of 0 means the request was accepted for processing.",
             "Final transaction outcome arrives on the callback URL.",
         ],
     }
@@ -414,13 +543,31 @@ def explain_stk_error(code: str) -> Dict[str, str]:
     logger.info(">>> Tool called: explain_stk_error")
 
     errors = {
-        "0": "Success. The request was processed successfully.",
-        "1032": "The customer canceled the STK Push request.",
-        "1037": "The customer could not be reached. Their phone may be offline, busy, or in another session.",
-        "2001": "The customer entered an invalid M-PESA PIN.",
-        "404.001.03": "Invalid access token. Generate a fresh token and retry before expiry.",
-        "400.002.02": "Invalid request payload. Check required fields and formatting.",
-        "500.003.02": "System busy or request rate too high. Retry with backoff and review throttling.",
+        # Result codes (transaction outcome)
+        "0": "Success. The transaction was processed successfully on M-PESA.",
+        "1": "Insufficient balance. The customer does not have enough money in their M-PESA account.",
+        "2": "Declined: amount is below the minimum C2B transaction limit (currently KES 1).",
+        "3": "Declined: amount exceeds the maximum C2B transaction limit.",
+        "4": "Declined: would exceed the customer's daily transfer limit (currently KES 500,000).",
+        "8": "Declined: would exceed the Pay Bill or Till Number account balance limit.",
+        "17": "Rule limited. Duplicate transaction — same amount to same customer within 2 minutes. Wait and retry.",
+        "1019": "Transaction expired. The customer did not respond in time.",
+        "1025": "Push request failed. The USSD prompt may be too long (over 182 chars). Shorten the AccountReference.",
+        "1032": "Request cancelled by the customer.",
+        "1037": "Customer unreachable. Phone may be offline, busy, or in another M-PESA session.",
+        "2001": "Invalid M-PESA PIN entered by the customer. Advise them to retry with the correct PIN.",
+        "2028": "Request not permitted. Check TransactionType and PartyB: use CustomerPayBillOnline for PayBill, CustomerBuyGoodsOnline for Till.",
+        "8006": "Security credential locked. Customer should contact Safaricom Care (call 100 or 200).",
+        "SFC_IC0003": "Operator does not exist. Verify TransactionType and PartyB match your short code type.",
+        # API error codes (request-level)
+        "400.002.02": "Invalid request payload. Check required fields, data types, and Content-Type: application/json header.",
+        "404.001.01": "Resource not found. Verify you are calling the correct API endpoint.",
+        "404.001.03": "Invalid access token. Generate a fresh token — tokens expire every hour.",
+        "405.001": "Method not allowed. Ensure you are sending a POST request, not GET.",
+        "500.001.1001": "Server error. Could be: merchant does not exist, wrong Password encoding, or subscriber locked in another session.",
+        "500.003.02": "System busy or spike arrest violation. Retry with backoff and reduce request rate.",
+        "500.003.03": "Quota violation. Too many requests — reduce your request volume.",
+        "500.003.1001": "Internal server error. Verify your setup matches the API documentation.",
     }
 
     return {
@@ -458,9 +605,9 @@ The server defines eight MCP tools:
 | `list_products()` | Returns the full workshop product catalog |
 | `get_product(product_id)` | Fetches one product and its price |
 | `calculate_order_total(items)` | Totals a basket in KES |
-| `generate_access_token_request()` | Returns the token endpoint and auth model needed to request a DARAJA access token |
+| `generate_access_token_request()` | Generates a live DARAJA access token from environment-provided credentials |
 | `validate_stk_push_payload(...)` | Checks required fields and normalizes the request payload |
-| `initiate_stk_push(...)` | Builds the MPESA Express request body and shows how it should be sent |
+| `initiate_stk_push(...)` | Validates the payload, fetches a token, and sends a real STK Push request |
 | `parse_stk_callback(callback_payload)` | Converts callback payloads into a smaller, agent-friendly structure |
 | `explain_stk_error(code)` | Explains common transaction and API errors with mitigation hints |
 
@@ -469,6 +616,7 @@ This structure is deliberate:
 - **validation** is separate from **execution**
 - **request submission** is separate from **callback interpretation**
 - **error explanation** is separate from the raw API payload
+- **credentials** stay in environment variables instead of source code
 
 That separation makes the MCP tools easier for both humans and agents to use correctly.
 
@@ -526,14 +674,125 @@ Here is a clean example of the request body your MCP server is helping to build 
   "Timestamp": "20210628092408",
   "TransactionType": "CustomerPayBillOnline",
   "Amount": "1",
-  "PartyA": "254722000000",
+  "PartyA": "254708374149",
   "PartyB": "174379",
-  "PhoneNumber": "254722111111",
+  "PhoneNumber": "254708374149",
   "CallBackURL": "https://example.com/mpesa/callback",
-  "AccountReference": "acct-ref",
-  "TransactionDesc": "payment"
+  "AccountReference": "DECODE2026",
+  "TransactionDesc": "decode pay"
 }
 ```
+
+## Tested Sandbox curl Flow
+
+The following sandbox flow was validated against the Safaricom Daraja STK Push sandbox using:
+
+- `BusinessShortCode`: `174379`
+- `PartyA`: `254708374149`
+- `PartyB`: `174379`
+- `PhoneNumber`: `254708374149`
+- `TransactionType`: `CustomerPayBillOnline`
+- `Amount`: `1`
+
+Do **not** hardcode your Daraja app credentials in source files. Export them in the terminal first.
+
+### Where to Find Your Credentials
+
+1. Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps)
+2. Log in with your Daraja account
+3. Find your sandbox app under **My Apps** (for this workshop, use the shared app **decodegemini**)
+4. Click the copy icon next to **Consumer Key** and **Consumer Secret**
+
+![Daraja My Apps Dashboard](image-daraja-myapps.png)
+
+For this workshop, use the shared **decodegemini** sandbox app credentials:
+
+```bash
+export CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
+export CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
+```
+
+> **Want to use your own?** Click **Create Sandbox App** on the Daraja portal, select **M-PESA EXPRESS Sandbox** as the product, and copy the generated Consumer Key and Consumer Secret.
+
+Generate an access token:
+
+```bash
+curl -s -u "$CONSUMER_KEY:$CONSUMER_SECRET" \
+  "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+```
+
+Expected response shape:
+
+```json
+{
+  "access_token": "<access_token>",
+  "expires_in": "3599"
+}
+```
+
+Then create the timestamp and password:
+
+```bash
+TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+PASSWORD=$(printf "174379bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919${TIMESTAMP}" | base64)
+```
+
+Set the token returned by the previous step:
+
+```bash
+export ACCESS_TOKEN="paste_access_token_here"
+```
+
+Submit the STK Push request.
+
+> **Use your own phone number:** Replace `YOUR_PHONE_NUMBER` below with your Safaricom M-PESA registered number in the format `2547XXXXXXXX` (e.g. `254727668102`). You will receive an M-PESA PIN prompt on your phone.
+
+> **Callback URL:** Visit [webhook.site](https://webhook.site) to get a free unique callback URL, or use the shared workshop one below. After the payment completes, the transaction result will appear on that page.
+
+```bash
+export MY_PHONE="YOUR_PHONE_NUMBER"
+export CALLBACK_URL="https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59"
+
+curl -s -X POST "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"BusinessShortCode\": \"174379\",
+    \"Password\": \"${PASSWORD}\",
+    \"Timestamp\": \"${TIMESTAMP}\",
+    \"TransactionType\": \"CustomerPayBillOnline\",
+    \"Amount\": \"1\",
+    \"PartyA\": \"${MY_PHONE}\",
+    \"PartyB\": \"174379\",
+    \"PhoneNumber\": \"${MY_PHONE}\",
+    \"CallBackURL\": \"${CALLBACK_URL}\",
+    \"AccountReference\": \"DECODE2026\",
+    \"TransactionDesc\": \"decode pay\"
+  }"
+```
+
+Expected acceptance response shape:
+
+```json
+{
+  "MerchantRequestID": "<merchant_request_id>",
+  "CheckoutRequestID": "<checkout_request_id>",
+  "ResponseCode": "0",
+  "ResponseDescription": "Success. Request accepted for processing",
+  "CustomerMessage": "Success. Request accepted for processing"
+}
+```
+
+### Verify Payment via Callback
+
+After you enter your M-PESA PIN on your phone, Safaricom posts the transaction result to your callback URL. Open your webhook.site URL in a browser to see the callback payload and confirm the payment succeeded.
+
+### Important Notes
+
+- A `ResponseCode` of `0` means the request was **accepted for processing**, not that the payment fully completed. The final result arrives on the callback URL.
+- **No real money will be deducted.** The sandbox simulates the full flow without debiting your M-PESA wallet. Any amount shown is simulated and will be automatically reversed.
+- If you are testing against a **production (Go Live)** short code, real money is involved. **Any test transactions will be reversed** — contact [apisupport@safaricom.co.ke](mailto:apisupport@safaricom.co.ke) if needed.
+- Keep your `CONSUMER_KEY` and `CONSUMER_SECRET` in environment variables or Secret Manager, not in source code or markdown checked into git.
 
 ## Sample Submission Response
 
@@ -570,16 +829,75 @@ Here is a clean example of the request body your MCP server is helping to build 
 }
 ```
 
-## Common Errors Worth Explaining Well
+## Set Up Your Callback URL with webhook.site
+
+The STK Push API is **asynchronous** — when you submit a request, you get an acknowledgment (`ResponseCode: 0`), but the actual payment result (success, cancelled, timeout) arrives later on the **CallBackURL** you provided.
+
+To receive and inspect callbacks during development:
+
+1. Open [webhook.site](https://webhook.site) in your browser
+2. A unique URL is generated automatically (e.g. `https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59`)
+3. Copy that URL and use it as your `CallBackURL` in the STK Push request
+4. After the customer enters their M-PESA PIN (or cancels), the callback payload appears on the webhook.site page
+
+> **Why this matters:** In production, your backend server receives this callback and updates the order status. During development, webhook.site lets you see the raw payload without building a server.
+
+## Personalizing the Test Request
+
+When testing the STK Push, you should change **two fields** to use your own values:
+
+| Field | What to change | Why |
+|-------|---------------|-----|
+| `PartyA` and `PhoneNumber` | Replace with **your own** Safaricom M-PESA number in `2547XXXXXXXX` format | So the PIN prompt arrives on your phone |
+| `CallBackURL` | Replace with **your own** webhook.site URL | So you can see the callback payload |
+
+All other sandbox values (`BusinessShortCode`, `PartyB`, `Passkey`) stay the same for everyone.
+
+## Common API Error Codes
 
 | Code | Meaning | What to do |
 |------|---------|------------|
-| `400.002.02` | Invalid request payload | Recheck request body fields and formatting |
-| `404.001.03` | Invalid access token | Generate a fresh token and retry |
-| `1032` | Request canceled by user | Ask the customer to retry the payment |
-| `1037` | Customer device unreachable | Retry later when the phone is reachable |
-| `2001` | Invalid PIN | Ask the customer to enter the correct M-PESA PIN |
-| `500.003.02` | System busy or rate-limited | Retry with backoff and review throttling rules |
+| `400.002.02` | Invalid request payload | Check required fields, data types, and `Content-Type: application/json` header |
+| `404.001.01` | Resource not found | Verify you are calling the correct API endpoint |
+| `404.001.03` | Invalid access token | Generate a fresh token — tokens expire every hour |
+| `405.001` | Method not allowed | Ensure you are sending a POST, not GET |
+| `500.001.1001` | Merchant does not exist / wrong credentials / subscriber locked | Verify BusinessShortCode, Password encoding, or wait 1 min between retries |
+| `500.003.02` | System busy / spike arrest violation | Retry with backoff, reduce request rate |
+| `500.003.03` | Quota violation | Too many requests — reduce volume |
+
+## Transaction Result Codes
+
+These arrive on the **callback URL** after the customer interacts with the STK Push prompt:
+
+| Code | Description | Explanation |
+|------|-------------|-------------|
+| `0` | Processed successfully | Payment completed |
+| `1` | Insufficient balance | Customer doesn't have enough M-PESA balance |
+| `2` | Below minimum amount | Amount is less than KES 1 |
+| `3` | Exceeds maximum amount | Amount exceeds C2B transaction maximum |
+| `4` | Exceeds daily limit | Would exceed customer's KES 500,000 daily limit |
+| `8` | Exceeds account balance limit | Would exceed the Pay Bill/Till account balance limit |
+| `17` | Duplicate transaction | Same amount to same customer within 2 minutes — wait and retry |
+| `1019` | Transaction expired | Customer did not respond in time |
+| `1025` | Push request failed | USSD prompt too long (over 182 chars) — shorten AccountReference |
+| `1032` | Cancelled by user | Customer dismissed the PIN prompt |
+| `1037` | Customer unreachable | Phone offline, busy, or in another M-PESA session |
+| `2001` | Invalid PIN | Customer entered wrong M-PESA PIN |
+| `2028` | Not permitted | Wrong TransactionType or PartyB for the short code type |
+| `8006` | Credential locked | Customer should contact Safaricom Care (100 or 200) |
+
+## Transaction Limits
+
+| Limit | Value |
+|-------|-------|
+| Maximum per transaction | KES 250,000 |
+| Maximum account balance | KES 500,000 |
+| Daily transaction limit | KES 500,000 |
+| Minimum transaction | KES 1 |
+
+## Official Reference
+
+Full API documentation: [Safaricom Daraja — M-Pesa Express](https://developer.safaricom.co.ke/APIs/MpesaExpressSimulate)
 
 ## Why This Matters for the Rest of the Lab
 
