@@ -2,10 +2,10 @@
 
 ## Create the Project Folder
 
-Create a folder named `mcp-on-cloudrun` to store the source code for deployment:
+Create a folder named `mpesa-mcp-server` to store the source code for deployment:
 
 ```bash
-mkdir mcp-on-cloudrun && cd mcp-on-cloudrun
+mkdir mpesa-mcp-server && cd mpesa-mcp-server
 ```
 
 ## Initialize the Python Project
@@ -13,14 +13,16 @@ mkdir mcp-on-cloudrun && cd mcp-on-cloudrun
 Create a Python project with the `uv` tool to generate a `pyproject.toml` file:
 
 ```bash
-uv init --description "Example of deploying an MCP server on Cloud Run" --bare --python 3.13
+uv init --description "Safaricom M-PESA Express MCP server with product catalog tools" --bare --python 3.13
 ```
 
 You should see:
 
+```text
+Initialized project `mpesa-mcp-server`
 ```
-Initialized project `mcp-on-cloudrun`
-```
+
+![alt text](image-3.png)
 
 ## Verify the Project Configuration
 
@@ -34,9 +36,11 @@ The output should look like the following:
 
 ```toml
 [project]
-name = "mcp-on-cloudrun"
+name = "mpesa-mcp-server"
 version = "0.1.0"
-description = "Example of deploying an MCP server on Cloud Run"
+description = "Safaricom M-PESA Express MCP server with product catalog tools"
 requires-python = ">=3.13"
 dependencies = []
 ```
+
+![alt text](image-4.png)

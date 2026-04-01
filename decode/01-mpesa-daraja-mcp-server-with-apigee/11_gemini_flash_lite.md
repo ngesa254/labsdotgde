@@ -1,100 +1,38 @@
-# (Optional) Use Gemini Flash Lite for Faster Responses
+# (Optional) Use Gemini Flash Lite
 
-Gemini CLI lets you choose the model you are using.
+Many requests in this lab are structured and tool-heavy rather than deeply reasoning-heavy. That makes them a good fit for a faster model.
 
-| Model | Description |
-|-------|-------------|
-| **Gemini 2.5 Pro** | Google's state-of-the-art thinking model, capable of reasoning over complex problems in code, math, and STEM, as well as analyzing large datasets, codebases, and documents using long context. |
-| **Gemini 2.5 Flash** | Google's best model in terms of price-performance, offering well-rounded capabilities. Best for large scale processing, low-latency, high volume tasks that require thinking, and agentic use cases. |
-| **Gemini 2.5 Flash Lite** | Google's fastest flash model optimized for cost-efficiency and high throughput. |
+## Switch to Flash Lite
 
-Since the requests related to finding the zoo animals don't require complex thinking or reasoning, try speeding things up by using a faster model.
+In Gemini CLI, you can switch to a faster model using the `/model` command:
 
-## Start Gemini CLI with Flash Lite
-
-Start Gemini CLI with the Flash Lite model:
-
-```bash
-gemini --model=gemini-2.5-flash-lite
+```text
+/model gemini-2.0-flash-lite
 ```
 
-## Test with the Custom Command
+## Try a Faster Flow
 
-Use the custom command you created in the previous step:
+Try prompts like:
 
-```
-/find lions
-```
-
-You should still see that Gemini CLI calls the `get_animals_by_species` tool and formats the response as instructed by the MCP prompt, but the answer should appear much faster!
-
-```
-╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ ✔  get_animals_by_species (zoo-remote MCP Server) {"species":"lion"}                              │
-│                                                                                                   │
-│    [{"species":"lion","name":"Leo","age":7,"enclosure":"The Big Cat                               │
-│    Plains","trail":"Savannah Heights"},...]                                                       │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
-
-✦ Lions can be found in The Big Cat Plains on the Savannah Heights.
+```text
+List the products in the catalog.
 ```
 
----
+or:
 
-## Troubleshooting
-
-### Unknown Command Error
-
-If you see an error like this:
-
-```
-✕ Unknown command: /find --animal="lions"
+```text
+Validate an MPESA Express payload for one conference pass.
 ```
 
-Run `/mcp` to check the server status. If it shows `zoo-remote - Disconnected`, you may need to refresh your credentials.
+You should still see Gemini calling your MCP tools, but the response should appear faster.
 
-**To fix this:**
+## When This Helps
 
-1. Exit Gemini CLI with `/quit`
+Flash Lite is a good fit for:
 
-2. Re-run the IAM binding and refresh your tokens:
+- listing products
+- checking prices
+- validating payload fields
+- explaining known error codes
 
-   ```bash
-   gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
-     --member="user:$(gcloud config get-value account)" \
-     --role="roles/run.invoker"
-
-   export PROJECT_NUMBER=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectNumber)")
-   export ID_TOKEN=$(gcloud auth print-identity-token)
-   ```
-
-3. Regenerate the settings file:
-
-   ```bash
-   cat > ~/.gemini/settings.json << EOF
-   {
-     "ide": {
-       "hasSeenNudge": true
-     },
-     "mcpServers": {
-       "zoo-remote": {
-         "httpUrl": "https://zoo-mcp-server-${PROJECT_NUMBER}.europe-west1.run.app/mcp",
-         "headers": {
-           "Authorization": "Bearer ${ID_TOKEN}"
-         }
-       }
-     },
-     "security": {
-       "auth": {
-         "selectedType": "cloud-shell"
-       }
-     }
-   }
-   EOF
-   ```
-
-4. Restart Gemini CLI:
-
-   ```bash
-   gemini --model=gemini-2.5-flash-lite
-   ```
+Use a more capable model when you need more planning or richer synthesis.

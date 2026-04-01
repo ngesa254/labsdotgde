@@ -20,6 +20,22 @@ source .env
 
 ---
 
+## Grant Cloud Run Invoker Permission
+
+The MCP server from Lab 1 requires authentication (`--no-allow-unauthenticated`). Grant the agent's service account the **Cloud Run Invoker** role so it can call the MCP server:
+
+```bash
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member="serviceAccount:$SERVICE_ACCOUNT" \
+  --role="roles/run.invoker"
+```
+
+You should see output confirming the IAM policy was updated.
+
+> **Why this matters:** Without this role, every MCP tool call from the agent will fail with a 403 Forbidden error because the agent cannot authenticate to the MCP server on Cloud Run.
+
+---
+
 ## Grant Vertex AI Permissions
 
 Grant the service account the **Vertex AI User** role, which gives it permission to make predictions and call Google's models:
@@ -46,10 +62,10 @@ bindings:
 
 ## Verify Your File Structure
 
-Before deploying, ensure your `zoo_guide_agent` directory has the correct structure:
+Before deploying, ensure your `adk_agent_safaricom_mcp_access` directory has the correct structure:
 
 ```
-zoo_guide_agent/
+adk_agent_safaricom_mcp_access/
 ├── __init__.py        # Package identifier
 ├── agent.py           # Main agent code with root_agent
 ├── requirements.txt   # Python dependencies
@@ -68,7 +84,7 @@ ls -la
 
 | Role | Service Account | Purpose |
 |------|-----------------|---------|
-| `roles/run.invoker` | `lab2-cr-service` | Allows the agent to call the MCP server on Cloud Run |
+| `roles/run.invoker` | `lab2-cr-service` | Allows the agent to call the authenticated MCP server on Cloud Run |
 | `roles/aiplatform.user` | `lab2-cr-service` | Allows the agent to call Vertex AI / Gemini models |
 
 Your application is now ready for deployment!

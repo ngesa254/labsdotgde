@@ -1,4 +1,4 @@
-# Lab 2: Google ADK Agent with Safaricom MPESA + DARAJA MCP and Apigee on Cloud Run
+# Lab 2: Google ADK Agent with Safaricom MCP Access on Cloud Run
 
 > **DECODE Builders Lab Part 2: Google ADK agent integration with Safaricom and Google Cloud tooling**
 
@@ -15,9 +15,9 @@
 
 ## Overview
 
-In this hands-on lab, you will build and deploy a **Google ADK fintech agent** using Google's **Agent Development Kit (ADK)**. The agent uses a multi-agent architecture to answer fintech workflow requests by combining:
+In this hands-on lab, you will build and deploy a **Google ADK agent with Safaricom MCP access** using Google's **Agent Development Kit (ADK)**. The agent uses a multi-agent architecture to answer product and payment workflow requests by combining:
 
-- **Internal data and actions** from the Safaricom MCP server created in Lab 1
+- **Internal data and actions** from the Safaricom M-PESA Express MCP server created in Lab 1
 - **Google Cloud infrastructure** for deployment, identity, and runtime
 - **Optional Apigee exposure** for governed API access patterns
 
@@ -36,7 +36,6 @@ The key architectural principle demonstrated is **separation of concerns** — a
 - ✅ Structure a Python project for ADK deployment
 - ✅ Implement a multi-agent workflow using `SequentialAgent`
 - ✅ Connect to a remote MCP server using `MCPToolset`
-- ✅ Integrate external tools like the Wikipedia API
 - ✅ Deploy an agent to Cloud Run using `adk deploy`
 - ✅ Configure secure service-to-service authentication with IAM
 
@@ -70,39 +69,40 @@ The key architectural principle demonstrated is **separation of concerns** — a
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Zoo Tour Guide Agent                         │
+│             Google ADK Agent with Safaricom MCP Access         │
 │                    (Deployed on Cloud Run)                      │
 │                                                                 │
 │  ┌──────────┐   ┌─────────────────────┐   ┌──────────────────┐ │
-│  │ Greeter  │──▶│ Comprehensive       │──▶│ Response         │ │
-│  │  Agent   │   │ Researcher          │   │ Formatter        │ │
+│  │ Greeter  │──▶│ Operations Planner  │──▶│ Response         │ │
+│  │  Agent   │   │                     │   │ Formatter        │ │
 │  │          │   │                     │   │                  │ │
 │  │ Welcomes │   │ Tools:              │   │ Formats output   │ │
-│  │ user     │   │ • MCP Server 🦁     │   │ for user         │ │
-│  │          │   │ • Wikipedia 📚      │   │                  │ │
+│  │ user     │   │ • Safaricom MCP     │   │ for user         │ │
+│  │          │   │                     │   │                  │ │
 │  └──────────┘   └─────────────────────┘   └──────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
                               │
               ┌───────────────┴───────────────┐
               │                               │
               ▼                               ▼
-┌─────────────────────────┐     ┌─────────────────────────┐
-│     Zoo MCP Server      │     │     Wikipedia API       │
-│     (from Lab 1)        │     │                         │
-│                         │     │  General knowledge      │
-│  🦁 Lions    🐧 Penguins│     │  about animals          │
-│  🐘 Elephants 🐻 Bears  │     │                         │
-└─────────────────────────┘     └─────────────────────────┘
+┌─────────────────────────┐
+│ Safaricom M-PESA       │
+│ Express MCP Server     │
+│     (from Lab 1)       │
+│                        │
+│ Product Catalog +      │
+│ Payment Tools          │
+└─────────────────────────┘
 ```
 
 ## Agent Components
 
 | Component | Type | Purpose |
 |-----------|------|---------|
-| `greeter` | Root Agent | Welcomes users and saves their prompt |
-| `comprehensive_researcher` | Agent | Queries MCP server and Wikipedia |
-| `response_formatter` | Agent | Formats findings into friendly response |
-| `tour_guide_workflow` | SequentialAgent | Orchestrates the research → format flow |
+| `safaricom_mcp_access_greeter` | Root Agent | Greets the user and stores the request |
+| `checkout_planner` | Agent | Uses Safaricom MCP tools to plan and gather data |
+| `response_formatter` | Agent | Formats product and payment output |
+| `checkout_workflow` | SequentialAgent | Orchestrates planning → formatting |
 
 ---
 
@@ -116,7 +116,7 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com \
     cloudbuild.googleapis.com aiplatform.googleapis.com compute.googleapis.com
 
 # 2. Create project
-cd && mkdir zoo_guide_agent && cd zoo_guide_agent
+cd && mkdir adk_agent_safaricom_mcp_access && cd adk_agent_safaricom_mcp_access
 
 # 3. Set up environment
 export PROJECT_ID=$(gcloud config get-value project)
@@ -136,7 +136,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 # 6. Deploy
 uvx --from google-adk adk deploy cloud_run \
   --project=$PROJECT_ID --region=europe-west1 \
-  --service_name=zoo-tour-guide --with_ui . \
+  --service_name=adk-agent-safaricom-mcp-access --with_ui . \
   -- --service-account=$SERVICE_ACCOUNT
 ```
 
@@ -146,7 +146,7 @@ uvx --from google-adk adk deploy cloud_run \
 
 | Lab | Description | Status |
 |-----|-------------|--------|
-| [Lab 1](../01-mpesa-daraja-mcp-server-with-apigee/readme.md) | Deploy the Safaricom MPESA + DARAJA MCP server | Required |
+| [Lab 1](../01-mpesa-daraja-mcp-server-with-apigee/readme.md) | Deploy the Safaricom M-PESA Express MCP server | Required |
 | **Lab 2** | Build the Google ADK agent with Safaricom MCP access | **You are here** |
 | Lab 3 | Multi-Agent Systems with ADK and MCP | Coming soon |
 
@@ -179,7 +179,7 @@ When you're done, clean up to avoid charges:
 
 ```bash
 # Delete the agent service
-gcloud run services delete zoo-tour-guide --region=europe-west1 --quiet
+gcloud run services delete adk-agent-safaricom-mcp-access --region=europe-west1 --quiet
 
 # Delete Artifact Registry
 gcloud artifacts repositories delete cloud-run-source-deploy --location=europe-west1 --quiet

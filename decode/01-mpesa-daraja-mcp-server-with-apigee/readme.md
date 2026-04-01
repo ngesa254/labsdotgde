@@ -17,7 +17,7 @@
 
 In this hands-on lab, you will build and deploy a **Model Context Protocol (MCP) server** as a secure, production-ready service on Google Cloud Run. MCP servers enable LLMs to access external tools and services, extending their capabilities beyond their training data.
 
-You will adapt the workshop pattern to an **MPESA Express MCP server**, deploy it securely with authentication, and connect to it using **Gemini CLI**. You will also prepare the service for an **Apigee** front door so developers and agents can consume Safaricom payment capabilities through a governed API layer.
+You will adapt the workshop pattern to a **Safaricom M-PESA Express MCP server** that also includes a static product catalog, deploy it securely with authentication, and connect to it using **Gemini CLI**. You will also prepare the service for an **Apigee** front door so developers and agents can consume Safaricom payment capabilities and product lookup tools through a governed API layer.
 
 ## Duration
 
@@ -76,9 +76,12 @@ You will adapt the workshop pattern to an **MPESA Express MCP server**, deploy i
                                      │
                             ┌────────┴────────┐
                             │   FastMCP       │
-                            │ MPESA Express   │
+                            │ Safaricom       │
+                            │ M-PESA Express  │
                             │ MCP Server      │
                             │                 │
+                            │ Product Catalog │
+                            │ Order Totals    │
                             │ OAuth Token     │
                             │ STK Push        │
                             │ Callback Parse  │
@@ -90,7 +93,11 @@ You will adapt the workshop pattern to an **MPESA Express MCP server**, deploy i
 
 | Tool | Description |
 |------|-------------|
+| `list_products()` | List products from the merchant catalog |
+| `get_product(product_id)` | Fetch a specific product by ID |
+| `calculate_order_total(items)` | Compute the order total in KES |
 | `generate_access_token_request()` | Get the OAuth token request details for Safaricom DARAJA API calls |
+| `validate_stk_push_payload(...)` | Validate an MPESA Express request payload before submission |
 | `initiate_stk_push(...)` | Start an MPESA Express payment request |
 | `parse_stk_callback(callback_payload)` | Normalize callback payloads for agents and developers |
 | `explain_stk_error(code)` | Translate common API or transaction errors into action guidance |
@@ -107,14 +114,14 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudb
 
 # 2. Create project
 mkdir mpesa-mcp-server && cd mpesa-mcp-server
-uv init --description "MPESA Express MCP server on Cloud Run" --bare --python 3.13
+uv init --description "Safaricom M-PESA Express MCP server on Cloud Run" --bare --python 3.13
 uv add fastmcp==2.12.4 --no-sync
 
 # 3. Create server.py and Dockerfile (see step 06 & 07)
 
 # 4. Deploy
 gcloud iam service-accounts create mcp-server-sa --display-name="MCP Server Service Account"
-gcloud run deploy mpesa-express-mcp-server \
+gcloud run deploy safaricom-mpesa-mcp-server \
     --service-account=mcp-server-sa@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com \
     --no-allow-unauthenticated \
     --region=europe-west1 \
@@ -162,7 +169,7 @@ When you're done, clean up to avoid charges:
 
 ```bash
 # Delete the Cloud Run service
-gcloud run services delete mpesa-express-mcp-server --region=europe-west1
+gcloud run services delete safaricom-mpesa-mcp-server --region=europe-west1
 
 # Or delete the entire project
 gcloud projects delete $GOOGLE_CLOUD_PROJECT

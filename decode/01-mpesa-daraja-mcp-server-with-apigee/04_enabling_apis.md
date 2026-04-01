@@ -16,6 +16,7 @@ This command may take a few minutes to complete, but it should eventually produc
 ```
 Operation "operations/acf.p2-73d90d00-47ee-447a-b600" finished successfully.
 ```
+![alt text](image-2.png)
 
 ## What These APIs Do
 

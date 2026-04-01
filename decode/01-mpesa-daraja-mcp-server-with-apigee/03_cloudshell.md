@@ -1,32 +1,25 @@
-# Project Setup
+# Open Cloud Shell Editor
 
-## Create a Google Cloud Account
+In this step, you will open Cloud Shell Editor, make sure the terminal is available, verify the active account and project, and set the correct Google Cloud project for the rest of the lab.
 
-1. If you don't already have a Google Account, you must [create a Google Account](https://accounts.google.com/signup).
-   > **Note:** Use a personal account instead of a work or school account. Work and school accounts may have restrictions that prevent you from enabling the APIs needed for this lab.
+## Launch Cloud Shell Editor
 
-2. Sign in to the [Google Cloud Console](https://console.cloud.google.com/).
+![alt text](image-1.png)
 
-3. [Enable billing](https://cloud.google.com/billing/docs/how-to/modify-project) in the Cloud Console.
-   - Completing this lab should cost less than **$1 USD** in Cloud resources.
-   - You can follow the steps at the end of this lab to delete resources to avoid further charges.
-   - New users are eligible for the [**$300 USD Free Trial**](https://cloud.google.com/free).
+Cloud Shell Editor is a browser-based development environment that includes Cloud Shell, a terminal, and preinstalled Google Cloud developer tools.
 
-4. [Create a new project](https://console.cloud.google.com/projectcreate) or choose to reuse an existing project.
+1. In the Google Cloud Console, click **Activate Cloud Shell** in the top-right toolbar.
+2. When prompted, click **Continue**.
+3. If you are asked to authorize Cloud Shell at any point, click **Authorize** to continue.
+4. Wait for the environment to finish starting.
 
----
+## Open the Terminal
 
-## Activate Cloud Shell
+If the terminal does not appear automatically at the bottom of the screen:
 
-Cloud Shell is a virtual machine that is loaded with development tools. It offers a persistent 5GB home directory and runs on Google Cloud. Cloud Shell provides command-line access to your Google Cloud resources.
-
-1. In the Cloud Console, click **Activate Cloud Shell** (terminal icon) in the top right toolbar.
-
-2. Click **Continue** when prompted.
-
-3. Once connected, you are already authenticated and the project is set to your selected project.
-
----
+1. Click **View**
+2. Click **Terminal**
+3. Click **Open New Terminal**
 
 ## Verify Your Account and Project
 
@@ -59,79 +52,68 @@ gcloud config get-value project
 gcloud projects list
 ```
 
----
-
-## Switch Accounts (If Needed)
-
-If you need to use a different Google account than what's currently active:
-
-### 1. Login with the New Account
-
-```bash
-gcloud auth login your-email@gmail.com
-```
-
-A browser window will open — sign in with your account and allow access.
-
-> **Note:** In Cloud Shell, you may see a message that you're already authenticated. Type `y` to proceed anyway if you need to add a different account.
-
-### 2. Set the New Account as Active
-
-```bash
-gcloud config set account your-email@gmail.com
-```
-
-### 3. Confirm the Change
-
-```bash
-gcloud auth list
-```
-
-You should now see your desired account marked as active with an asterisk (`*`):
-
-```
-Credentialed Accounts
-
-ACTIVE: *
-ACCOUNT: your-email@gmail.com
-```
-
----
-
 ## Set Your Project
 
-If you need to switch to a different project:
+In the terminal, set your project with this command:
 
 ```bash
 gcloud config set project YOUR_PROJECT_ID
 ```
 
-Replace `YOUR_PROJECT_ID` with your actual project ID from the `gcloud projects list` output.
+Example:
 
-Verify the change:
+```bash
+gcloud config set project lab-project-id-example
+```
+
+If you cannot remember your project ID, you can list project IDs with:
+
+```bash
+gcloud projects list | awk '/PROJECT_ID/{print $2}'
+```
+
+You should see output similar to:
+
+```bash
+Updated property [core/project].
+```
+
+If you see a warning and are asked:
+
+```bash
+Do you want to continue (Y/n)?
+```
+
+then the project ID is likely incorrect. Press `n`, press Enter, and run the command again with the correct project ID.
+
+To verify the active project after setting it, run:
 
 ```bash
 gcloud config get-value project
 ```
 
----
+## Switch Accounts (If Needed)
 
-## Troubleshooting
+If the wrong Google account is active in Cloud Shell, switch it before continuing.
 
-### Cannot Revoke GCE-Provided Credentials
-
-If you try to revoke the default Cloud Shell account and see this error:
-
-```
-ERROR: (gcloud.auth.revoke) Cannot revoke GCE-provided credentials.
-```
-
-This is expected behavior. You cannot revoke the default Cloud Shell credentials, but you can still add and switch to a different account using the steps above.
-
-### Multiple Accounts Listed
-
-If you have multiple accounts and want to ensure the correct one is active, use:
+### Login with the Correct Account
 
 ```bash
-gcloud config set account your-preferred-email@gmail.com
+gcloud auth login your-email@gmail.com
 ```
+
+A browser window will open so you can sign in and allow access.
+
+### Set the Active Account
+
+```bash
+gcloud config set account your-email@gmail.com
+```
+
+### Confirm the Active Account
+
+```bash
+gcloud auth list
+```
+
+Your preferred account should be marked with an asterisk (`*`).

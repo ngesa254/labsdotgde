@@ -1,9 +1,12 @@
 # Build the MPESA Express MCP Server with FastMCP
 
-In this step, you will build an MCP server that exposes **Safaricom M-PESA Express** capabilities as structured tools for developers, Gemini CLI, and Google ADK agents.
+In this step, you will build an MCP server that exposes both a **merchant product catalog** and **Safaricom M-PESA Express** capabilities as structured tools for developers, Gemini CLI, and Google ADK agents.
 
-Instead of calling raw DARAJA endpoints directly every time, the MCP server provides a reusable tool layer for:
+Instead of calling raw APIs directly every time, the MCP server provides a reusable tool layer for:
 
+- listing products from a static catalog
+- fetching product details
+- calculating order totals
 - generating access tokens
 - validating MPESA Express request payloads
 - initiating STK Push requests
@@ -19,6 +22,35 @@ This is a much better fit for agentic systems than a toy in-memory example becau
 5. Safaricom sends the final result to the merchant callback URL
 
 In production, this pattern can sit behind **Apigee** to add policy enforcement, quotas, spike arrest, observability, and governed API exposure.
+
+## Why One MCP Server
+
+For this workshop, we are intentionally using **one MCP server** instead of splitting into separate catalog and payments MCP services.
+
+That design keeps the workshop simpler while still preserving a clean separation inside the code:
+
+- `catalog` tools for product data
+- `payments` tools for MPESA Express
+
+The ADK agent in Lab 2 will then orchestrate both domains through a single `MCPToolset`.
+
+## Product Catalog Model
+
+The merchant catalog is static JSON for workshop simplicity. Each product contains:
+
+- `id`
+- `name`
+- `category`
+- `price_kes`
+- `currency`
+- `inventory_status`
+
+This gives the agent enough context to:
+
+- search products
+- retrieve prices
+- build an order
+- pass the total into an MPESA Express request
 
 ## What We Are Wrapping
 
@@ -74,10 +106,42 @@ This will also add a `uv.lock` file to your project.
 Create and open a new `server.py` file for the MCP server source code:
 
 ```bash
-cloudshell edit ~/mcp-on-cloudrun/server.py
+cloudshell edit ~/mpesa-mcp-server/server.py
 ```
 
 The `cloudshell edit` command will open the `server.py` file in the editor above the terminal.
+
+If the command fails with an error like:
+
+```text
+Exception: Cannot send messages to client. Please try again later
+```
+
+your Cloud Shell terminal is running, but the browser editor client is not ready to receive the request. Use this fallback:
+
+1. Create the file manually:
+
+   ```bash
+   touch ~/mpesa-mcp-server/server.py
+   ```
+
+2. Open the `mpesa-mcp-server` folder from the Cloud Shell Editor file explorer.
+3. Click `server.py` in the editor.
+4. Paste the server code from this step and save the file.
+
+To confirm the project files are in place, run:
+
+```bash
+ls ~/mpesa-mcp-server
+```
+
+You should see:
+
+```text
+pyproject.toml
+server.py
+uv.lock
+```
 
 ## Add the Server Code
 
@@ -86,6 +150,7 @@ Add the following MPESA Express MCP server source code in the `server.py` file:
 ```python
 import asyncio
 import base64
+import json
 import logging
 import os
 from datetime import datetime, timezone
@@ -101,6 +166,33 @@ mcp = FastMCP("MPESA Express MCP Server")
 SANDBOX_BASE_URL = "https://sandbox.safaricom.co.ke"
 STK_PUSH_PATH = "/mpesa/stkpush/v1/processrequest"
 
+PRODUCTS = [
+    {
+        "id": "conf-pass-001",
+        "name": "Build With AI Conference Pass",
+        "category": "event",
+        "price_kes": 2500,
+        "currency": "KES",
+        "inventory_status": "in_stock",
+    },
+    {
+        "id": "tee-001",
+        "name": "DECODE Workshop T-Shirt",
+        "category": "merch",
+        "price_kes": 1800,
+        "currency": "KES",
+        "inventory_status": "in_stock",
+    },
+    {
+        "id": "coffee-001",
+        "name": "Single Origin Coffee Beans",
+        "category": "retail",
+        "price_kes": 1200,
+        "currency": "KES",
+        "inventory_status": "low_stock",
+    },
+]
+
 
 def current_timestamp() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
@@ -109,6 +201,59 @@ def current_timestamp() -> str:
 def build_password(shortcode: str, passkey: str, timestamp: str) -> str:
     raw_value = f"{shortcode}{passkey}{timestamp}".encode("utf-8")
     return base64.b64encode(raw_value).decode("utf-8")
+
+
+@mcp.tool()
+def list_products() -> Dict[str, Any]:
+    """Returns the full static merchant product catalog."""
+    logger.info(">>> Tool called: list_products")
+    return {"products": PRODUCTS}
+
+
+@mcp.tool()
+def get_product(product_id: str) -> Dict[str, Any]:
+    """Returns a specific product by product_id."""
+    logger.info(">>> Tool called: get_product")
+    for product in PRODUCTS:
+        if product["id"] == product_id:
+            return product
+    return {"error": f"Product '{product_id}' not found"}
+
+
+@mcp.tool()
+def calculate_order_total(items: list[dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Calculates an order total from product IDs and quantities.
+
+    Example items:
+    [{"product_id": "conf-pass-001", "quantity": 2}]
+    """
+    logger.info(">>> Tool called: calculate_order_total")
+
+    lines = []
+    total = 0
+    for item in items:
+        product = next((p for p in PRODUCTS if p["id"] == item["product_id"]), None)
+        if not product:
+            return {"error": f"Product '{item['product_id']}' not found"}
+        quantity = int(item["quantity"])
+        line_total = product["price_kes"] * quantity
+        total += line_total
+        lines.append(
+            {
+                "product_id": product["id"],
+                "name": product["name"],
+                "quantity": quantity,
+                "unit_price_kes": product["price_kes"],
+                "line_total_kes": line_total,
+            }
+        )
+
+    return {
+        "currency": "KES",
+        "line_items": lines,
+        "order_total_kes": total,
+    }
 
 
 @mcp.tool()
@@ -296,12 +441,23 @@ if __name__ == "__main__":
     )
 ```
 
+After saving the file, verify that `server.py` is no longer empty:
+
+```bash
+cat ~/mpesa-mcp-server/server.py
+```
+
+If the file prints the Python source code you just pasted, you are ready for the next step.
+
 ## Understanding the Code
 
-The server defines five MCP tools:
+The server defines eight MCP tools:
 
 | Tool | Description |
 |------|-------------|
+| `list_products()` | Returns the full workshop product catalog |
+| `get_product(product_id)` | Fetches one product and its price |
+| `calculate_order_total(items)` | Totals a basket in KES |
 | `generate_access_token_request()` | Returns the token endpoint and auth model needed to request a DARAJA access token |
 | `validate_stk_push_payload(...)` | Checks required fields and normalizes the request payload |
 | `initiate_stk_push(...)` | Builds the MPESA Express request body and shows how it should be sent |
@@ -320,8 +476,11 @@ That separation makes the MCP tools easier for both humans and agents to use cor
 
 The point of MCP is not to mirror every HTTP endpoint 1:1. The point is to expose the **useful capabilities** of a system as composable tools.
 
-For MPESA Express, the most useful capabilities are:
+For this lab, the most useful capabilities are:
 
+- listing products
+- retrieving prices
+- calculating an order total
 - understanding what a valid request looks like
 - constructing a correct STK Push payload
 - interpreting asynchronous results
@@ -350,13 +509,15 @@ Apigee
         v
 Cloud Run MCP Server
         |
+        +--> Static Product Catalog
+        |
         v
 Safaricom DARAJA APIs
 ```
 
 ## Sample MPESA Express Request
 
-Here is a clean example of the request body your MCP server is helping to build:
+Here is a clean example of the request body your MCP server is helping to build after an order total has already been calculated:
 
 ```json
 {

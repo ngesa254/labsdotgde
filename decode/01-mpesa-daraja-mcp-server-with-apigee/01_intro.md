@@ -1,17 +1,26 @@
-# How to Deploy a Secure MCP Server on Cloud Run
+# How to Deploy a Secure Safaricom M-PESA Express MCP Server on Cloud Run
 
 ## Introduction
 
 ### Overview
 
-In this lab, you will build and deploy a Model Context Protocol (MCP) server. MCP servers are useful for providing LLMs with access to external tools and services. You will configure it as a secure, production-ready service on Cloud Run that can be accessed from multiple clients. Then you will connect to the remote MCP server from Gemini CLI.
+In this lab, you will build and deploy a Model Context Protocol (MCP) server on Cloud Run. The server will expose two categories of tools:
+
+- **catalog tools** backed by a static product JSON file
+- **payments tools** backed by MPESA Express / STK Push logic
+
+This keeps the workshop architecture simple while still showing a realistic product-to-payment flow from catalog lookup to MPESA Express initiation.
 
 ### What You'll Do
 
-We will use [FastMCP](https://github.com/PrefectHQ/FastMCP) to create a zoo MCP server that has two tools:
+We will use [FastMCP](https://github.com/PrefectHQ/FastMCP) to create a single MCP server with tools such as:
 
-- `get_animals_by_species` — Retrieve animals filtered by species
-- `get_animal_details` — Get detailed information about a specific animal
+- `list_products` — list products from a static merchant catalog
+- `get_product` — fetch a specific product by ID
+- `calculate_order_total` — compute a basket total from line items
+- `validate_stk_push_payload` — validate a payment request before submission
+- `initiate_stk_push` — construct an MPESA Express request
+- `parse_stk_callback` — interpret the callback payload
 
 FastMCP provides a quick, Pythonic way to build MCP servers and clients.
 
@@ -20,5 +29,6 @@ FastMCP provides a quick, Pythonic way to build MCP servers and clients.
 ### What You'll Learn
 
 - Deploy the MCP server to Cloud Run
-- Secure your server's endpoint by requiring authentication for all requests, ensuring only authorized clients and agents can communicate with it
+- Secure the server endpoint by requiring authentication for all requests
+- Expose both product and payment capabilities through one MCP surface
 - Connect to your secure MCP server endpoint from Gemini CLI
