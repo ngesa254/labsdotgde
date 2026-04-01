@@ -14,13 +14,8 @@ def checkout(product_id: str, quantity: int, phone_number: str) -> str:
     return (
         f"Use the catalog tools to find product {product_id}, "
         f"calculate the order total for quantity {quantity}, "
-        f"then initiate an MPESA Express STK Push payment using these sandbox defaults: "
-        f"BusinessShortCode 174379, PartyB 174379, "
-        f"passkey bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919, "
-        f"TransactionType CustomerPayBillOnline, "
-        f"CallBackURL https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59, "
-        f"AccountReference DECODE2026, TransactionDesc decode pay, "
-        f"PhoneNumber {phone_number}, PartyA {phone_number}."
+        f"then call initiate_stk_push with phone_number={phone_number} "
+        f"and the calculated amount. All other parameters use their defaults."
     )
 ```
 

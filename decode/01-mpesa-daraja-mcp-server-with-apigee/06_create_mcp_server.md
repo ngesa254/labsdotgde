@@ -176,6 +176,7 @@ uv.lock
 Add the following MPESA Express MCP server source code in the `server.py` file:
 
 ```python
+
 import asyncio
 import base64
 import logging
@@ -184,6 +185,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict
 
 from fastmcp import FastMCP
+from pydantic import BaseModel, Field, field_validator, model_validator, ValidationError
 import httpx
 
 logger = logging.getLogger(__name__)
@@ -243,6 +245,74 @@ def get_env_value(*names: str) -> str:
 
 def get_http_timeout() -> float:
     return float(os.getenv("MPESA_HTTP_TIMEOUT_SECONDS", DEFAULT_TIMEOUT_SECONDS))
+
+
+class STKPushRequest(BaseModel):
+    """
+    Pydantic model for Safaricom MPESA Express STK Push request.
+    Validates inputs AND auto-computes Password and Timestamp so they are NEVER missing.
+    """
+
+    phone_number: str = Field(..., description="Safaricom number in 2547XXXXXXXX format")
+    amount: int = Field(..., ge=1, description="Amount in KES (minimum 1)")
+    business_shortcode: str = Field(default="174379")
+    passkey: str = Field(default="bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919")
+    transaction_type: str = Field(default="CustomerPayBillOnline")
+    party_a: str = Field(default="")
+    party_b: str = Field(default="174379")
+    callback_url: str = Field(default="https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59")
+    account_reference: str = Field(default="DECODE2026", max_length=12)
+    transaction_desc: str = Field(default="decode pay", max_length=13)
+    timestamp: str = Field(default="", description="Auto-computed")
+    password: str = Field(default="", description="Auto-computed")
+
+    model_config = {"extra": "ignore"}
+
+    @field_validator("phone_number")
+    @classmethod
+    def validate_phone(cls, v: str) -> str:
+        if not v.startswith("2547") or len(v) != 12:
+            raise ValueError("phone_number must be in format 2547XXXXXXXX")
+        return v
+
+    @field_validator("transaction_type")
+    @classmethod
+    def validate_tx_type(cls, v: str) -> str:
+        if v not in {"CustomerPayBillOnline", "CustomerBuyGoodsOnline"}:
+            raise ValueError("Must be CustomerPayBillOnline or CustomerBuyGoodsOnline")
+        return v
+
+    @field_validator("callback_url")
+    @classmethod
+    def validate_url(cls, v: str) -> str:
+        if not v.startswith("https://"):
+            raise ValueError("callback_url must use https")
+        return v
+
+    @model_validator(mode="after")
+    def compute_derived(self):
+        """Auto-compute party_a, timestamp, and password. These are NEVER missing."""
+        if not self.party_a:
+            self.party_a = self.phone_number
+        self.timestamp = current_timestamp()
+        self.password = build_password(self.business_shortcode, self.passkey, self.timestamp)
+        return self
+
+    def to_safaricom_payload(self) -> Dict[str, Any]:
+        """Export the exact JSON body Safaricom expects — Password and Timestamp included."""
+        return {
+            "BusinessShortCode": self.business_shortcode,
+            "Password": self.password,
+            "Timestamp": self.timestamp,
+            "TransactionType": self.transaction_type,
+            "Amount": str(self.amount),
+            "PartyA": self.party_a,
+            "PartyB": self.party_b,
+            "PhoneNumber": self.phone_number,
+            "CallBackURL": self.callback_url,
+            "AccountReference": self.account_reference,
+            "TransactionDesc": self.transaction_desc,
+        }
 
 
 @mcp.tool()
@@ -324,7 +394,7 @@ def generate_access_token_request() -> Dict[str, Any]:
         token_payload = response.json()
     except httpx.TimeoutException:
         logger.error("Token request timed out")
-        return {"error": "Token request timed out. Safaricom sandbox may be slow — retry."}
+        return {"error": "Token request timed out. Safaricom sandbox may be slow - retry."}
     except httpx.HTTPStatusError as exc:
         logger.error("Token request failed: %s %s", exc.response.status_code, exc.response.text)
         return {"error": f"Token request failed with HTTP {exc.response.status_code}: {exc.response.text}"}
@@ -344,134 +414,91 @@ def generate_access_token_request() -> Dict[str, Any]:
 
 @mcp.tool()
 def validate_stk_push_payload(
-    business_shortcode: str,
-    transaction_type: str,
-    amount: int,
-    party_a: str,
-    party_b: str,
     phone_number: str,
-    callback_url: str,
-    account_reference: str,
-    transaction_desc: str,
+    amount: int,
+    business_shortcode: str = "174379",
+    transaction_type: str = "CustomerPayBillOnline",
+    party_a: str = "",
+    party_b: str = "174379",
+    callback_url: str = "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59",
+    account_reference: str = "DECODE2026",
+    transaction_desc: str = "decode pay",
 ) -> Dict[str, Any]:
     """
-    Performs basic validation for an MPESA Express request before it is sent.
-
-    Sandbox defaults (use these unless the user specifies otherwise):
-    - business_shortcode: "174379"
-    - party_b: "174379"
-    - transaction_type: "CustomerPayBillOnline"
-    - callback_url: "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59"
-    - account_reference: "DECODE2026"
-    - transaction_desc: "decode pay"
-
-    The agent MUST ask the user for their phone_number (format 2547XXXXXXXX).
-    party_a should be set to the same value as phone_number.
-    amount should come from the product catalog via calculate_order_total.
+    Validates an MPESA Express STK Push payload using Pydantic.
+    Only phone_number and amount are required - all other fields have sandbox defaults.
+    Returns the COMPLETE Safaricom payload including auto-computed Password and Timestamp.
     """
     logger.info(">>> Tool called: validate_stk_push_payload")
 
-    errors = []
-
-    if transaction_type not in {"CustomerPayBillOnline", "CustomerBuyGoodsOnline"}:
-        errors.append("transaction_type must be CustomerPayBillOnline or CustomerBuyGoodsOnline")
-    if amount < 1:
-        errors.append("amount must be at least 1")
-    if not party_a.startswith("2547") or len(party_a) != 12:
-        errors.append("party_a must be in the format 2547XXXXXXXX")
-    if not phone_number.startswith("2547") or len(phone_number) != 12:
-        errors.append("phone_number must be in the format 2547XXXXXXXX")
-    if len(account_reference) > 12:
-        errors.append("account_reference must be 12 characters or fewer")
-    if len(transaction_desc) > 13:
-        errors.append("transaction_desc must be 13 characters or fewer")
-    if not callback_url.startswith("https://"):
-        errors.append("callback_url should use https")
+    try:
+        request = STKPushRequest(
+            phone_number=phone_number,
+            amount=amount,
+            business_shortcode=business_shortcode,
+            transaction_type=transaction_type,
+            party_a=party_a,
+            party_b=party_b,
+            callback_url=callback_url,
+            account_reference=account_reference,
+            transaction_desc=transaction_desc,
+        )
+    except ValidationError as exc:
+        return {
+            "valid": False,
+            "errors": [e["msg"] for e in exc.errors()],
+        }
 
     return {
-        "valid": len(errors) == 0,
-        "errors": errors,
-        "normalized_payload": {
-            "BusinessShortCode": business_shortcode,
-            "TransactionType": transaction_type,
-            "Amount": str(amount),
-            "PartyA": party_a,
-            "PartyB": party_b,
-            "PhoneNumber": phone_number,
-            "CallBackURL": callback_url,
-            "AccountReference": account_reference,
-            "TransactionDesc": transaction_desc,
-        },
+        "valid": True,
+        "errors": [],
+        "normalized_payload": request.to_safaricom_payload(),
     }
 
 
 @mcp.tool()
 def initiate_stk_push(
-    business_shortcode: str,
-    passkey: str,
-    transaction_type: str,
-    amount: int,
-    party_a: str,
-    party_b: str,
     phone_number: str,
-    callback_url: str,
-    account_reference: str,
-    transaction_desc: str,
+    amount: int,
+    business_shortcode: str = "174379",
+    passkey: str = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
+    transaction_type: str = "CustomerPayBillOnline",
+    party_a: str = "",
+    party_b: str = "174379",
+    callback_url: str = "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59",
+    account_reference: str = "DECODE2026",
+    transaction_desc: str = "decode pay",
 ) -> Dict[str, Any]:
     """
-    Calls the live Safaricom sandbox MPESA Express endpoint and returns the API response.
-
-    Sandbox defaults (use these unless the user specifies otherwise):
-    - business_shortcode: "174379"
-    - passkey: "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
-    - party_b: "174379"
-    - transaction_type: "CustomerPayBillOnline"
-    - callback_url: "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59"
-    - account_reference: "DECODE2026"
-    - transaction_desc: "decode pay"
-
-    The agent MUST ask the user for their phone_number (format 2547XXXXXXXX).
-    party_a should be set to the same value as phone_number.
-    amount should come from the product catalog via calculate_order_total.
+    Initiates a Safaricom MPESA Express STK Push payment.
+    Only phone_number (format 2547XXXXXXXX) and amount are required.
+    All other parameters have sandbox defaults built in.
+    Password and Timestamp are auto-computed by the Pydantic model.
     """
     logger.info(">>> Tool called: initiate_stk_push")
 
-    validation = validate_stk_push_payload(
-        business_shortcode=business_shortcode,
-        transaction_type=transaction_type,
-        amount=amount,
-        party_a=party_a,
-        party_b=party_b,
-        phone_number=phone_number,
-        callback_url=callback_url,
-        account_reference=account_reference,
-        transaction_desc=transaction_desc,
-    )
-    if not validation["valid"]:
-        return validation
+    try:
+        request = STKPushRequest(
+            phone_number=phone_number,
+            amount=amount,
+            business_shortcode=business_shortcode,
+            passkey=passkey,
+            transaction_type=transaction_type,
+            party_a=party_a,
+            party_b=party_b,
+            callback_url=callback_url,
+            account_reference=account_reference,
+            transaction_desc=transaction_desc,
+        )
+    except ValidationError as exc:
+        return {"valid": False, "errors": [e["msg"] for e in exc.errors()]}
 
-    timestamp = current_timestamp()
-    password = build_password(business_shortcode, passkey, timestamp)
     token_info = generate_access_token_request()
-
     if "error" in token_info:
         return {"error": f"Could not get access token: {token_info['error']}"}
 
     access_token = token_info["access_token"]
-
-    request_body = {
-        "BusinessShortCode": business_shortcode,
-        "Password": password,
-        "Timestamp": timestamp,
-        "TransactionType": transaction_type,
-        "Amount": str(amount),
-        "PartyA": party_a,
-        "PartyB": party_b,
-        "PhoneNumber": phone_number,
-        "CallBackURL": callback_url,
-        "AccountReference": account_reference,
-        "TransactionDesc": transaction_desc,
-    }
+    request_body = request.to_safaricom_payload()
 
     try:
         response = httpx.post(
@@ -487,7 +514,7 @@ def initiate_stk_push(
         response_payload = response.json()
     except httpx.TimeoutException:
         logger.error("STK Push request timed out")
-        return {"error": "STK Push request timed out. Safaricom sandbox may be slow — retry."}
+        return {"error": "STK Push request timed out. Safaricom sandbox may be slow - retry."}
     except httpx.HTTPStatusError as exc:
         logger.error("STK Push failed: %s %s", exc.response.status_code, exc.response.text)
         return {"error": f"STK Push failed with HTTP {exc.response.status_code}: {exc.response.text}"}
@@ -550,7 +577,7 @@ def explain_stk_error(code: str) -> Dict[str, str]:
         "3": "Declined: amount exceeds the maximum C2B transaction limit.",
         "4": "Declined: would exceed the customer's daily transfer limit (currently KES 500,000).",
         "8": "Declined: would exceed the Pay Bill or Till Number account balance limit.",
-        "17": "Rule limited. Duplicate transaction — same amount to same customer within 2 minutes. Wait and retry.",
+        "17": "Rule limited. Duplicate transaction - same amount to same customer within 2 minutes. Wait and retry.",
         "1019": "Transaction expired. The customer did not respond in time.",
         "1025": "Push request failed. The USSD prompt may be too long (over 182 chars). Shorten the AccountReference.",
         "1032": "Request cancelled by the customer.",
@@ -562,11 +589,11 @@ def explain_stk_error(code: str) -> Dict[str, str]:
         # API error codes (request-level)
         "400.002.02": "Invalid request payload. Check required fields, data types, and Content-Type: application/json header.",
         "404.001.01": "Resource not found. Verify you are calling the correct API endpoint.",
-        "404.001.03": "Invalid access token. Generate a fresh token — tokens expire every hour.",
+        "404.001.03": "Invalid access token. Generate a fresh token - tokens expire every hour.",
         "405.001": "Method not allowed. Ensure you are sending a POST request, not GET.",
         "500.001.1001": "Server error. Could be: merchant does not exist, wrong Password encoding, or subscriber locked in another session.",
         "500.003.02": "System busy or spike arrest violation. Retry with backoff and reduce request rate.",
-        "500.003.03": "Quota violation. Too many requests — reduce your request volume.",
+        "500.003.03": "Quota violation. Too many requests - reduce your request volume.",
         "500.003.1001": "Internal server error. Verify your setup matches the API documentation.",
     }
 
