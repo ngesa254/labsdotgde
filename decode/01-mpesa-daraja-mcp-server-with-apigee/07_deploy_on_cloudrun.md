@@ -61,20 +61,7 @@ uv.lock
 
 The MCP server reads consumer credentials from environment variables at runtime. Before deploying, you need a **Consumer Key** and **Consumer Secret** from the Safaricom Daraja developer portal.
 
-### Option A: Use the Shared Workshop Credentials
-
-For this workshop, use the shared **decodegemini** sandbox app:
-
-```bash
-export MPESA_CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
-export MPESA_CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
-```
-
-Skip to the **Deploy to Cloud Run** section below if you are using these shared credentials.
-
-### Option B: Create Your Own Daraja Sandbox App
-
-If you want your own credentials (recommended for production work):
+### How to Get Your Credentials
 
 1. **Create an account** at [developer.safaricom.co.ke](https://developer.safaricom.co.ke/) if you don't have one
 2. **Sign in** and navigate to [My Apps](https://developer.safaricom.co.ke/dashboard/myapps)
@@ -87,12 +74,16 @@ If you want your own credentials (recommended for production work):
 
 7. Click the **copy icon** next to **Consumer Key** and **Consumer Secret** to copy each value
 
-Then export them in Cloud Shell:
+### Export Your Credentials
+
+Paste the values you copied from the Daraja portal into these export commands:
 
 ```bash
-export MPESA_CONSUMER_KEY="your_consumer_key_here"
-export MPESA_CONSUMER_SECRET="your_consumer_secret_here"
+export MPESA_CONSUMER_KEY="paste_your_consumer_key_here"
+export MPESA_CONSUMER_SECRET="paste_your_consumer_secret_here"
 ```
+
+> **Important:** These must be the credentials from **your own** Daraja sandbox app. Do not share your credentials with others or commit them to version control.
 
 ### About the Sandbox
 

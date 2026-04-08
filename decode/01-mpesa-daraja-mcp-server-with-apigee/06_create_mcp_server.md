@@ -90,14 +90,14 @@ Before writing any server code, confirm that the Safaricom sandbox APIs work fro
 
 ### Set Your Daraja Credentials
 
-Export your Consumer Key and Consumer Secret. For this workshop, use the shared **decodegemini** sandbox app:
+Export the Consumer Key and Consumer Secret from your Daraja sandbox app:
 
 ```bash
-export MPESA_CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
-export MPESA_CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
+export MPESA_CONSUMER_KEY="your_consumer_key_here"
+export MPESA_CONSUMER_SECRET="your_consumer_secret_here"
 ```
 
-> **Want to use your own?** Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps), find your sandbox app, and copy the Consumer Key and Consumer Secret.
+> **Where do I get these?** Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps), find your sandbox app (or create one — select **M-PESA EXPRESS Sandbox** as the product), and copy the **Consumer Key** and **Consumer Secret**. See [Step 07](./07_deploy_on_cloudrun.md) for a detailed walkthrough with screenshots.
 
 ### Step 1: Generate an Access Token
 
