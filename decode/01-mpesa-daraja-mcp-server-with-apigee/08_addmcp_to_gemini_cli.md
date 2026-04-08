@@ -138,10 +138,24 @@ You will see the M-PESA PIN prompt appear on your phone. Enter your PIN to compl
 After you enter your M-PESA PIN, Safaricom sends the transaction result to the callback URL. Open your webhook.site URL in a browser to see the callback payload:
 
 ```text
-https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59
+https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3
 ```
 
-> **Tip:** If you want your own unique callback URL, visit [webhook.site](https://webhook.site) and copy the generated URL. Replace the CallBackURL in the prompt above with yours.
+You will see the callback request appear in the webhook.site dashboard with the full JSON payload:
+
+![webhook.site showing the M-PESA callback payload with ResultCode 0 and transaction details including Amount, MpesaReceiptNumber, and PhoneNumber](image-webhook-callback.png)
+
+Key fields to look for in the callback:
+
+| Field | Meaning |
+|-------|---------|
+| `ResultCode: 0` | Payment was successful |
+| `ResultCode: 1032` | Customer cancelled the request |
+| `MpesaReceiptNumber` | Unique M-PESA transaction receipt (e.g. `UG9HwBwIAD`) |
+| `Amount` | Amount paid (e.g. `1`) |
+| `PhoneNumber` | The number that paid |
+
+> **Tip:** If you want your own unique callback URL, visit [webhook.site](https://webhook.site) and copy the generated URL. See [Step 06](./06_create_mcp_server.md) for details on how webhook.site works.
 
 You can then ask Gemini to interpret the callback:
 

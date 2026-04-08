@@ -22,6 +22,16 @@ python-dotenv==1.0.1
 google-cloud-logging==3.11.0
 ```
 
+> **Tip:** If `cloudshell edit` fails with a "Cannot send messages to client" error, use `cat` instead:
+>
+> ```bash
+> cat > requirements.txt << 'EOF'
+> google-adk==1.14.0
+> python-dotenv==1.0.1
+> google-cloud-logging==3.11.0
+> EOF
+> ```
+
 ## Set Environment Variables
 
 ```bash

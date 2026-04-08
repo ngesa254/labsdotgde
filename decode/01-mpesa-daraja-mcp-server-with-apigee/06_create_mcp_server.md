@@ -134,6 +134,23 @@ echo "Password: $PASSWORD"
 
 > **Why this matters:** A missing or stale Password is the #1 cause of `400.002.02` errors. The MCP server code will auto-compute this using a Pydantic model so it is **never** missing.
 
+### Why You Need a Callback URL (webhook.site)
+
+MPESA Express is **asynchronous**. When you send an STK Push request, Safaricom immediately returns a `ResponseCode: 0` ("accepted for processing"), but the **actual payment result** (success, cancelled, wrong PIN, timeout) arrives later as a POST request to your `CallBackURL`.
+
+In production, this would be your backend server. For this workshop, we use [webhook.site](https://webhook.site) — a free service that gives you a temporary HTTPS URL and shows every request it receives in real time.
+
+**Get your own callback URL:**
+
+1. Open [https://webhook.site](https://webhook.site) in a new browser tab
+2. You will see a unique URL like `https://webhook.site/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
+3. Copy the full URL — this is your callback URL
+4. Keep the tab open so you can see the callback payload after the payment
+
+> **What you'll see there:** After you enter your M-PESA PIN, Safaricom sends a JSON payload to your webhook.site URL containing the `ResultCode`, `MpesaReceiptNumber`, `Amount`, `PhoneNumber`, and `TransactionDate`. This is the data that the `parse_stk_callback` MCP tool is designed to process.
+
+For this workshop, a shared callback URL is provided in the code. Replace it with your own if you want to see the callbacks in your own webhook.site dashboard.
+
 ### Step 3: Send an STK Push Request
 
 Replace `YOUR_PHONE_NUMBER` with your own Safaricom M-PESA registered number in the format `2547XXXXXXXX`:
@@ -151,7 +168,7 @@ curl -s -X POST "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest
     \"PartyA\": \"YOUR_PHONE_NUMBER\",
     \"PartyB\": \"174379\",
     \"PhoneNumber\": \"YOUR_PHONE_NUMBER\",
-    \"CallBackURL\": \"https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59\",
+    \"CallBackURL\": \"https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3\",
     \"AccountReference\": \"DECODE2026\",
     \"TransactionDesc\": \"decode pay\"
   }"
@@ -178,7 +195,7 @@ A `ResponseCode` of `0` means the request was **accepted for processing**. Your 
 After you enter your M-PESA PIN, Safaricom posts the transaction result to the callback URL. Open your webhook.site URL in a browser:
 
 ```text
-https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59
+https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3
 ```
 
 > **Tip:** Visit [webhook.site](https://webhook.site) to get your own unique callback URL.
@@ -267,6 +284,7 @@ import asyncio
 import base64
 import logging
 import os
+import time
 from datetime import datetime, timezone
 from typing import Any, Dict
 
@@ -283,6 +301,9 @@ SANDBOX_BASE_URL = "https://sandbox.safaricom.co.ke"
 TOKEN_PATH = "/oauth/v1/generate?grant_type=client_credentials"
 STK_PUSH_PATH = "/mpesa/stkpush/v1/processrequest"
 DEFAULT_TIMEOUT_SECONDS = 30.0
+
+_cached_token: str | None = None
+_token_expiry: float = 0.0
 
 PRODUCTS = [
     {
@@ -346,13 +367,13 @@ class STKPushRequest(BaseModel):
     transaction_type: str = Field(default="CustomerPayBillOnline")
     party_a: str = Field(default="")
     party_b: str = Field(default="174379")
-    callback_url: str = Field(default="https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59")
+    callback_url: str = Field(default="https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3")
     account_reference: str = Field(default="DECODE2026", max_length=12)
     transaction_desc: str = Field(default="decode pay", max_length=13)
     timestamp: str = Field(default="", description="Auto-computed")
     password: str = Field(default="", description="Auto-computed")
 
-    model_config = {"extra": "ignore"}
+    model_config = {"extra": "forbid"}
 
     @field_validator("phone_number")
     @classmethod
@@ -435,6 +456,8 @@ def calculate_order_total(items: list[dict[str, Any]]) -> Dict[str, Any]:
         if not product:
             return {"error": f"Product '{item['product_id']}' not found"}
         quantity = int(item["quantity"])
+        if quantity < 1:
+            return {"error": f"Quantity must be at least 1, got {quantity} for '{product['name']}'"}
         line_total = product["price_kes"] * quantity
         total += line_total
         lines.append(
@@ -454,8 +477,18 @@ def calculate_order_total(items: list[dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
-def _fetch_access_token() -> Dict[str, Any]:
-    """Private helper: fetches a DARAJA access token. Called by both the MCP tool and initiate_stk_push."""
+async def _fetch_access_token() -> Dict[str, Any]:
+    """Private helper: fetches a DARAJA access token with caching. Called by both the MCP tool and initiate_stk_push."""
+    global _cached_token, _token_expiry
+
+    if _cached_token and time.time() < _token_expiry:
+        logger.info("Reusing cached DARAJA token (expires in %ds)", int(_token_expiry - time.time()))
+        return {
+            "environment": "sandbox",
+            "access_token": _cached_token,
+            "cached": True,
+        }
+
     try:
         consumer_key = get_env_value("MPESA_CONSUMER_KEY", "CONSUMER_KEY")
         consumer_secret = get_env_value("MPESA_CONSUMER_SECRET", "CONSUMER_SECRET")
@@ -466,11 +499,11 @@ def _fetch_access_token() -> Dict[str, Any]:
     token_url = f"{SANDBOX_BASE_URL}{TOKEN_PATH}"
 
     try:
-        response = httpx.get(
-            token_url,
-            auth=(consumer_key, consumer_secret),
-            timeout=get_http_timeout(),
-        )
+        async with httpx.AsyncClient(timeout=get_http_timeout()) as client:
+            response = await client.get(
+                token_url,
+                auth=(consumer_key, consumer_secret),
+            )
         response.raise_for_status()
         token_payload = response.json()
     except httpx.TimeoutException:
@@ -483,23 +516,28 @@ def _fetch_access_token() -> Dict[str, Any]:
         logger.error("Token request error: %s", exc)
         return {"error": f"Token request network error: {exc}"}
 
+    _cached_token = token_payload["access_token"]
+    expires_in = int(token_payload.get("expires_in", 3600))
+    _token_expiry = time.time() + expires_in - 60
+    logger.info("Cached new DARAJA token (expires in %ds)", expires_in - 60)
+
     return {
         "environment": "sandbox",
         "token_url": token_url,
         "auth_mode": "basic_auth",
-        "access_token": token_payload["access_token"],
-        "expires_in": token_payload.get("expires_in"),
+        "access_token": _cached_token,
+        "expires_in": expires_in,
         "next_step": "Use the generated token as a Bearer token for MPESA Express requests.",
     }
 
 
 @mcp.tool()
-def generate_access_token_request() -> Dict[str, Any]:
+async def generate_access_token_request() -> Dict[str, Any]:
     """
     Generates a DARAJA access token using environment-provided consumer credentials.
     """
     logger.info(">>> Tool called: generate_access_token_request")
-    return _fetch_access_token()
+    return await _fetch_access_token()
 
 
 @mcp.tool()
@@ -510,7 +548,7 @@ def validate_stk_push_payload(
     transaction_type: str = "CustomerPayBillOnline",
     party_a: str = "",
     party_b: str = "174379",
-    callback_url: str = "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59",
+    callback_url: str = "https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3",
     account_reference: str = "DECODE2026",
     transaction_desc: str = "decode pay",
 ) -> Dict[str, Any]:
@@ -554,7 +592,7 @@ def validate_stk_push_payload(
 
 
 @mcp.tool()
-def initiate_stk_push(
+async def initiate_stk_push(
     phone_number: str,
     amount: int,
     business_shortcode: str = "174379",
@@ -562,7 +600,7 @@ def initiate_stk_push(
     transaction_type: str = "CustomerPayBillOnline",
     party_a: str = "",
     party_b: str = "174379",
-    callback_url: str = "https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59",
+    callback_url: str = "https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3",
     account_reference: str = "DECODE2026",
     transaction_desc: str = "decode pay",
 ) -> Dict[str, Any]:
@@ -595,7 +633,7 @@ def initiate_stk_push(
     except ValidationError as exc:
         return {"valid": False, "errors": [e["msg"] for e in exc.errors()]}
 
-    token_info = _fetch_access_token()
+    token_info = await _fetch_access_token()
     if "error" in token_info:
         return {"error": f"Could not get access token: {token_info['error']}"}
 
@@ -603,15 +641,15 @@ def initiate_stk_push(
     request_body = request.to_safaricom_payload()
 
     try:
-        response = httpx.post(
-            f"{SANDBOX_BASE_URL}{STK_PUSH_PATH}",
-            headers={
-                "Authorization": f"Bearer {access_token}",
-                "Content-Type": "application/json",
-            },
-            json=request_body,
-            timeout=get_http_timeout(),
-        )
+        async with httpx.AsyncClient(timeout=get_http_timeout()) as client:
+            response = await client.post(
+                f"{SANDBOX_BASE_URL}{STK_PUSH_PATH}",
+                headers={
+                    "Authorization": f"Bearer {access_token}",
+                    "Content-Type": "application/json",
+                },
+                json=request_body,
+            )
         response.raise_for_status()
         response_payload = response.json()
     except httpx.TimeoutException:
@@ -731,7 +769,7 @@ The server code works **out of the box** for this workshop with the shared sandb
 
 | What | Where in `server.py` | Default (works for workshop) | Change to |
 |---|---|---|---|
-| **Callback URL** | `STKPushRequest.callback_url` field default (line ~35 of the class) | `https://webhook.site/75b593ff-ae70-45a0-a569-3efe2ff58b59` | Your own [webhook.site](https://webhook.site) URL |
+| **Callback URL** | `STKPushRequest.callback_url` field default (line ~35 of the class) | `https://webhook.site/945572f7-298f-4173-afb2-f0392f1a8cd3` | Your own [webhook.site](https://webhook.site) URL |
 | **Product catalog** | `PRODUCTS` list | 3 workshop items at KES 5, 3, 1 | Your own products and prices |
 | **Account reference** | `STKPushRequest.account_reference` field default | `DECODE2026` | Your own reference (max 12 chars) |
 

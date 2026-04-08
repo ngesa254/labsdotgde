@@ -24,13 +24,14 @@ def checkout(product_id: str, quantity: int, phone_number: str) -> str:
 ```bash
 cd ~/mpesa-mcp-server
 gcloud run deploy safaricom-mpesa-mcp-server \
+    --no-allow-unauthenticated \
     --region=europe-west1 \
     --source=. \
     --set-env-vars="MPESA_CONSUMER_KEY=${MPESA_CONSUMER_KEY},MPESA_CONSUMER_SECRET=${MPESA_CONSUMER_SECRET}" \
     --labels=dev-tutorial=codelab-mcp
 ```
 
-> **Note:** If your terminal session has expired and you no longer have `MPESA_CONSUMER_KEY` and `MPESA_CONSUMER_SECRET` set, re-export them first (see Step 07).
+> **Note:** If your terminal session has expired and you no longer have `MPESA_CONSUMER_KEY` and `MPESA_CONSUMER_SECRET` set, re-export them first (see [Step 07](./07_deploy_on_cloudrun.md)).
 
 ## Refresh Your ID Token
 

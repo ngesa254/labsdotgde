@@ -36,3 +36,7 @@ Flash Lite is a good fit for:
 - explaining known error codes
 
 Use a more capable model when you need more planning or richer synthesis.
+
+---
+
+**Next:** [Clean Up Resources](./11.5_cleanup.md) *(Optional)* or skip to [Conclusion](./12_conclusion.md)

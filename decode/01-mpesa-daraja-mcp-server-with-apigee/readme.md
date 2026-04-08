@@ -60,7 +60,8 @@ You will adapt the workshop pattern to a **Safaricom M-PESA Express MCP server**
 | 09 | [Verify Logs](09_verify_logs.md) | *(Optional)* Check server logs |
 | 10 | [Add MCP Prompt](10_add_mcp_prompt.md) | *(Optional)* Create custom prompt workflow |
 | 11 | [Use Flash Lite](11_gemini_flash_lite.md) | *(Optional)* Faster responses with Flash Lite |
-| 12 | [Conclusion](12_conclusion.md) | Summary and cleanup |
+| 11.5 | [Clean Up Resources](11.5_cleanup.md) | *(Optional)* Reset lab or redeploy changes |
+| 12 | [Conclusion](12_conclusion.md) | Summary and next steps |
 
 ---
 
@@ -120,15 +121,14 @@ uv add fastmcp==2.12.4 httpx==0.28.1 --no-sync
 # 3. Create server.py and Dockerfile (see step 06 & 07)
 
 # 4. Deploy
-gcloud iam service-accounts create mcp-server-sa --display-name="MCP Server Service Account"
 export MPESA_CONSUMER_KEY="your_consumer_key"
 export MPESA_CONSUMER_SECRET="your_consumer_secret"
 gcloud run deploy safaricom-mpesa-mcp-server \
-    --service-account=mcp-server-sa@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com \
     --no-allow-unauthenticated \
     --region=europe-west1 \
     --source=. \
-    --set-env-vars="MPESA_CONSUMER_KEY=${MPESA_CONSUMER_KEY},MPESA_CONSUMER_SECRET=${MPESA_CONSUMER_SECRET}"
+    --set-env-vars="MPESA_CONSUMER_KEY=${MPESA_CONSUMER_KEY},MPESA_CONSUMER_SECRET=${MPESA_CONSUMER_SECRET}" \
+    --labels=dev-tutorial=codelab-mcp
 
 # 5. Configure Gemini CLI (see step 08)
 ```

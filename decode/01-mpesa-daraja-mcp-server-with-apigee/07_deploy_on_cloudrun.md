@@ -59,38 +59,51 @@ uv.lock
 
 ## Set Daraja Sandbox Credentials
 
-The MCP server reads consumer credentials from environment variables at runtime. Before deploying, you need to get your **Consumer Key** and **Consumer Secret** from the Safaricom Daraja developer portal.
+The MCP server reads consumer credentials from environment variables at runtime. Before deploying, you need a **Consumer Key** and **Consumer Secret** from the Safaricom Daraja developer portal.
 
-### How to Get Your Credentials
+### Option A: Use the Shared Workshop Credentials
 
-1. Go to [developer.safaricom.co.ke/dashboard/myapps](https://developer.safaricom.co.ke/dashboard/myapps)
-2. Log in with your Daraja account (or create one if you haven't already)
-3. You will see your sandbox apps listed under **My Apps**
-
-![Daraja My Apps Dashboard](image-daraja-myapps.png)
-
-4. Find your sandbox app (for this workshop, use the shared app **decodegemini**)
-5. Click the copy icon next to **Consumer Key** and **Consumer Secret** to copy them
-
-### Export Your Credentials
-
-Replace the values below with the Consumer Key and Consumer Secret from your Daraja app:
-
-```bash
-export MPESA_CONSUMER_KEY="your_consumer_key_here"
-export MPESA_CONSUMER_SECRET="your_consumer_secret_here"
-```
-
-For this workshop, we are sharing the **decodegemini** sandbox app. Use these credentials:
+For this workshop, use the shared **decodegemini** sandbox app:
 
 ```bash
 export MPESA_CONSUMER_KEY="7WS02XptTqkWBUl1mPWn4Vj0tMxjyWF1MwAneRRGxwl2d2lq"
 export MPESA_CONSUMER_SECRET="2oNVkVPDebg0NiBteUUbjRlLEtnbHHkGKDyqLDbuAxHJ8Ax5M9K2NWrwzBH5zwDH"
 ```
 
-> **Want to use your own app?** Click **Create Sandbox App** on the Daraja portal, select **M-PESA EXPRESS Sandbox** as the product, and copy the generated Consumer Key and Consumer Secret.
+Skip to the **Deploy to Cloud Run** section below if you are using these shared credentials.
 
-> **Will I be charged real money?** No. The sandbox environment does not process real M-PESA transactions. However, when you move to **production Go Live**, real money is involved. **Any test transactions made against a live short code will be reversed** — but always use the sandbox for development and testing.
+### Option B: Create Your Own Daraja Sandbox App
+
+If you want your own credentials (recommended for production work):
+
+1. **Create an account** at [developer.safaricom.co.ke](https://developer.safaricom.co.ke/) if you don't have one
+2. **Sign in** and navigate to [My Apps](https://developer.safaricom.co.ke/dashboard/myapps)
+3. Click the green **Create Sandbox App** button in the top right
+4. Give your app a name (e.g. `my-decode-app`)
+5. Select **M-PESA EXPRESS Sandbox** as the product and submit
+6. Your new app will appear on the My Apps page with a **Consumer Key** and **Consumer Secret**
+
+![Daraja My Apps Dashboard — each sandbox app shows a Consumer Key and Consumer Secret with copy buttons](image-daraja-myapps.png)
+
+7. Click the **copy icon** next to **Consumer Key** and **Consumer Secret** to copy each value
+
+Then export them in Cloud Shell:
+
+```bash
+export MPESA_CONSUMER_KEY="your_consumer_key_here"
+export MPESA_CONSUMER_SECRET="your_consumer_secret_here"
+```
+
+### About the Sandbox
+
+| Question | Answer |
+|----------|--------|
+| **Will I be charged real money?** | No. The sandbox simulates M-PESA transactions without debiting your wallet. |
+| **What short code does the sandbox use?** | `174379` — a shared test short code provided by Safaricom. |
+| **What passkey do I use?** | The sandbox passkey is public: `bfb279f9aa9b...` (already hardcoded in the MCP server). |
+| **How do I go to production?** | Complete the [Go Live](https://developer.safaricom.co.ke/go-live) process on the Daraja portal with a real pay bill or till number. |
+
+> **More info:** Visit the [M-PESA Express API documentation](https://developer.safaricom.co.ke/apis/MpesaExpressSimulate) for the full request/response reference, error codes, and integration steps.
 
 ## Deploy to Cloud Run
 
@@ -109,6 +122,27 @@ gcloud run deploy safaricom-mpesa-mcp-server \
 
 > **Important:** The `--no-allow-unauthenticated` flag requires authentication. This is critical for security.
 > The `--set-env-vars` flag passes your Daraja credentials to the running container. In production, use **Secret Manager** instead of plain environment variables.
+
+### Troubleshooting: Service Account Permission Error
+
+If the deploy command fails with:
+
+```text
+Permission 'iam.serviceaccounts.actAs' denied on service account mcp-server-sa@...
+```
+
+This means your user account cannot impersonate the service account. Deploy **without** the `--service-account` flag to use the default Compute Engine service account instead:
+
+```bash
+gcloud run deploy safaricom-mpesa-mcp-server \
+    --no-allow-unauthenticated \
+    --region=europe-west1 \
+    --source=. \
+    --set-env-vars="MPESA_CONSUMER_KEY=${MPESA_CONSUMER_KEY},MPESA_CONSUMER_SECRET=${MPESA_CONSUMER_SECRET}" \
+    --labels=dev-tutorial=codelab-mcp
+```
+
+This works for the workshop. In production, always use a dedicated service account with the minimum required permissions.
 
 ## Confirm Artifact Registry Creation
 

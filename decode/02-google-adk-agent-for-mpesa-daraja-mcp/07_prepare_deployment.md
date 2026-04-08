@@ -10,12 +10,22 @@ Completing this step ensures the cloud environment is ready to run your agent su
 
 ---
 
-## Load Environment Variables
+## Re-export Environment Variables
 
-Load the variables into your shell session by running the `source` command:
+If your Cloud Shell session has expired since Step 05, re-export the environment variables:
 
 ```bash
-source .env
+export PROJECT_ID=$(gcloud config get-value project)
+export PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
+export SA_NAME=lab2-cr-service
+export SERVICE_ACCOUNT="${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
+```
+
+Verify they are set:
+
+```bash
+echo "PROJECT_ID=$PROJECT_ID"
+echo "SERVICE_ACCOUNT=$SERVICE_ACCOUNT"
 ```
 
 ---
