@@ -9,13 +9,13 @@
   <img src="https://img.shields.io/badge/Keras%203%20%26%20Gemma%202-Open%20Models-D00000?style=for-the-badge&logo=keras&logoColor=white" alt="Keras & Gemma">
 </p>
 
-Welcome to **LabsDotGDE™** (`labsdotgde`) — a comprehensive, production-inspired collection of hands-on Developer Relations (DevRel) codelabs, architectural blueprints, reference implementations, and interactive notebooks curated by **Ngesa Marvin (Google Developer Expert — AI/ML)**.
+Welcome to **LabsDotGDE™** (`labsdotgde`) — a comprehensive, production-inspired collection of hands-on Developer Relations (DevRel) codelabs, architectural blueprints, reference implementations, and interactive notebooks.
 
-This monorepo powers developer workshops across Africa and globally—spanning **DevFest**, **Build With AI (Nairobi, Kisumu, Cape Town)**, **Safaricom DECODE**, **Open Digital Health Summit (OSDH)**, **AMLD Africa**, and **GDSC / Campus Connect** bootcamps.
+This monorepo powers developer workshops across Africa and globally—spanning **DevFest**, **PyCON Africa**, **Deep Learning Indaba** **Build With AI (Nairobi, Kisumu, Cape Town, Kigali, Accra, JHB,)**, **Safaricom DECODE**, **Open Digital Health Summit (OSDH)**, **AMLD Africa**, and **GDSC / Campus Connect** bootcamps.
 
 ---
 
-## 🧭 Table of Contents
+## Table of Contents
 
 1. [Repository Overview & Core Pillars](#-repository-overview--core-pillars)
 2. [System Architecture & Learning Progression](#-system-architecture--learning-progression)
@@ -32,7 +32,7 @@ This monorepo powers developer workshops across Africa and globally—spanning *
 
 ---
 
-## 🌟 Repository Overview & Core Pillars
+## Repository Overview & Core Pillars
 
 Modern AI engineering has evolved from single-turn prompt completions to **stateful, tool-augmented, multi-agent systems** governed by enterprise API gateways and deployed on serverless cloud infrastructure. This repository is structured around five core technical pillars:
 
@@ -44,7 +44,7 @@ Modern AI engineering has evolved from single-turn prompt completions to **state
 
 ---
 
-## 🏗️ System Architecture & Learning Progression
+##  System Architecture & Learning Progression
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────┐
@@ -67,7 +67,7 @@ Modern AI engineering has evolved from single-turn prompt completions to **state
 
 ---
 
-## 📂 Repository Directory Map
+## Repository Directory Map
 
 ```text
 labsdotgde/
@@ -133,7 +133,7 @@ labsdotgde/
 
 ---
 
-## 💳 Track 1: `decode/` — Agentic Fintech Systems with M-Pesa Daraja, MCP, Apigee & ADK
+## Track 1: `decode/` — Agentic Fintech Systems with M-Pesa Daraja, MCP, Apigee & ADK
 
 > **Title:** *From Code to Cash: Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud*  
 > **Entry Point:** [`decode/README.md`](decode/README.md)  
@@ -160,7 +160,7 @@ Cloud Run: Google ADK Agent ──(IAM S2S Auth)──────────�
 
 ---
 
-## 🤖 Track 2: `BuildWithAI/` — Google Agent Development Kit (ADK), MCP & Gemini Live API
+## Track 2: `BuildWithAI/` — Google Agent Development Kit (ADK), MCP & Gemini Live API
 
 > **Title:** *ADK LABS: Building AI Agents with Google's Agent Development Kit (ADK)*  
 > **Entry Point:** [`BuildWithAI/README.md`](BuildWithAI/README.md)
@@ -201,7 +201,7 @@ The flagship curriculum for mastering Google's **Agent Development Kit (ADK)**, 
 
 ---
 
-## 🧳 Track 3: `unstacked-labs/` — Building GenAI Solutions with Vertex AI SDK ("WanderBot")
+## Track 3: `unstacked-labs/` — Building GenAI Solutions with Vertex AI SDK ("WanderBot")
 
 > **Title:** *Building Gen AI Solutions with the Vertex AI SDK*  
 > **Entry Point:** [`unstacked-labs/README.md`](unstacked-labs/README.md)
@@ -216,7 +216,7 @@ A 20-step guided codelab (`step_2_project_setup.md` through `step_20_Congratulat
 
 ---
 
-## 🌍 Track 4: Regional Build With AI Chapters (Nairobi, Kisumu, Cape Town)
+## Track 4: Regional Build With AI Chapters (Nairobi, Kisumu, Cape Town)
 
 Hands-on regional workshop tracks tailored for developer communities across East and Southern Africa:
 
@@ -243,7 +243,7 @@ Created for the **Open Digital Health Summit '24: Building with FHIR Track**, fo
 
 ---
 
-## 🌐 Track 6: Community Bootcamps & Polyglot Starters
+## Track 6: Community Bootcamps & Polyglot Starters
 
 Ready-to-run reference implementations demonstrating Gemini integration across **Python**, **Kotlin (Android)**, and **JavaScript (Node.js)**:
 
@@ -257,7 +257,7 @@ Ready-to-run reference implementations demonstrating Gemini integration across *
 
 ---
 
-## 📓 Hosted Google Colab Notebooks & Global Workshops
+## Hosted Google Colab Notebooks & Global Workshops
 
 Launch these interactive notebooks directly in **Google Colab**:
 
@@ -274,7 +274,7 @@ Launch these interactive notebooks directly in **Google Colab**:
 
 ---
 
-## ⚙️ Prerequisites & Environment Setup
+## Prerequisites & Environment Setup
 
 ### 1. System Requirements
 - **Python:** `3.11+` or `3.12+` (`uv` or `venv` recommended)
@@ -309,7 +309,7 @@ Then open `http://127.0.0.1:8000` in your browser to chat with `AfricaWorkshopAg
 
 ---
 
-## ☁️ Cloud Deployment & Cost Cleanup
+## Cloud Deployment & Cost Cleanup
 
 When deploying MCP servers or ADK agents to **Google Cloud Run** (in `decode/` or `BuildWithAI/`):
 
@@ -323,6 +323,6 @@ When deploying MCP servers or ADK agents to **Google Cloud Run** (in `decode/` o
 
 ## 🤝 Author & Community
 
-Curated and maintained by **[Ngesa Marvin](https://github.com/ngesa254)** (*[@Ngesa254](https://twitter.com/Ngesa254)*) — **Google Developer Expert (GDE) in AI/ML**.
+Curated and maintained by **[Ngesa Marvin](https://github.com/ngesa254)** (*[@Ngesa254](https://twitter.com/Ngesa254)*) — **AI/ML Lead**,  **Google Developer Expert (GDE) in AI/ML**.
 
 **Happy Building!** 🚀
