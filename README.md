@@ -1,318 +1,328 @@
-
-<h1> LabDotGDE™ Workshops and Notebooks</h1>
-
-Workshops around Google AI specifically on Building AI Agents with Google's Agent Development Kit (ADK) and Google Live APIs
-
-+ A collection of ready-to-run Jupyter notebooks for learning and experimenting with Deep Learning.
-
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-
-## 2025 - Labs and Notebooks
-Check out the latest notebooks that show how to optimize and deploy popular models on Intel CPU and GPU. 
-
-| **Notebook / Workshop** | **Description** | **Complementary Materials** | **Quiz / Exercise / Labs** |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Unlocking the power of Generative AI with Gemini <br>Campus Connect - CUEA<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lnjeo-pk4XHp1ZBwm7DTV2mXnt_lBN23)| The hands-on session was based on Generative AI. Beginning with an introduction to Deep Learning and the foundational principles of neural networks using Keras and TensorFlow, participants gained insight into the building blocks of modern AI. I then transitioned into Large Language Models (LLMs), neural networks trained on massive datasets, unleashing capabilities for content generation. Developers were then introduced to the landscape of available foundational models, with a special focus on Gemini. Through live demonstrations, developers were guided through the practical application of Gemini, both within Google AI Studio and through APIs in VS Code and Colab. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Building Agentic Solutions with Gemini and ReACT <br>Kisumu<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LkY6OG9H7R2NvsgzdCYVJ7QKIfStYgSr)| This live-coding session will explore the powerful Gemini API and walk through the best practices for function calling. You will learn how to write simple Python functions as tools, and build a ReAct agent that can choose the right tool for a task, including scraping websites or generating content. We will also get an intro into prompt engineering, a new state-of-the-art practice to transform raw data, and how to create a conversational assistant with LlamaIndex.| <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Unlocking the power of Generative AI with Gemini <br>Campus Connect - CUEA<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lnjeo-pk4XHp1ZBwm7DTV2mXnt_lBN23)| The hands-on session was based on Generative AI. Beginning with an introduction to Deep Learning and the foundational principles of neural networks using Keras and TensorFlow, participants gained insight into the building blocks of modern AI. I then transitioned into Large Language Models (LLMs), neural networks trained on massive datasets, unleashing capabilities for content generation. Developers were then introduced to the landscape of available foundational models, with a special focus on Gemini. Through live demonstrations, developers were guided through the practical application of Gemini, both within Google AI Studio and through APIs in VS Code and Colab. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Keras 3 - A Spectrum of Workflows <br> Zindi <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1T8LA5bygK4p2L5GyR8V1xSF9tu6KxFxJ)| The workshop will explore the powerful Keras 3 API and walk through deep learning best practices, how to write a simple model, and run it with a backend of your choice, including PyTorch, TensorFlow, or JAX. We will also got an intro into Gemma, the new state-of-the-art open models and how to install it and manage the LLM with Keras 3. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Working with Gemini Pro and LangChains <br> Buld With AI <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q2TcaoXqxNz92bAQaBisomZUUk1VRqY6)| This tutorial offers an exploration of Gemini and LangChains. Our primary goal is to demystify complex concepts, help you learn how to effectively load & store documents using LangChain and build a question-answering Gemini bot that answers questions based on your documents. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Creating beautiful art with Stable Diffusion <br> AMLD Africa - Nairobi  <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1aYlso-T-9DkswERrGl3omrR-n2zvczOs)<br> Lab 2  <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Uulic4so-RHJfpFaCzbnc1cs1QymtRkv)<br> Lab 3  <br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jN-AksZQr7lBDJi5Q7Y5ah9fTY1vMv2q)| The hands-on session was based on Generative AI. Beginning with an introduction to Deep Learning and the foundational principles of neural networks using Keras and TensorFlow, participants gained insight into the building blocks of modern AI. I then transitioned into Large Language Models (LLMs), neural networks trained on massive datasets, unleashing capabilities for content generation. Developers were then introduced to the landscape of available foundational models, with a special focus on Gemini. Through live demonstrations, developers were guided through the practical application of Gemini, both within Google AI Studio and through APIs in VS Code and Colab. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-| Unlocking the power of Generative AI with Gemini <br>Campus Connect - CUEA<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lnjeo-pk4XHp1ZBwm7DTV2mXnt_lBN23)| The hands-on session was based on Generative AI. Beginning with an introduction to Deep Learning and the foundational principles of neural networks using Keras and TensorFlow, participants gained insight into the building blocks of modern AI. I then transitioned into Large Language Models (LLMs), neural networks trained on massive datasets, unleashing capabilities for content generation. Developers were then introduced to the landscape of available foundational models, with a special focus on Gemini. Through live demonstrations, developers were guided through the practical application of Gemini, both within Google AI Studio and through APIs in VS Code and Colab. | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=300>  | [Blog - How to get YOLOv8 Over 1000 fps with Intel GPUs?](https://medium.com/openvino-toolkit/how-to-get-yolov8-over-1000-fps-with-intel-gpus-9b0eeee879) |
-
-
-## Table of Contents
-
-- [🚀 AI Trends - Notebooks](#-ai-trends---notebooks)
-- [Table of Contents](#table-of-contents)
-- [📝 Installation Guide](#-installation-guide)
-- [🚀 Getting Started](#-getting-started)
-	- [💻 First steps](#-first-steps)
-	- [⌚ Convert \& Optimize](#-convert--optimize)
-	- [🎯 Model Demos](#-model-demos)
-	- [🏃 Model Training](#-model-training)
-	- [📺 Live Demos](#-live-demos)
-- [⚙️ System Requirements](#️-system-requirements)
-- [💻 Run the Notebooks](#-run-the-notebooks)
-	- [To Launch a Single Notebook](#to-launch-a-single-notebook)
-	- [To Launch all Notebooks](#to-launch-all-notebooks)
-- [🧹 Cleaning Up](#-cleaning-up)
-- [⚠️ Troubleshooting](#️-troubleshooting)
-- [🧑‍💻 Contributors](#-contributors)
-- [❓ FAQ](#-faq)
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-
-<div id='-installation-guide'/>
-
-## 📝 Installation Guide
-
-OpenVINO Notebooks require Python and Git. To get started, select the guide for your operating system or environment:
-
-| [Windows](https://github.com/openvinotoolkit/openvino_notebooks/wiki/Windows) | [Ubuntu](https://github.com/openvinotoolkit/openvino_notebooks/wiki/Ubuntu) | [macOS](https://github.com/openvinotoolkit/openvino_notebooks/wiki/macOS) | [Red Hat](https://github.com/openvinotoolkit/openvino_notebooks/wiki/Red-Hat-and-CentOS) | [CentOS](https://github.com/openvinotoolkit/openvino_notebooks/wiki/Red-Hat-and-CentOS) | [Azure ML](https://github.com/openvinotoolkit/openvino_notebooks/wiki/AzureML) | [Docker](https://github.com/openvinotoolkit/openvino_notebooks/wiki/Docker) | [Amazon SageMaker](https://github.com/openvinotoolkit/openvino_notebooks/wiki/SageMaker) |
-| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-
-<div id='-getting-started'/>
-
-## 🚀 Getting Started
-
-The Jupyter notebooks are categorized into four classes, select one related to your needs or give them all a try. Good Luck!
-
-**NOTE: The main branch of this repository was updated to support the new OpenVINO 2023.3 release.** To upgrade to the new release version, please run `pip install --upgrade -r requirements.txt` in your `openvino_env` virtual environment. If you need to install for the first time, see the [Installation Guide](#-installation-guide) section below. If you wish to use the previous release version of OpenVINO, please checkout the [2023.2 branch](https://github.com/openvinotoolkit/openvino_notebooks/tree/2023.2). If you wish to use the previous Long Term Support (LTS) version of OpenVINO check out the [2022.3 branch](https://github.com/openvinotoolkit/openvino_notebooks/tree/2022.3).
-
-If you need help, please start a GitHub [Discussion](https://github.com/openvinotoolkit/openvino_notebooks/discussions).  
-
-<div id='-first-steps'/>
-
-### 💻 First steps
-
-Brief tutorials that demonstrate how to use OpenVINO's Python API for inference.
-
-| [001-hello-world](notebooks/001-hello-world/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F001-hello-world%2F001-hello-world.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/001-hello-world/001-hello-world.ipynb) | [002-openvino-api](notebooks/002-openvino-api/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F002-openvino-api%2F002-openvino-api.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/002-openvino-api/002-openvino-api.ipynb) | [003-hello-segmentation](notebooks/003-hello-segmentation/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F003-hello-segmentation%2F003-hello-segmentation.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/003-hello-segmentation/003-hello-segmentation.ipynb) | [004-hello-detection](notebooks/004-hello-detection/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F004-hello-detection%2F004-hello-detection.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/004-hello-detection/004-hello-detection.ipynb) | 
-| -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |  
-| Classify an image with OpenVINO | Learn the OpenVINO Python API | Semantic segmentation with OpenVINO | Text detection with OpenVINO  | 
-| <img src="https://user-images.githubusercontent.com/36741649/127170593-86976dc3-e5e4-40be-b0a6-206379cd7df5.jpg" width=140> | <img src="https://user-images.githubusercontent.com/15709723/127787560-d8ec4d92-b4a0-411f-84aa-007e90faba98.png" width=250> | <img src="https://user-images.githubusercontent.com/15709723/128290691-e2eb875c-775e-4f4d-a2f4-15134044b4bb.png" width=150> | <img src="https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg" width=150>  | 
-
-<div id='-convert--optimize'></div>
-
-### ⌚ Convert & Optimize
-
-Tutorials that explain how to optimize and quantize models with OpenVINO tools.
-
-| Notebook | Description                                                                                                                 |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |:----------------------------------------------------------------------------------------------------------------------------|
-| [101-tensorflow-classification-to-openvino](notebooks/101-tensorflow-classification-to-openvino/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F101-tensorflow-classification-to-openvino%2F101-tensorflow-classification-to-openvino.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/101-tensorflow-classification-to-openvino/101-tensorflow-classification-to-openvino.ipynb) | Convert TensorFlow models to OpenVINO IR                                                                                    |
-| [102-pytorch-to-openvino](notebooks/102-pytorch-to-openvino/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/102-pytorch-to-openvino/102-pytorch-to-openvino.ipynb) | Convert PyTorch models to OpenVINO IR                                                                                |
-| [103-paddle-to-openvino](notebooks/103-paddle-to-openvino/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F103-paddle-to-openvino%2F103-paddle-to-openvino-classification.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/103-paddle-to-openvino/103-paddle-to-openvino-classification.ipynb) | Convert PaddlePaddle models to OpenVINO IR                                                                                  |
-| [104-model-tools](notebooks/104-model-tools/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F104-model-tools%2F104-model-tools.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/104-model-tools/104-model-tools.ipynb) | Download, convert and benchmark models from Open Model Zoo                                                                  |
-| [105-language-quantize-bert](notebooks/105-language-quantize-bert/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/105-language-quantize-bert/105-language-quantize-bert.ipynb) | Optimize and quantize a pre-trained BERT model                                                                              |
-| [106-auto-device](notebooks/106-auto-device/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F106-auto-device%2F106-auto-device.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/106-auto-device/106-auto-device.ipynb) | Demonstrate how to use AUTO Device                                                                                          |
-| [107-speech-recognition-quantization](notebooks/107-speech-recognition-quantization/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/107-speech-recognition-quantization/107-speech-recognition-quantization-data2vec.ipynb) | Quantize speech recognition models using NNCF PTQ API                                                                       |
-| [108-gpu-device](notebooks/108-gpu-device/) | Working with GPUs in OpenVINO™                                                                                              |
-| [109-performance-tricks](notebooks/109-performance-tricks/)| Performance tricks in OpenVINO™                                                                                             |
-| [110-ct-segmentation-quantize](notebooks/110-ct-segmentation-quantize/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F110-ct-segmentation-quantize%2F110-ct-scan-live-inference.ipynb) | Quantize a kidney segmentation model and show live inference                                                                | 
-| [112-pytorch-post-training-quantization-nncf](notebooks/112-pytorch-post-training-quantization-nncf/) | Use Neural Network Compression Framework (NNCF) to quantize PyTorch model in post-training mode (without model fine-tuning) | 
-| [113-image-classification-quantization](notebooks/113-image-classification-quantization/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F113-image-classification-quantization%2F113-image-classification-quantization.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/113-image-classification-quantization/113-image-classification-quantization.ipynb) | Quantize Image Classification model                                                                                     |
-| [115-async-api](notebooks/115-async-api/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F115-async-api%2F115-async-api.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/115-async-api/115-async-api.ipynb) | Use Asynchronous Execution to Improve Data Pipelining                                                                       | |
-| [116-sparsity-optimization](notebooks/116-sparsity-optimization/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/116-sparsity-optimization/116-sparsity-optimization.ipynb) | Improve performance of sparse Transformer models                                                                            |
-| [117-model-server](notebooks/117-model-server/)| Introduction to model serving with OpenVINO™ Model Server (OVMS)                                                            |
-| [118-optimize-preprocessing](notebooks/118-optimize-preprocessing/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/118-optimize-preprocessing/118-optimize-preprocessing.ipynb) | Improve performance of image preprocessing step                                                                             |
-| [119-tflite-to-openvino](notebooks/119-tflite-to-openvino/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/119-tflite-to-openvino/119-tflite-to-openvino.ipynb) | Convert TensorFlow Lite models to OpenVINO IR                                                                                                            |                                                                                                            |
-| [120-tensorflow-object-detection-to-openvino](notebooks/120-tensorflow-object-detection-to-openvino/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F120-tensorflow-object-detection-to-openvino%2F120-tensorflow-object-detection-to-openvino.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/120-tensorflow-object-detection-to-openvino/120-tensorflow-object-detection-to-openvino.ipynb) | Convert TensorFlow Object Detection models to OpenVINO IR                                                                                                            |
-| [121-convert-to-openvino](notebooks/121-convert-to-openvino/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F121-convert-to-openvino%2F121-convert-to-openvino.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/121-convert-to-openvino/121-convert-to-openvino.ipynb) | Learn OpenVINO model conversion API                                                                                                           |
-| [122-quantizing-model-with-accuracy-control](notebooks/122-quantizing-model-with-accuracy-control/)| Quantizing with Accuracy Control using NNCF                                                                                                          |
-| [123-detectron2-to-openvino](notebooks/123-detectron2-to-openvino/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F123-detectron2-to-openvino%2F123-detectron2-to-openvino.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/123-detectron2-to-openvino/123-detectron2-to-openvino.ipynb) | Convert Detectron2 models to OpenVINO IR |
-| [124-hugging-face-hub](notebooks/124-hugging-face-hub/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F124-hugging-face-hub%2F124-hugging-face-hub.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/124-hugging-face-hub/124-hugging-face-hub.ipynb) | Load models from Hugging Face Model Hub with OpenVINO™ |
-| [125-torchvision-zoo-to-openvino](notebooks/125-torchvision-zoo-to-openvino/)<br>Classification<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F125-torchvision-zoo-to-openvino%2F125-convnext-classification.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/125-torchvision-zoo-to-openvino/125-convnext-classification.ipynb)<br>Semantic Segmentation<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F125-torchvision-zoo-to-openvino%2F125-lraspp-segmentation.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/125-torchvision-zoo-to-openvino/125-lraspp-segmentation.ipynb)| Convert torchvision classification and semantic segmentation models to OpenVINO IR |
-| [126-tensorflow-hub](notebooks/126-tensorflow-hub/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F126-tensorflow-hub%2F126-tensorflow-hub.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/126-tensorflow-hub/126-tensorflow-hub.ipynb) | Convert TensorFlow Hub models to OpenVINO IR |
-
-<div id='-model-demos'></div>
-
-### 🎯 Model Demos
-
-Demos that demonstrate inference on a particular model.
-
-| Notebook | Description | Preview |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [201-vision-monodepth](notebooks/201-vision-monodepth/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F201-vision-monodepth%2F201-vision-monodepth.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/201-vision-monodepth/201-vision-monodepth.ipynb) | Monocular depth estimation with images and video | <img src="https://user-images.githubusercontent.com/15709723/127752390-f6aa371f-31b5-4846-84b9-18dd4f662406.gif" width=250> |
-| [202-vision-superresolution-image](notebooks/202-vision-superresolution/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F202-vision-superresolution%2F202-vision-superresolution-image.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/202-vision-superresolution/202-vision-superresolution-image.ipynb) | Upscale raw images with a super resolution model | <img src="https://user-images.githubusercontent.com/36741649/170005347-e4409f9e-ec34-416b-afdf-a9d8185929ca.jpg" width="70">→<img src="https://user-images.githubusercontent.com/36741649/170005347-e4409f9e-ec34-416b-afdf-a9d8185929ca.jpg" width="130"> |
-| [202-vision-superresolution-video](notebooks/202-vision-superresolution/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F202-vision-superresolution%2F202-vision-superresolution-video.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/202-vision-superresolution/202-vision-superresolution-video.ipynb) | Turn 360p into 1080p video using a super resolution model | <img src="https://user-images.githubusercontent.com/15709723/127269258-a8e2c03e-731e-4317-b5b2-ed2ee767ff5e.gif" width=80>→<img src="https://user-images.githubusercontent.com/15709723/127269258-a8e2c03e-731e-4317-b5b2-ed2ee767ff5e.gif" width="125"> |
-| [203-meter-reader](notebooks/203-meter-reader/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F203-meter-reader%2F203-meter-reader.ipynb) | PaddlePaddle pre-trained models to read industrial meter's value | <img src="https://user-images.githubusercontent.com/91237924/166135627-194405b0-6c25-4fd8-9ad1-83fb3a00a081.jpg" width=225> |
-| [204-segmenter-semantic-segmentation](notebooks/204-segmenter-semantic-segmentation/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/204-segmenter-semantic-segmentation/204-segmenter-semantic-segmentation.ipynb) | Semantic Segmentation with OpenVINO™ using Segmenter | <img src=https://user-images.githubusercontent.com/61357777/223854308-d1ac4a39-cc0c-4618-9e4f-d9d4d8b991e8.jpg width=225> |
-| [205-vision-background-removal](notebooks/205-vision-background-removal/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F205-vision-background-removal%2F205-vision-background-removal.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/205-vision-background-removal/205-vision-background-removal.ipynb) | Remove and replace the background in an image using salient object detection | <img src="https://user-images.githubusercontent.com/15709723/125184237-f4b6cd00-e1d0-11eb-8e3b-d92c9a728372.png" width=455> |
-| [206-vision-paddlegan-anime](notebooks/206-vision-paddlegan-anime/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/206-vision-paddlegan-anime/206-vision-paddlegan-anime.ipynb) | Turn an image into anime using a GAN | <img src="https://user-images.githubusercontent.com/15709723/127788059-1f069ae1-8705-4972-b50e-6314a6f36632.jpeg" width=100>→<img src="https://user-images.githubusercontent.com/15709723/125184441-b4584e80-e1d2-11eb-8964-d8131cd97409.png" width=100> |
-| [207-vision-paddlegan-superresolution](notebooks/207-vision-paddlegan-superresolution/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/207-vision-paddlegan-superresolution/207-vision-paddlegan-superresolution.ipynb) | Upscale small images with superresolution using a PaddleGAN model| |
-| [208-optical-character-recognition](notebooks/208-optical-character-recognition/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/208-optical-character-recognition/208-optical-character-recognition.ipynb) | Annotate text on images using text recognition resnet | <img src="https://user-images.githubusercontent.com/36741649/129315292-a37266dc-dfb2-4749-bca5-2ac9c1e93d64.jpg" width=225> |
-| [209-handwritten-ocr](notebooks/209-handwritten-ocr/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F209-handwritten-ocr%2F209-handwritten-ocr.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/209-handwritten-ocr/209-handwritten-ocr.ipynb) | OCR for handwritten simplified Chinese and Japanese | <img width="425" alt="handwritten_simplified_chinese_test" src="https://user-images.githubusercontent.com/36741649/132660640-da2211ec-c389-450e-8980-32a75ed14abb.png"> <br> 的人不一了是他有为在责新中任自之我们 |
-| [210-slowfast-video-recognition](notebooks/210-slowfast-video-recognition/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F210-slowfast-video-recognition%2F210-slowfast-video-recognition.ipynb) | Video Recognition using SlowFast and OpenVINO™ | <img src=https://github.com/facebookresearch/SlowFast/raw/main/demo/ava_demo.gif width=225> | 
-| [211-speech-to-text](notebooks/211-speech-to-text/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F211-speech-to-text%2F211-speech-to-text.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/211-speech-to-text/211-speech-to-text.ipynb) | Run inference on speech-to-text recognition model | <img src="https://user-images.githubusercontent.com/36741649/140987347-279de058-55d7-4772-b013-0f2b12deaa61.png" width=225>|
-| [212-pyannote-speaker-diarization](notebooks/212-pyannote-speaker-diarization/)<br> | Run inference on speaker diarization pipeline | <img src="https://user-images.githubusercontent.com/29454499/218432101-0bd0c424-e1d8-46af-ba1d-ee29ed6d1229.png" width=225>|
-| [213-question-answering](notebooks/213-question-answering/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F213-question-answering%2F213-question-answering.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/213-question-answering/213-question-answering.ipynb) | Answer your questions basing on a context | <img src="https://user-images.githubusercontent.com/4547501/152571639-ace628b2-e3d2-433e-8c28-9a5546d76a86.gif" width=225> |
-| [214-grammar-correction](notebooks/214-grammar-correction/) | Grammatical Error Correction with OpenVINO | **Input text**: `I'm working in campany for last 2 yeas.` <br> **Generated text**: `I'm working in a company for the last 2 years.` |
-| [215-image-inpainting](notebooks/215-image-inpainting/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F215-image-inpainting%2F215-image-inpainting.ipynb)| Fill missing pixels with image in-painting | <img src="https://user-images.githubusercontent.com/4547501/167121084-ec58fbdb-b269-4de2-9d4c-253c5b95de1e.png" width=225> |
-| [216-attention-center](notebooks/216-attention-center/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/216-attention-center/216-attention-center.ipynb) | The attention center model with OpenVINO™ |  |
-| [217-vision-deblur](notebooks/217-vision-deblur/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F217-vision-deblur%2F217-vision-deblur.ipynb) | Deblur Images with DeblurGAN-v2 | <img src="https://user-images.githubusercontent.com/41332813/158430181-05d07f42-cdb8-4b7a-b7dc-e7f7d9391877.png" width=225> |
-| [218-vehicle-detection-and-recognition](notebooks/218-vehicle-detection-and-recognition/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F218-vehicle-detection-and-recognition%2F218-vehicle-detection-and-recognition.ipynb) | Use pre-trained models to detect and recognize vehicles and their attributes with OpenVINO | <img src = "https://user-images.githubusercontent.com/47499836/163544861-fa2ad64b-77df-4c16-b065-79183e8ed964.png" width=225> |
-| [219-knowledge-graphs-conve](notebooks/219-knowledge-graphs-conve/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F219-knowledge-graphs-conve%2F219-knowledge-graphs-conve.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/219-knowledge-graphs-conve/219-knowledge-graphs-conve.ipynb) | Optimize the knowledge graph embeddings model (ConvE) with OpenVINO ||
-| [220-books-alignment-labse](notebooks/220-cross-lingual-books-alignment/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F220-cross-lingual-books-alignment%2F220-cross-lingual-books-alignment.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/220-cross-lingual-books-alignment/220-cross-lingual-books-alignment.ipynb)| Cross-lingual Books Alignment With Transformers and OpenVINO™ |  |
-| [221-machine-translation](notebooks/221-machine-translation)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F221-machine-translation%2F221-machine-translation.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/221-machine-translation/221-machine-translation.ipynb) | Real-time translation from English to German |  |
-| [222-vision-image-colorization](notebooks/222-vision-image-colorization/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F222-vision-image-colorization%2F222-vision-image-colorization.ipynb) | Use pre-trained models to colorize black \& white images using OpenVINO | <img src = "https://user-images.githubusercontent.com/18904157/166343139-c6568e50-b856-4066-baef-5cdbd4e8bc18.png" width=225> |
-| [223-text-prediction](notebooks/223-text-prediction/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/223-text-prediction/223-text-prediction.ipynb) | Use pretrained models to perform text prediction on an input sequence | <img src=https://user-images.githubusercontent.com/91228207/185105225-0f996b0b-0a3b-4486-872d-364ac6fab68b.png  width=225> |
-| [224-3D-segmentation-point-clouds](notebooks/224-3D-segmentation-point-clouds/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/224-3D-segmentation-point-clouds/224-3D-segmentation-point-clouds.ipynb) | Process point cloud data and run 3D Part Segmentation with OpenVINO | <img src = "https://user-images.githubusercontent.com/91237924/185752178-3882902c-907b-4614-b0e6-ea1de08bf3ef.png" width=225> |
-| [225-stable-diffusion-text-to-image](notebooks/225-stable-diffusion-text-to-image)<br> | Text-to-image generation with Stable Diffusion method | <img src=https://user-images.githubusercontent.com/29454499/216524089-ed671fc7-a78b-42bf-aa96-9f7c791a9419.png width=225>|
-| [226-yolov7-optimization](notebooks/226-yolov7-optimization/)<br> | Optimize YOLOv7 using NNCF PTQ API | <img src=https://raw.githubusercontent.com/WongKinYiu/yolov7/main/figure/horses_prediction.jpg  width=225> |
-| [227-whisper-subtitles-generation](notebooks/227-whisper-subtitles-generation/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/227-whisper-subtitles-generation/227-whisper-convert.ipynb) | Generate subtitles for video with OpenAI Whisper and OpenVINO | <img src=https://user-images.githubusercontent.com/29454499/204548693-1304ef33-c790-490d-8a8b-d5766acb6254.png  width=225> |
-| [228-clip-zero-shot-image-classification](notebooks/228-clip-zero-shot-image-classification)<br> | Perform Zero-shot Image Classification with CLIP and OpenVINO | <img src=https://user-images.githubusercontent.com/29454499/207795060-437b42f9-e801-4332-a91f-cc26471e5ba2.png  width=500> |
-| [229-distilbert-sequence-classification](notebooks/229-distilbert-sequence-classification/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F229-distilbert-sequence-classification%2F229-distilbert-sequence-classification.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/229-distilbert-sequence-classification/229-distilbert-sequence-classification.ipynb) | Sequence Classification with OpenVINO | <img src = "https://user-images.githubusercontent.com/95271966/206130638-d9847414-357a-4c79-9ca7-76f4ae5a6d7f.png" width=225> |
-| [230-yolov8-object-detection](notebooks/230-yolov8-optimization/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/230-yolov8-optimization/230-yolov8-object-detection.ipynb) | Optimize YOLOv8 object detection using NNCF PTQ API | <img src = "https://user-images.githubusercontent.com/29454499/212105105-f61c8aab-c1ff-40af-a33f-d0ed1fccc72e.png" width=225> |
-| [230-yolov8-instance-segmentation](notebooks/230-yolov8-optimization/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/230-yolov8-optimization/230-yolov8-instance-segmentation.ipynb) | Optimize YOLOv8 instance segmentation using NNCF PTQ API | <img src = "https://user-images.githubusercontent.com/29454499/272966666-b4c05f7b-1b64-4335-a125-c20105da7cc4.png" width=225> |
-| [230-yolov8-keypoint-detection](notebooks/230-yolov8-optimization/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/230-yolov8-optimization/230-yolov8-keypoint-detection.ipynb) | Optimize YOLOv8 keypoint detection using NNCF PTQ API | <img src = "https://user-images.githubusercontent.com/29454499/272967083-a36d1072-e2f6-4dd9-85ad-4b2b3b4341d5.png" width=225> |
-| [231-instruct-pix2pix-image-editing](notebooks/231-instruct-pix2pix-image-editing/)<br>| Image editing with InstructPix2Pix | <img src=https://user-images.githubusercontent.com/29454499/219943222-d46a2e2d-d348-4259-8431-37cf14727eda.png width=225> |
-| [232-clip-language-saliency-map](notebooks/232-clip-language-saliency-map/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/232-clip-language-saliency-map/232-clip-language-saliency-map.ipynb) | Language-Visual Saliency with CLIP and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/218967961-9858efd5-fff2-4eb0-bde9-60852f4b31cb.JPG width=225> | 
-| [233-blip-visual-language-processing](notebooks/233-blip-visual-language-processing/)<br>| Visual Question Answering and Image Captioning using BLIP and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/221933762-4ff32ecb-5e5d-4484-80e1-e9396cb3c511.png width=225> |
-| [234-encodec-audio-compression](notebooks/234-encodec-audio-compression/)<br>| Audio compression with EnCodec and OpenVINO™ | <img src=https://github.com/facebookresearch/encodec/raw/main/thumbnail.png width=225> |
-| [235-controlnet-stable-diffusion](notebooks/235-controlnet-stable-diffusion/)<br>| A Text-to-Image Generation with ControlNet Conditioning and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/224541412-9d13443e-0e42-43f2-8210-aa31820c5b44.png width=225> |
-| [236-stable-diffusion-v2](notebooks/236-stable-diffusion-v2/)<br>| Text-to-Image Generation and Infinite Zoom with Stable Diffusion v2 and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/228882108-25c1f65d-4c23-4e1d-8ba4-f6164280a3e3.gif width=225> |
-| [237-segment-anything](notebooks/237-segment-anything/)<br>| Prompt based segmentation using Segment Anything and OpenVINO™.| <img src=https://user-images.githubusercontent.com/29454499/231468849-1cd11e68-21e2-44ed-8088-b792ef50c32d.png width=225> |
-| [238-deep-floyd-if](notebooks/238-deepfloyd-if/)<br>| Text-to-Image Generation with DeepFloyd IF and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/241643886-dfcf3c48-8d50-4730-ae28-a21595d9504f.png width=225> |
-| [239-image-bind](notebooks/239-image-bind/)<br>| Binding multimodal data using ImageBind and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/240364108-39868933-d221-41e6-9b2e-dac1b14ef32f.png width=225> |
-| [240-dolly-2-instruction-following](notebooks/240-dolly-2-instruction-following/)<br>| Instruction following using Databricks Dolly 2.0 and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/237291423-022f07d2-966b-4be2-9a1c-98f1cf0691c2.png width=225> |
-| [241-riffusion-text-to-music](notebooks/241-riffusion-text-to-music/)<br>| Text-to-Music generation using Riffusion and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/244291912-bbc6e08c-c0a9-41fe-bc2d-5f89a0d2463b.png width=225> | 
-| [242-freevc-voice-conversion](notebooks/242-freevc-voice-conversion/)<br> | High-Quality Text-Free One-Shot Voice Conversion with FreeVC and OpenVINO™ ||
-| [243-tflite-selfie-segmentation](notebooks/243-tflite-selfie-segmentation/) <br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F243-tflite-selfie-segmentation%2F243-tflite-selfie-segmentation.ipynb)<br> [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/243-tflite-selfie-segmentation/243-tflite-selfie-segmentation.ipynb)| Selfie Segmentation using TFLite and OpenVINO™ |  <img src="https://user-images.githubusercontent.com/29454499/251085926-14045ebc-273b-4ccb-b04f-82a3f7811b87.gif" width=400>|
-| [244-named-entity-recognition](notebooks/244-named-entity-recognition/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/244-named-entity-recognition/244-named-entity-recognition.ipynb) | Named entity recognition with OpenVINO™ | |
-| [245-typo-detector](notebooks/245-typo-detector/)<br>| English Typo Detection in sentences with OpenVINO™ | <img src=https://user-images.githubusercontent.com/80534358/224564463-ee686386-f846-4b2b-91af-7163586014b7.png   width=225> |
-| [246-depth-estimation-videpth](notebooks/246-depth-estimation-videpth/)<br>| Monocular Visual-Inertial Depth Estimation with OpenVINO™ | <img src=https://raw.githubusercontent.com/alexklwong/void-dataset/master/figures/void_samples.png width=225> |
-| [247-code-language-id](notebooks/247-code-language-id/247-code-language-id.ipynb)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F247-code-language-id%2F247-code-language-id.ipynb) | Identify the programming language used in an arbitrary code snippet | ||
-| [248-stable-diffusion-xl](notebooks/248-stable-diffusion-xl/)<br> |  Image generation with Stable Diffusion XL and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/258651862-28b63016-c5ff-4263-9da8-73ca31100165.jpeg width=225>  |
-| [249-oneformer-segmentation](notebooks/249-oneformer-segmentation/)<br> | Universal segmentation with OneFormer and OpenVINO™ | <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/76161256/258640713-f801bd09-e927-4abd-aa2f-9990de4caf8d.gif" width=225> |
-| [250-music-generation](notebooks/250-music-generation/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F250-music-generation%2F250-music-generation.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/250-music-generation/250-music-generation.ipynb) | Controllable Music Generation with MusicGen and OpenVINO™ | <img src="https://user-images.githubusercontent.com/76463150/260439306-81c81c8d-1f9c-41d0-b881-9491766def8e.png" width=225> |
-| [251-tiny-sd-image-generation](notebooks/251-tiny-sd-image-generation/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/251-tiny-sd-image-generation/251-tiny-sd-image-generation.ipynb) | Image Generation with Tiny-SD and OpenVINO™ | <img src="https://user-images.githubusercontent.com/29454499/260904650-274fc2f9-24d2-46a3-ac3d-d660ec3c9a19.png" width=225> |
-| [252-fastcomposer-image-generation](notebooks/252-fastcomposer-image-generation/)<br> | Image generation with FastComposer and OpenVINO™ | |
-| [253-zeroscope-text2video](notebooks/253-zeroscope-text2video)<br> | Text-to-video synthesis with ZeroScope and OpenVINO™ | A panda eating bamboo on a rock <img src="https://github.com/itrushkin/openvino_notebooks/assets/76161256/500956d5-4aac-4710-a77c-4df34bcda3be" width=225> |
-| [254-llm-chatbot](notebooks/254-llm-chatbot)<br> | Create LLM-powered Chatbot using OpenVINO™ |  <img src=https://user-images.githubusercontent.com/29454499/255799218-611e7189-8979-4ef5-8a80-5a75e0136b50.png width=600> |
-| [255-mms-massively-multilingual-speech](notebooks/255-mms-massively-multilingual-speech/)<br> | MMS: Scaling Speech Technology to 1000+ languages with OpenVINO™ | |
-| [256-bark-text-to-audio](notebooks/256-bark-text-to-audio)<br> | Text-to-Speech generation using Bark and OpenVINO™ |  <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/9a770279-0045-480e-95f2-1a2f2d0a5115 width=225> |
-| [257-llava-multimodal-chatbot](notebooks/257-llava-multimodal-chatbot)<br> | Visual-language assistant with LLaVA and OpenVINO™ |  <img src=https://raw.githubusercontent.com/haotian-liu/LLaVA/main/images/llava_logo.png width=225> |
-| [258-blip-diffusion-subject-generation](notebooks/258-blip-diffusion-subject-generation)<br> | Subject-driven image generation and editing using BLIP Diffusion and OpenVINO™ | <img src="https://github.com/itrushkin/openvino_notebooks/assets/76161256/0ecf621f-b544-44ae-8258-8a49be704989" width=225 /> |
-| [259-decidiffusion-image-generation](notebooks/259-decidiffusion-image-generation)<br> | Image generation with DeciDiffusion and OpenVINO™ |  <img src=https://github.com/huggingface/optimum-intel/assets/29454499/cd734349-9954-4656-ab96-08a903e846ef width=225> |
-| [260-pix2struct-docvqa](notebooks/260-pix2struct-docvqa)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/260-pix2struct-docvqa/260-pix2struct-docvqa.ipynb)<br> | Document Visual Question Answering using Pix2Struct and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/276283074-df7464e6-8293-4c6c-8f77-8e95d8f94c11.png width=400>
-| [261-fast-segment-anything](notebooks/261-fast-segment-anything/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F261-fast-segment-anything%2F261-fast-segment-anything.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/261-fast-segment-anything/261-fast-segment-anything.ipynb) | Object segmentations with FastSAM and OpenVINO™ | <img src="https://user-images.githubusercontent.com/26833433/248551984-d98f0f6d-7535-45d0-b380-2e1440b52ad7.jpg" width=225> |
-| [262-softvc-voice-conversion](notebooks/262-softvc-voice-conversion)<br> | SoftVC VITS Singing Voice Conversion and OpenVINO™ | |
-| [263-latent-consistency-models-image-generation](notebooks/263-latent-consistency-models-image-generation)<br> | Image generation with Latent Consistency Models (LCM) and OpenVINO™ |  <img src=https://user-images.githubusercontent.com/29454499/277367065-13a8f622-8ea7-4d12-b3f8-241d4499305e.png width=225> |
-| [264-qrcode-monster](notebooks/264-qrcode-monster/)<br> | Generate creative QR codes with ControlNet QR Code Monster and OpenVINO™ | <img src="https://github.com/openvinotoolkit/openvino_notebooks/assets/76463150/1a5978c6-e7a0-4824-9318-a3d8f4912c47" width=225> |
-| [265-wuerstchen-image-generation](notebooks/265-wuerstchen-image-generation)<br> | Text-to-image generation with Würstchen and OpenVINO™ | <img src="https://github.com/itrushkin/openvino_notebooks/assets/76161256/6917c558-d74c-4cc9-b81a-679ce0a299ee" width=225> |
-| [266-speculative-sampling](notebooks/266-speculative-sampling)<br> | Text Generation via Speculative Sampling, KV Caching, and OpenVINO™ | <img src=https://user-images.githubusercontent.com/29454499/280659301-49a38beb-e6f3-4a2c-858e-be4ca4491016.png width=225> |
-| [267-distil-whisper-asr](notebooks/267-distil-whisper-asr)<br> | Automatic speech recognition using Distil-Whisper and OpenVINO™ | |
-| [268-table-question-answering](notebooks/268-table-question-answering)<br><br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/268-table-question-answering/268-table-question-answering.ipynb)<br> | Table Question Answering using TAPAS and OpenVINO™ ||
-| [269-film-slowmo](notebooks/269-film-slowmo)<br> | Frame interpolation with FILM and OpenVINO™ | <img src="https://github.com/openvinotoolkit/openvino_notebooks/assets/1720147/8ac5178d-4a92-4a86-a3df-dd494434fed6" width=225> |
-| [270-sound-generation-audioldm2](notebooks/270-sound-generation-audioldm2/)<br> | Sound Generation with AudioLDM2 and OpenVINO™ | <img src="https://github.com/openvinotoolkit/openvino_notebooks/assets/76463150/c93a0f86-d9cf-4bd1-93b9-e27532170d75" width=225> |
-| [271-sdxl-turbo](notebooks/271-sdxl-turbo/)<br> | Single-step image generation using SDXL-turbo and OpenVINO | <img src="https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/79b625c7-0f0a-4f19-8e38-e6f896f75c3e" width=225> |
-| [272-paint-by-example](notebooks/272-paint-by-example/)<br>| Exemplar based image editing using diffusion models, [Paint-by-Example](https://github.com/Fantasy-Studio/Paint-by-Example), and OpenVINO™ | <img width="225" alt="ui_example" src="https://user-images.githubusercontent.com/103226580/236958011-0550ba7b-19b3-4dc6-8b50-eaedb84c1681.png"> |
-| [273-stable-zephyr-3b-chatbot](notebooks/273-stable-zephyr-3b-chatbot)<br> |  Use Stable-Zephyr as chatbot assistant with OpenVINO | <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/cfac6ddb-6f22-4343-855c-e513269cf2bf width=225> |
-| [274-efficient-sam](notebooks/274-efficient-sam/)<br>| Object segmentation with EfficientSAM and OpenVINO™ | <img width="225" src="https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/15d0a23a-0550-43c6-9ca9-f689e772a79a"> |
-| [275-llm-question-answering](notebooks/275-llm-question-answering)<br> | LLM Instruction following pipeline | <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/daafd702-5a42-4f54-ae72-2e4480d73501 width=225> | 
-| [276-stable-diffusion-torchdynamo-backend](notebooks/276-stable-diffusion-torchdynamo-backend/)<br> | Image generation with Stable Diffusion and OpenVINO™ `torch.compile` feature | <img src=https://user-images.githubusercontent.com/32199725/270969617-ee88eb42-3b0d-42f4-ac71-992c40451849.png width=225> |
-| [277-amused-lightweight-text-to-image](notebooks/277-amused-lightweight-text-to-image)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/277-amused-lightweight-text-to-image/277-amused-lightweight-text-to-image.ipynb)<br>| Lightweight image generation with aMUSEd and OpenVINO™ | <img src=https://huggingface.co/amused/amused-256/resolve/main/assets/collage_small.png width=225> | 
-| [278-stable-diffusion-ip-adapter](notebooks/278-stable-diffusion-ip-adapter)<br> | Image conditioning in Stable Diffusion pipeline using IP-Adapter |  <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/182657d9-2aa3-40b3-9fc4-a90b803419fe width=300> |
-| [279-mobilevlm-language-assistant](notebooks/279-mobilevlm-language-assistant)<br> | Mobile language assistant with MobileVLM and OpenVINO | |
-| [280-depth-anything](notebooks/280-depth-anything)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F280-depth-anythingh%2F280-depth-anything.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/280-depth-anything/280-depth-anything.ipynb) | Monocular Depth Estimation with DepthAnything and OpenVINO |  <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/29454499/a9a16658-512f-470c-a33c-0e1f9d0ae72c width=225> |
-| [281-kosmos2-multimodal-large-language-model](notebooks/281-kosmos2-multimodal-large-language-model)<br> | Kosmos-2: Multimodal Large Language Model and OpenVINO™ | <img src=https://huggingface.co/microsoft/kosmos-2-patch14-224/resolve/main/annotated_snowman.jpg width=225> |
-| [282-siglip-zero-shot-image-classification](notebooks/282-siglip-zero-shot-image-classification)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/282-siglip-zero-shot-image-classification/282-siglip-zero-shot-image-classification.ipynb) | Zero-shot Image Classification with SigLIP | <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/67365453/c4eb782c-0fef-4a89-a5c6-5cc43518490b width=500> |
-| [283-photo-maker](notebooks/283-photo-maker)<br> | Text-to-image generation using PhotoMaker and OpenVINO | <img src=https://github.com/openvinotoolkit/openvino_notebooks/assets/91237924/88bccc4a-5789-42ca-8a68-f402c3e7c5a4 width=225> | 
-
-<div id='-model-training'></div>
-
-### 🏃 Model Training
-
-Tutorials that include code to train neural networks.
-
-| Notebook | Description | Preview |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [301-tensorflow-training-openvino](notebooks/301-tensorflow-training-openvino/) | Train a flower classification model from TensorFlow, then convert to OpenVINO IR | <img src="https://user-images.githubusercontent.com/15709723/127779607-8fa34947-1c35-4260-8d04-981c41a2a2cc.png" width=390> |
-| [301-tensorflow-training-openvino-nncf](notebooks/301-tensorflow-training-openvino/) | Use Neural Network Compression Framework (NNCF) to quantize model from TensorFlow | |
-| [302-pytorch-quantization-aware-training](notebooks/302-pytorch-quantization-aware-training/) | Use Neural Network Compression Framework (NNCF) to quantize PyTorch model | |
-| [305-tensorflow-quantization-aware-training](notebooks/305-tensorflow-quantization-aware-training/)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/305-tensorflow-quantization-aware-training/305-tensorflow-quantization-aware-training.ipynb) | Use Neural Network Compression Framework (NNCF) to quantize TensorFlow model | |
-
-<div id='-live-demos'></div>
-
-### 📺 Live Demos
-
-Live inference demos that run on a webcam or video files.
-
-| Notebook | Description | Preview |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [401-object-detection-webcam](notebooks/401-object-detection-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F401-object-detection-webcam%2F401-object-detection.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/401-object-detection-webcam/401-object-detection.ipynb) | Object detection with a webcam or video file  | <img src="https://user-images.githubusercontent.com/4547501/141471665-82b28c86-cf64-4bfe-98b3-c314658f2d96.gif" width=225> |
-| [402-pose-estimation-webcam](notebooks/402-pose-estimation-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F402-pose-estimation-webcam%2F402-pose-estimation.ipynb) | Human pose estimation with a webcam or video file | <img src="https://user-images.githubusercontent.com/4547501/138267961-41d754e7-59db-49f6-b700-63c3a636fad7.gif" width=225> |
-| [403-action-recognition-webcam](notebooks/403-action-recognition-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F403-action-recognition-webcam%2F403-action-recognition-webcam.ipynb) | Human action recognition with a webcam or video file | <img src="https://user-images.githubusercontent.com/10940214/151552326-642d6e49-f5a0-4fc1-bf14-ae3f457e1fec.gif" width=225> |
-| [404-style-transfer-webcam](notebooks/404-style-transfer-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F404-style-transfer-webcam%2F404-style-transfer.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/404-style-transfer-webcam/404-style-transfer.ipynb) | Style Transfer with a webcam or video file | <img src="https://user-images.githubusercontent.com/109281183/203772234-f17a0875-b068-43ef-9e77-403462fde1f5.gif" width=250> |
-| [405-paddle-ocr-webcam](notebooks/405-paddle-ocr-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F405-paddle-ocr-webcam%2F405-paddle-ocr-webcam.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/405-paddle-ocr-webcam/405-paddle-ocr-webcam.ipynb) | OCR with a webcam or video file | <img src="https://raw.githubusercontent.com/yoyowz/classification/master/images/paddleocr.gif" width=225> |
-| [406-3D-pose-estimation-webcam](notebooks/406-3D-pose-estimation-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?labpath=notebooks%2F406-3D-pose-estimation-webcam%2F406-3D-pose-estimation.ipynb) | 3D display of human pose estimation with a webcam or video file | <img src = "https://user-images.githubusercontent.com/42672437/183292131-576cc05a-a724-472c-8dc9-f6bc092190bf.gif" width=225> |
-| [407-person-tracking-webcam](notebooks/407-person-tracking-webcam/)<br>[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/openvinotoolkit/openvino_notebooks/HEAD?filepath=notebooks%2F407-person-tracking-webcam%2F407-person-tracking.ipynb)<br>[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/openvinotoolkit/openvino_notebooks/blob/main/notebooks/407-person-tracking-webcam/407-person-tracking.ipynb) | Person tracking with a webcam or video file | <img src = "https://user-images.githubusercontent.com/91237924/210479548-b70dbbaa-5948-4e49-b48e-6cb6613226da.gif" width=225> |
-
-If you run into issues, please check the [troubleshooting section](#-troubleshooting), [FAQs](#-faq) or start a GitHub [discussion](https://github.com/openvinotoolkit/openvino_notebooks/discussions).
-
-Notebooks with ![binder logo](https://mybinder.org/badge_logo.svg) and ![colab logo](https://colab.research.google.com/assets/colab-badge.svg) buttons can be run without installing anything. [Binder](https://mybinder.org/) and [Google Colab](https://colab.research.google.com/) are free online services with limited resources. For the best performance, please follow the [Installation Guide](#-installation-guide) and run the notebooks locally.
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-<div id='-system-requirements'></div>
-
-## ⚙️ System Requirements
-
-The notebooks run almost anywhere &mdash; your laptop, a cloud VM, or even a Docker container. The table below lists the supported operating systems and Python versions.
-
-| Supported Operating System                                 | [Python Version (64-bit)](https://www.python.org/) |
-| :--------------------------------------------------------- |:---------------------------------------------------|
-| Ubuntu 20.04 LTS, 64-bit                                   | 3.8 - 3.10                                         |
-| Ubuntu 22.04 LTS, 64-bit                                   | 3.8 - 3.10                                         |
-| Red Hat Enterprise Linux 8, 64-bit                         | 3.8 - 3.10                                         |
-| CentOS 7, 64-bit                                           | 3.8 - 3.10                                         |
-| macOS 10.15.x versions or higher                           | 3.8 - 3.10                                         |
-| Windows 10, 64-bit Pro, Enterprise or Education editions   | 3.8 - 3.10                                         |
-| Windows Server 2016 or higher                              | 3.8 - 3.10                                         |
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)](#)
-<div id='-run-the-notebooks'></div>
-
-## 💻 Run the Notebooks
-
-### To Launch a Single Notebook
-
-If you wish to launch only one notebook, like the Monodepth notebook, run the command below.
-
-```bash
-jupyter 201-vision-monodepth.ipynb
-```
-
-### To Launch all Notebooks
-
-```bash
-jupyter lab notebooks
-```
-
-In your browser, select a notebook from the file browser in Jupyter Lab using the left sidebar. Each tutorial is located in a subdirectory within the `notebooks` directory.
-
-<img src="https://user-images.githubusercontent.com/15709723/120527271-006fd200-c38f-11eb-9935-2d36d50bab9f.gif">
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-<div id='-cleaning-up'></div>
-
-
-## ⚠️ Troubleshooting
-
-If these tips do not solve your problem, please open a [discussion topic](https://github.com/openvinotoolkit/openvino_notebooks/discussions)
-or create an [issue](https://github.com/openvinotoolkit/openvino_notebooks/issues)!
-
-- To check some common installation problems, run `python check_install.py`. This script is located in the openvino_notebooks directory.
-  Please run it after activating the `openvino_env` virtual environment.
-- If you get an `ImportError`, double-check that you installed the Jupyter kernel. If necessary, choose the `openvino_env` kernel from the _Kernel->Change Kernel_ menu in Jupyter Lab or Jupyter Notebook.
-- If OpenVINO is installed globally, do not run installation commands in a terminal where `setupvars.bat` or `setupvars.sh` are sourced.
-- For Windows installation, it is recommended to use _Command Prompt (`cmd.exe`)_, not _PowerShell_.
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)](#-contributors)
-<div id='-contributors'></div>
-
-## 🧑‍💻 Contributors
-
-<a href="https://github.com/openvinotoolkit/openvino_notebooks/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=openvinotoolkit/openvino_notebooks" />
-</a>
-
-Made with [`contrib.rocks`](https://contrib.rocks).
-
-[![-----------------------------------------------------](https://user-images.githubusercontent.com/10940214/155750931-fc094349-b6ec-4e1f-9f9a-113e67941119.jpg)]()
-<div id='-faq'></div>
-
-## ❓ FAQ
-
-* [Which devices does OpenVINO support?](https://docs.openvino.ai/2023.0/openvino_docs_OV_UG_supported_plugins_Supported_Devices.html#doxid-openvino-docs-o-v-u-g-supported-plugins-supported-devices)
-* [What is the first CPU generation you support with OpenVINO?](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/system-requirements.html)
-* [Are there any success stories about deploying real-world solutions with OpenVINO?](https://www.intel.com/content/www/us/en/internet-of-things/ai-in-production/success-stories.html)
+# LabsDotGDE™ — Google AI, Agentic Systems, MCP & Cloud Run Workshops
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Google%20ADK-Agent%20Development%20Kit-EA4335?style=for-the-badge&logo=google&logoColor=white" alt="Google ADK">
+  <img src="https://img.shields.io/badge/Gemini%202.5-Live%20API%20%26%20Vertex%20AI-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Gemini & Vertex AI">
+  <img src="https://img.shields.io/badge/MCP-Model%20Context%20Protocol-00ADD8?style=for-the-badge" alt="MCP">
+  <img src="https://img.shields.io/badge/Cloud%20Run-Serverless%20Containers-34A853?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Cloud Run">
+  <img src="https://img.shields.io/badge/Apigee-API%20Management-FF6D00?style=for-the-badge&logo=googlecloud&logoColor=white" alt="Apigee">
+  <img src="https://img.shields.io/badge/Keras%203%20%26%20Gemma%202-Open%20Models-D00000?style=for-the-badge&logo=keras&logoColor=white" alt="Keras & Gemma">
+</p>
+
+Welcome to **LabsDotGDE™** (`labsdotgde`) — a comprehensive, production-inspired collection of hands-on Developer Relations (DevRel) codelabs, architectural blueprints, reference implementations, and interactive notebooks curated by **Ngesa Marvin (Google Developer Expert — AI/ML)**.
+
+This monorepo powers developer workshops across Africa and globally—spanning **DevFest**, **Build With AI (Nairobi, Kisumu, Cape Town)**, **Safaricom DECODE**, **Open Digital Health Summit (OSDH)**, **AMLD Africa**, and **GDSC / Campus Connect** bootcamps.
 
 ---
 
-\* Other names and brands may be claimed as the property of others.
+## 🧭 Table of Contents
 
+1. [Repository Overview & Core Pillars](#-repository-overview--core-pillars)
+2. [System Architecture & Learning Progression](#-system-architecture--learning-progression)
+3. [Repository Directory Map](#-repository-directory-map)
+4. [Track 1: `decode/` — Agentic Fintech Systems with M-Pesa Daraja, MCP, Apigee & ADK](#-track-1-decode--agentic-fintech-systems-with-m-pesa-daraja-mcp-apigee--adk)
+5. [Track 2: `BuildWithAI/` — Google Agent Development Kit (ADK), MCP & Gemini Live API](#-track-2-buildwithai--google-agent-development-kit-adk-mcp--gemini-live-api)
+6. [Track 3: `unstacked-labs/` — Building GenAI Solutions with Vertex AI SDK ("WanderBot")](#-track-3-unstacked-labs--building-genai-solutions-with-vertex-ai-sdk-wanderbot)
+7. [Track 4: Regional Build With AI Chapters (Nairobi, Kisumu, Cape Town)](#-track-4-regional-build-with-ai-chapters-nairobi-kisumu-cape-town)
+8. [Track 5: `OSDH/` — Open Digital Health Summit (FHIR Prompting & Gemma 2 with Keras 3)](#-track-5-osdh--open-digital-health-summit-fhir-prompting--gemma-2-with-keras-3)
+9. [Track 6: Community Bootcamps & Polyglot Starters (`devfestnairobi24`, `gdsc_bootcamp`, `capetown`)](#-track-6-community-bootcamps--polyglot-starters)
+10. [Hosted Google Colab Notebooks & Global Workshops](#-hosted-google-colab-notebooks--global-workshops)
+11. [Prerequisites & Environment Setup](#-prerequisites--environment-setup)
+12. [Cloud Deployment & Cost Cleanup](#-cloud-deployment--cost-cleanup)
+
+---
+
+## 🌟 Repository Overview & Core Pillars
+
+Modern AI engineering has evolved from single-turn prompt completions to **stateful, tool-augmented, multi-agent systems** governed by enterprise API gateways and deployed on serverless cloud infrastructure. This repository is structured around five core technical pillars:
+
+1. **Google Agent Development Kit (ADK):** Designing single-agent and hierarchical multi-agent systems with deterministic tool routing, session state management, Dev UI tracing, and one-command Cloud Run deployments (`adk deploy cloud_run --with_ui`).
+2. **Model Context Protocol (MCP):** Building local (`stdio`) and remote (`SSE` / HTTP) MCP servers using **FastMCP**, securing them on **Google Cloud Run** with IAM authentication, governing them behind **Apigee API Management**, and consuming them from **Gemini CLI** and **ADK Agents**.
+3. **Multimodal Real-Time Streaming (Gemini Live API):** Low-latency bidirectional text, native audio (`.wav`), tool execution, and video frame understanding powered by **Gemini 2.5 Flash**.
+4. **RAG & ReAct Agentic Workflows (LlamaIndex + Vertex AI / Gemini API):** Scraping live conference schedules (DevFest Lagos & DevFest Nairobi), indexing into vector stores with HuggingFace embeddings (`BAAI/bge-small-en-v1.5`), and orchestrating **ReAct** reasoning loops.
+5. **Domain-Specific & Open-Weight AI:** Healthcare interoperability (**HL7 FHIR** & SMART Guidelines) using structured Chain-of-Thought prompting, and fine-tuning / running **Gemma 2** open models on **Keras 3** (`keras_nlp`).
+
+---
+
+## 🏗️ System Architecture & Learning Progression
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│                        LABSDOTGDE LEARNING & ARCHITECTURE PATH                     │
+└────────────────────────────────────────────────────────────────────────────────────┘
+
+  [Stage 1: Foundations]              [Stage 2: RAG & ReAct]
+  ├─ Prompt Engineering (R.O.D.E.S)   ├─ LlamaIndex + HuggingFace Embeddings
+  ├─ Polyglot SDKs (Py / KT / JS)     ├─ Web Scrapers & QueryEngineTools
+  ├─ Vertex AI Studio & Streamlit     └─ Autonomous ReAct Agents
+  └─ Gemma 2 + Keras 3 Quickstarts
+                 │                                      │
+                 ▼                                      ▼
+  [Stage 3: Google ADK & Live API]    [Stage 4: Enterprise MCP & Fintech (DECODE)]
+  ├─ ADK Local Dev UI & Tooling       ├─ Gemini CLI / ADK Agent Client
+  ├─ Multi-Agent Session State        ├─ IAM Service-to-Service Auth
+  ├─ Gemini 2.5 Live Audio & Video    ├─ Apigee API Gateway & Policy Layer
+  └─ Cloud Run Serverless Deploy      └─ Cloud Run FastMCP Server ──► Safaricom Daraja
+```
+
+---
+
+## 📂 Repository Directory Map
+
+```text
+labsdotgde/
+├── decode/                                      # Safaricom DECODE Fintech Agentic Workshop
+│   ├── README.md                                # End-to-end "From Code to Cash" workshop guide
+│   ├── artifacts/                               # Architecture & lab overview diagrams
+│   ├── 01-mpesa-daraja-mcp-server-with-apigee/  # Lab 1: FastMCP + Daraja STK Push + Cloud Run + Apigee
+│   └── 02-google-adk-agent-for-mpesa-daraja-mcp/# Lab 2: ADK Agent consuming remote M-Pesa MCP tools
+│
+├── BuildWithAI/                                 # Flagship ADK, MCP & Gemini Live API Curriculum
+│   ├── README.md                                # Workshop curriculum & hands-on challenge guide
+│   ├── gcp_cost_clean_up.md                     # GCP billing & resource teardown instructions
+│   ├── Lessons/
+│   │   ├── adk-intro/                           # Lesson 1: Local setup, first tool, multi-tool, Cloud Run
+│   │   ├── mcp-fundermentals/                   # Lesson 2: MCP architecture, servers, clients, prompts
+│   │   ├── adk-mcp/                             # Lesson 3: Extending ADK agents with MCP
+│   │   ├── mcp-on-cloudrun-01/                  # Codelab: Deploying secure MCP servers on Cloud Run
+│   │   ├── adk-withmcp-on-cloudrun-02/          # Codelab: Connecting ADK agents on Cloud Run to MCP
+│   │   └── adk-gemini-live/                     # Lesson 4: Gemini 2.5 Live API, audio, tools & video
+│   └── Samples/
+│       ├── adk_into/                            # Working ADK demo agent (Weather + City Facts)
+│       ├── multi-agents/                        # Multi-tool ADK agent (dice, coin, random generator)
+│       ├── adk-gemini-live/                     # Live API text & native audio streaming scripts
+│       ├── adk_mcp/                             # ADK + MCP sample notes
+│       └── L4/ L5/ L6/ L7/ L9/                  # Progressive ArXiv Research MCP Server & Chatbot labs
+│
+├── unstacked-labs/                              # 20-Step Vertex AI SDK + Streamlit Codelab ("WanderBot")
+│   ├── README.md                                # Lab overview & learning objectives
+│   ├── step_2_project_setup.md ... step_20_Congratulations!.md
+│   └── troubleshooting.md                       # Common Vertex AI & Cloud Shell fixes
+│
+├── BuildWithAIKisumu/                           # Build With AI Kisumu ("DevFest Dala")
+│   ├── check_list.md                            # 725-line Production Cloud Run Deployment Checklist
+│   ├── lesson_1_prompts/                        # R.O.D.E.S Prompt Engineering lab
+│   └── lesson_2_agents/                         # DevFest ReAct Agent & Scraper (Gemini API + LlamaIndex)
+│
+├── buildWithAINairobi/                          # Build With AI Nairobi
+│   ├── lesson_1_prompt_engineering/             # Prompt engineering fundamentals
+│   └── lesson_3_agents/                         # DevFest ReAct Agent & Scraper
+│
+├── BwAICapeTown/                                # Build With AI Cape Town
+│   ├── lesson_1_prompt_engineering/             # Prompt engineering labs (0 & 1) + prompt templates
+│   └── lesson_3_agents/                         # Vertex AI + LlamaIndex DevFest ReAct Agent
+│
+├── OSDH/                                        # Open Digital Health Summit (Healthcare AI Track)
+│   ├── lesson_1_prompt_engineering/             # Prompting for HL7 FHIR & African rural clinics
+│   ├── lesson-2_advanced_prompting/             # Advanced Prompting Techniques Jupyter Notebook
+│   └── lesson_3_gemma_with_keras/               # Keras 3 + Gemma 2 Quickstart & Chat Notebooks
+│
+├── devfestnairobi24/                            # DevFest Nairobi 2024 Multilingual Assistant ("Jess")
+│   ├── multilingual_assistant.py                # Python SDK implementation (EN/SW/FR/PT routing)
+│   ├── multilingual_assistant.kt                # Android Kotlin SDK implementation
+│   └── multilingual_assistant.txt               # System instruction & few-shot prompt specification
+│
+├── gdsc_bootcamp/                               # GDSC Bootcamp Starter
+│   └── gdsc_gemini.py                           # Python Gemini SDK + safety settings starter (CUEA)
+│
+├── capetown/                                    # Node.js Starter
+│   └── gemini_starts.js                         # @google/generative-ai JavaScript quickstart
+│
+└── jess_demo.kt                                 # Standalone Kotlin Chain-of-Thought multilingual demo
+```
+
+---
+
+## 💳 Track 1: `decode/` — Agentic Fintech Systems with M-Pesa Daraja, MCP, Apigee & ADK
+
+> **Title:** *From Code to Cash: Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud*  
+> **Entry Point:** [`decode/README.md`](decode/README.md)  
+> **Estimated Duration:** 2–3 Hours
+
+Designed for the **Safaricom DECODE Builders Lab**, this two-part production workshop guides engineers through building secure, IAM-authenticated fintech payment agents on Google Cloud that integrate with **Safaricom DARAJA (M-Pesa Express / STK Push)**.
+
+### Architecture Flow
+```text
+Developer / Gemini CLI ──(Authenticated MCP)──► Apigee API Gateway
+                                                       │
+Cloud Run: Google ADK Agent ──(IAM S2S Auth)───────────▼
+                                         Cloud Run: FastMCP Server
+                                                       │
+                                                       ▼
+                                         Safaricom DARAJA / M-Pesa Express APIs
+```
+
+### Labs Included
+| Lab | Directory | Key Steps & Deliverables |
+| :--- | :--- | :--- |
+| **Lab 1: M-Pesa Daraja MCP Server with Apigee** | [`decode/01-mpesa-daraja-mcp-server-with-apigee/`](decode/01-mpesa-daraja-mcp-server-with-apigee/readme.md) | 12 guided modules (`01_intro.md` → `12_conclusion.md`): Setup GCP & Cloud Shell, enable Cloud Run / Artifact Registry / Cloud Build APIs, build a **FastMCP** server wrapping M-Pesa Express STK Push tools, deploy to Cloud Run with `--no-allow-unauthenticated`, proxy with **Apigee**, connect via **Gemini CLI**, verify Cloud Logging, and test with **Gemini Flash-Lite**. |
+| **Lab 2: Google ADK Agent for M-Pesa MCP** | [`decode/02-google-adk-agent-for-mpesa-daraja-mcp/`](decode/02-google-adk-agent-for-mpesa-daraja-mcp/readme.md) | 11 guided modules (`01_intro.md` → `11_congratulations.md`): Architect a Python `google-adk` project, connect the ADK agent to the remote Cloud Run MCP endpoint from Lab 1, configure least-privilege IAM service-to-service bindings (`roles/run.invoker`), deploy the agent UI to Cloud Run, and validate end-to-end payment workflows. |
+
+---
+
+## 🤖 Track 2: `BuildWithAI/` — Google Agent Development Kit (ADK), MCP & Gemini Live API
+
+> **Title:** *ADK LABS: Building AI Agents with Google's Agent Development Kit (ADK)*  
+> **Entry Point:** [`BuildWithAI/README.md`](BuildWithAI/README.md)
+
+The flagship curriculum for mastering Google's **Agent Development Kit (ADK)**, the **Model Context Protocol (MCP)**, and **Gemini 2.5 Multimodal Live API**.
+
+### Curriculum Breakdown (`BuildWithAI/Lessons/`)
+
+1. **Lesson 1 — ADK Fundamentals (`Lessons/adk-intro/`):**
+   - [`01-local-setup.md`](BuildWithAI/Lessons/adk-intro/01-local-setup.md): Virtual environment setup, project scaffolding, and launching the ADK Dev UI (`adk web`).
+   - [`02-first-tool.md`](BuildWithAI/Lessons/adk-intro/02-first-tool.md): Empowering an `Agent` (`gemini-2.5-flash`) with deterministic Python function tools (`get_weather`) and inspecting tool execution traces.
+   - [`03-multiple-tools-city-status.md`](BuildWithAI/Lessons/adk-intro/03-multiple-tools-city-status.md): Combining multiple tools (`get_weather` + `get_city_fact`) across African cities (Nairobi, Lagos, Cairo, Cape Town, Accra, Kampala).
+   - [`04-first-cloud-deployment.md`](BuildWithAI/Lessons/adk-intro/04-first-cloud-deployment.md): Serverless deployment to Cloud Run via `adk deploy cloud_run --with_ui`.
+
+2. **Lesson 2 — Model Context Protocol Fundamentals (`Lessons/mcp-fundermentals/`):**
+   - 8 comprehensive modules (`01_intro.md` → `08_add_resources_prompts.md`) covering why MCP matters, Host-Client-Server architecture, building an ArXiv research tool server (`search_papers`, `extract_info`), building an MCP client, connecting to reference servers (Filesystem & Fetch), and adding MCP Resources & Prompts.
+
+3. **Lesson 3 — Multi-Agent Systems with ADK & Remote MCP (`Lessons/adk-mcp/`, `mcp-on-cloudrun-01/`, `adk-withmcp-on-cloudrun-02/`):**
+   - [`035-agentic-workflows-prep.md`](BuildWithAI/Lessons/adk-mcp/035-agentic-workflows-prep.md): Preparatory lab building a DevFest Assistant with Gemini + LlamaIndex.
+   - [`mcp-on-cloudrun-01/`](BuildWithAI/Lessons/mcp-on-cloudrun-01/readme.md): 12-step codelab deploying a FastMCP server (`add`, `subtract` & custom prompts) to Cloud Run and invoking it via Gemini CLI.
+   - [`adk-withmcp-on-cloudrun-02/`](BuildWithAI/Lessons/adk-withmcp-on-cloudrun-02/readme.md): 11-step codelab deploying a `google-adk` agent on Cloud Run that authenticates to the remote MCP server.
+
+4. **Lesson 4 — Multimodal Streaming Agents with Gemini Live API (`Lessons/adk-gemini-live/`):**
+   - [`036-gemini-liveapi-fundamentals.md`](BuildWithAI/Lessons/adk-gemini-live/036-gemini-liveapi-fundamentals.md): Turn-based text-to-text and text-to-native-audio (`.wav`) streaming with Gemini 2.5 Flash Live API, including resumable sessions.
+   - [`037-gemini-liveapi-tools.md`](BuildWithAI/Lessons/adk-gemini-live/037-gemini-liveapi-tools.md): Real-time blocking vs. non-blocking tool execution, code execution, and interruptible responses.
+   - [`038-gemini-liveapi-video-understanding.md`](BuildWithAI/Lessons/adk-gemini-live/038-gemini-liveapi-video-understanding.md): Video stream captioning, object detection, frame text extraction, and YouTube timeline analysis.
+
+### Progressive Code Samples (`BuildWithAI/Samples/`)
+- **`Samples/adk_into/`**: Complete `uv`-managed ADK package (`google-adk>=1.14.1`) featuring `AfricaWorkshopAgent` with `get_weather` and `get_city_fact` tools.
+- **`Samples/multi-agents/`**: ADK `root_agent` (`gemini-2.0-flash-001`) equipped with utility tools (`roll_dice`, `flip_coin`, `choose_one`, `generate_random_number`).
+- **`Samples/adk-gemini-live/`**: Standalone async Live API scripts (`gemini_live_01.py` for streaming text and `gemini_live_audio_02.py` for generating and saving 24kHz PCM audio to `.wav`).
+- **`Samples/L4/` → `Samples/L9/`**: Step-by-step evolution of an ArXiv Research MCP Server (`research_server.py`) and interactive `mcp_chatbot.py`:
+  - **L4:** FastMCP server exposing `search_papers` and `extract_info` over `stdio`.
+  - **L5:** Interactive MCP client (`ClientSession`, `stdio_client`) with Gemini tool calling.
+  - **L6:** Multi-server MCP chatbot (`server_config.json`) connecting simultaneously to `filesystem`, `research`, and `fetch` MCP servers.
+  - **L7:** Extending the server with `@mcp.resource("papers://folders")` and `@mcp.prompt` (`generate_search_prompt`).
+  - **L9:** Containerized (`Dockerfile`) remote MCP server running over **SSE (`transport="sse"`)** on port `8001` for cloud deployment.
+
+---
+
+## 🧳 Track 3: `unstacked-labs/` — Building GenAI Solutions with Vertex AI SDK ("WanderBot")
+
+> **Title:** *Building Gen AI Solutions with the Vertex AI SDK*  
+> **Entry Point:** [`unstacked-labs/README.md`](unstacked-labs/README.md)
+
+A 20-step guided codelab (`step_2_project_setup.md` through `step_20_Congratulations!.md` + [`troubleshooting.md`](unstacked-labs/troubleshooting.md)) where developers act as engineers at a travel marketing company building **WanderBot**—an interactive travel assistant powered by **Gemini 2.5 Flash** on **Vertex AI** and **Streamlit**.
+
+### Key Learning Milestones
+- **Steps 2–8:** Google Cloud project configuration, Cloud Shell Editor workflow, API enablement, Python virtual environment setup, exploring the Streamlit starter app, and launching the web UI.
+- **Steps 9–13:** Initializing the Vertex AI client (`vertexai.init`), preparing multimodal/text payloads, calling Gemini, and engineering system instructions to shape persona and constraints.
+- **Steps 14–17:** Defining a real-time weather function tool (`step_14_define_weather_tool.md`), refactoring to a stateful chat session (`step_15_refactor_chat_tooling.md`), implementing tool-calling dispatch logic (`step_16_implement_toolcalling_logic.md`), and testing live tool invocations.
+- **Steps 18–20:** Iterative prompt refinement and tuning generation parameters (`temperature`, `top_p`, `max_output_tokens`).
+
+---
+
+## 🌍 Track 4: Regional Build With AI Chapters (Nairobi, Kisumu, Cape Town)
+
+Hands-on regional workshop tracks tailored for developer communities across East and Southern Africa:
+
+| Chapter Directory | Key Files & Highlights |
+| :--- | :--- |
+| **`BuildWithAIKisumu/`** (*DevFest Dala*) | • [`check_list.md`](BuildWithAIKisumu/check_list.md): A comprehensive **725-line Cloud Run Deployment Runbook & Checklist** covering GCP auth, billing verification, API enablement, IAM roles (`roles/run.admin`, `roles/iam.serviceAccountUser`, `roles/storage.admin`), local `adk web` verification, deployment commands, and troubleshooting.<br>• [`lesson_1_prompts/lab_0_prompt_engineering.md`](BuildWithAIKisumu/lesson_1_prompts/lab_0_prompt_engineering.md): Mastering the **R.O.D.E.S.** framework (*Role, Objective, Details, Examples, Sense Check*) with Google AI Studio & Vertex AI Studio.<br>• [`lesson_2_agents/`](BuildWithAIKisumu/lesson_2_agents/): Complete **DevFest Lagos & Nairobi Schedule Scraper + LlamaIndex ReAct Agent** (`app_bwn.py` & `app_bwn_ReAct.py`) using `BAAI/bge-small-en-v1.5` embeddings and Gemini 1.5 Pro. |
+| **`buildWithAINairobi/`** | • [`lesson_1_prompt_engineering/lab_0_prompt_engineering.md`](buildWithAINairobi/lesson_1_prompt_engineering/lab_0_prompt_engineering.md): Foundational prompt engineering codelab.<br>• [`lesson_3_agents/`](buildWithAINairobi/lesson_3_agents/): Nairobi edition of the LlamaIndex + Gemini ReAct agent and live conference schedule scraper (`app_bwn.py`, `app_bwn_ReAct.py`). |
+| **`BwAICapeTown/`** | • [`lesson_1_prompt_engineering/`](BwAICapeTown/lesson_1_prompt_engineering/): Progressive prompt engineering labs (`lab_0_prompt_engineering.md`, `lab_1_prompt_engineering.md`, `prompt.md`).<br>• [`lesson_3_agents/agents_react.py`](BwAICapeTown/lesson_3_agents/agents_react.py): **Vertex AI** (`llama_index.llms.vertex.Vertex` with `gemini-2.5-pro-preview-03-25` and automatic fallbacks) ReAct Agent with web scraping and DuckDuckGo image search tools. |
+
+---
+
+## 🏥 Track 5: `OSDH/` — Open Digital Health Summit (FHIR Prompting & Gemma 2 with Keras 3)
+
+Created for the **Open Digital Health Summit '24: Building with FHIR Track**, focusing on AI for healthcare interoperability in low-resource settings across Africa:
+
+1. **[`OSDH/lesson_1_prompt_engineering/lab_prompt_engineering.md`](OSDH/lesson_1_prompt_engineering/lab_prompt_engineering.md):**
+   - A 6-step structured prompting guide for **HL7 FHIR Architects** designing offline-capable immunization tracking and Android FHIR SDK solutions aligned with WHO SMART Guidelines.
+   - Covers persona definition, ideation for rural clinics with unstable connectivity, XML `<example>` and `<thinking>` Chain-of-Thought tags, and Ministry of Health technical specification generation.
+2. **[`OSDH/lesson-2_advanced_prompting/Lesson_2_Advanced_Prompting_Techniques.ipynb`](OSDH/lesson-2_advanced_prompting/Lesson_2_Advanced_Prompting_Techniques.ipynb):**
+   - Interactive Jupyter notebook exploring few-shot prompting, Chain-of-Thought (CoT), and structured output generation.
+3. **[`OSDH/lesson_3_gemma_with_keras/`](OSDH/lesson_3_gemma_with_keras/):**
+   - [`lesson_3_1_Keras_Gemma_2_Quickstart.ipynb`](OSDH/lesson_3_gemma_with_keras/lesson_3_1_Keras_Gemma_2_Quickstart.ipynb): Installing `keras-nlp` and `keras>=3`, configuring the JAX backend, loading `gemma2_2b_en`, and running single/batch text generation.
+   - [`Lesson_3_2_Keras_Gemma_2_Quickstart_Chat.ipynb`](OSDH/lesson_3_gemma_with_keras/Lesson_3_2_Keras_Gemma_2_Quickstart_Chat.ipynb): Building multi-turn conversational chat workflows with Gemma 2 and Keras 3.
+
+---
+
+## 🌐 Track 6: Community Bootcamps & Polyglot Starters
+
+Ready-to-run reference implementations demonstrating Gemini integration across **Python**, **Kotlin (Android)**, and **JavaScript (Node.js)**:
+
+- **[`devfestnairobi24/`](devfestnairobi24/) & [`jess_demo.kt`](jess_demo.kt) — "Jess" Multilingual Assistant:**
+  - Demonstrates deterministic language routing and Chain-of-Thought (`<thought process="Chain-of-Thought">`) across **English, Kiswahili, French, and Portuguese** (with automatic fallback to Kiswahili for mixed or unsupported languages and M-Pesa billing domain examples).
+  - Provided in both Python ([`multilingual_assistant.py`](devfestnairobi24/multilingual_assistant.py)) and Android Kotlin ([`multilingual_assistant.kt`](devfestnairobi24/multilingual_assistant.kt), [`jess_demo.kt`](jess_demo.kt)).
+- **[`gdsc_bootcamp/gdsc_gemini.py`](gdsc_bootcamp/gdsc_gemini.py):**
+  - Clean Python starter for GDSC Campus Connect (Catholic University of Eastern Africa — CUEA) demonstrating `.env` key management, `generation_config`, and explicit `safety_settings` thresholds.
+- **[`capetown/gemini_starts.js`](capetown/gemini_starts.js):**
+  - Minimalist Node.js quickstart using `@google/generative-ai` and `dotenv`.
+
+---
+
+## 📓 Hosted Google Colab Notebooks & Global Workshops
+
+Launch these interactive notebooks directly in **Google Colab**:
+
+| Workshop / Session | Event / Community | Topics Covered | Colab Link |
+| :--- | :--- | :--- | :---: |
+| **Agentic Workflows with Gemini & ReAct** | Build With AI / Kisumu & Nairobi | Function calling, web scraping (DevFest Lagos/Nairobi), LlamaIndex `ReActAgent`, social post generation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LkY6OG9H7R2NvsgzdCYVJ7QKIfStYgSr) |
+| **Multimodal Live API Fundamentals** | Build With AI (Lesson 3.6) | Gemini 2.5 Flash Live API, turn-based text-to-audio, native `.wav` playback, resumable sessions | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1v6JnpWr3xDBFip6HRxBHiQWxe6-N9jMc) |
+| **Multimodal Live API with Tools** | Build With AI (Lesson 3.7) | Real-time tool registration, code execution, blocking vs. non-blocking async function calling | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Rn6SM4yKCKftM6zz2EN0P5uNw98vtKmO) |
+| **Video Understanding with Gemini Live API** | Build With AI (Lesson 3.8) | Scene captioning, object detection, OCR from video frames, YouTube timeline querying | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1uIsAzF5dKUs-6Jdnaa7FGnCJobme6rDA) |
+| **Unlocking Generative AI with Gemini** | Campus Connect — CUEA | Deep learning foundations, LLMs, Google AI Studio, and Gemini Python SDK | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lnjeo-pk4XHp1ZBwm7DTV2mXnt_lBN23) |
+| **Keras 3 — A Spectrum of Workflows & Gemma** | Zindi Africa | Multi-backend Keras 3 (JAX, PyTorch, TensorFlow) and managing Gemma LLMs | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1T8LA5bygK4p2L5GyR8V1xSF9tu6KxFxJ) |
+| **Working with Gemini Pro and LangChain** | Build With AI | Document loading, vector storage, and Retrieval-Augmented Generation (RAG) Q&A bots | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q2TcaoXqxNz92bAQaBisomZUUk1VRqY6) |
+| **Creating Art with Stable Diffusion (Labs 1–3)** | AMLD Africa — Nairobi | Generative image synthesis and diffusion workflows | [Lab 1](https://colab.research.google.com/drive/1aYlso-T-9DkswERrGl3omrR-n2zvczOs) · [Lab 2](https://colab.research.google.com/drive/1Uulic4so-RHJfpFaCzbnc1cs1QymtRkv) · [Lab 3](https://colab.research.google.com/drive/1jN-AksZQr7lBDJi5Q7Y5ah9fTY1vMv2q) |
+
+---
+
+## ⚙️ Prerequisites & Environment Setup
+
+### 1. System Requirements
+- **Python:** `3.11+` or `3.12+` (`uv` or `venv` recommended)
+- **Google Cloud SDK:** `gcloud` CLI installed and authenticated (or use **Google Cloud Shell**)
+- **API Keys / Credentials:**
+  - A **Gemini API Key** from [Google AI Studio](https://aistudio.google.com/) (`GOOGLE_API_KEY` or `GEMINI_API_KEY`)
+  - A **Google Cloud Project** with Billing, Vertex AI, Cloud Run, Cloud Build, and Artifact Registry APIs enabled
+  - *(For `decode/` only)* Safaricom [Daraja Developer Portal](https://daraja.safaricom.co.ke/) credentials
+
+### 2. Quickstart: Clone & Run an ADK Agent Locally
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/ngesa254/labsdotgde.git
+cd labsdotgde
+
+# 2. Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Install Google ADK and core dependencies
+pip install google-adk google-genai mcp fastmcp python-dotenv
+
+# 4. Configure your API key
+export GOOGLE_API_KEY="your-gemini-api-key"
+
+# 5. Launch the ADK Interactive Dev UI on the sample agent
+cd BuildWithAI/Samples/adk_into
+adk web
+```
+Then open `http://127.0.0.1:8000` in your browser to chat with `AfricaWorkshopAgent` and inspect live tool-call traces.
+
+---
+
+## ☁️ Cloud Deployment & Cost Cleanup
+
+When deploying MCP servers or ADK agents to **Google Cloud Run** (in `decode/` or `BuildWithAI/`):
+
+- **Pre-Deployment Verification:** Follow [`BuildWithAIKisumu/check_list.md`](BuildWithAIKisumu/check_list.md) to verify your IAM roles, active project, and container readiness.
+- **Avoid Unexpected Charges:** Always clean up Cloud Run services, Artifact Registry container images, and temporary GCP projects after completing a workshop. Step-by-step teardown commands are documented in:
+  - [`BuildWithAI/gcp_cost_clean_up.md`](BuildWithAI/gcp_cost_clean_up.md)
+  - [`decode/01-mpesa-daraja-mcp-server-with-apigee/11.5_cleanup.md`](decode/01-mpesa-daraja-mcp-server-with-apigee/11.5_cleanup.md)
+  - [`decode/02-google-adk-agent-for-mpesa-daraja-mcp/10_cleanup.md`](decode/02-google-adk-agent-for-mpesa-daraja-mcp/10_cleanup.md)
+
+---
+
+## 🤝 Author & Community
+
+Curated and maintained by **[Ngesa Marvin](https://github.com/ngesa254)** (*[@Ngesa254](https://twitter.com/Ngesa254)*) — **Google Developer Expert (GDE) in AI/ML**.
+
+**Happy Building!** 🚀
