@@ -15,6 +15,12 @@ This monorepo powers developer workshops across Africa and globally—spanning *
 
 ---
 
+## Google for Developers Day: Nairobi — November 13, 2026
+
+The [Nairobi workshop folder](developers-day-nairobi-2026/README.md) contains the event details and a [step-by-step AI Barista lab](developers-day-nairobi-2026/01-ai-barista-cloud-run/README.md) using Google ADK, Streamlit, Gemini, and Cloud Run, with an optional Firestore vector search extension.
+
+**Event:** 8:00 AM–5:00 PM EAT (GMT+3), Sarit Expo Center, Westlands, Nairobi.
+
 ## Table of Contents
 
 1. [Repository Overview & Core Pillars](#-repository-overview--core-pillars)
@@ -71,6 +77,10 @@ Modern AI engineering has evolved from single-turn prompt completions to **state
 
 ```text
 labsdotgde/
+├── developers-day-nairobi-2026/                 # Google for Developers Day: Nairobi (November 13, 2026)
+│   ├── README.md                                # Event details and workshop entry point
+│   └── 01-ai-barista-cloud-run/                 # ADK + Streamlit + Cloud Run; optional Firestore RAG
+│
 ├── decode/                                      # Safaricom DECODE Fintech Agentic Workshop
 │   ├── README.md                                # End-to-end "From Code to Cash" workshop guide
 │   ├── artifacts/                               # Architecture & lab overview diagrams

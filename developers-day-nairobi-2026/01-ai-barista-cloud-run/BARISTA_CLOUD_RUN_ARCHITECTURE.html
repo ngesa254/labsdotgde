@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="AI Barista workshop architecture, ADK tool-call sequence, Firestore retrieval, and Cloud Run deployment for Google for Developers Day Nairobi."><title>AI Barista — Architecture &amp; Flow | Developers Day Nairobi 2026</title><style>
+:root{--red:#1a73e8;--red-d:#1557b0;--ink:#1A1A1A;--mut:#5B5F61;--line:#E3E4E5;--bg:#fff;--soft:#F6F7F7;--amber:#EB9700;--green:#2E7D32;--navy:#141a24;--coral:#ff4f2e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding:0 28px}
+a{color:var(--red-d);text-decoration:none}a:hover{text-decoration:underline}
+.cover{background:linear-gradient(135deg,#174ea6 0%,#1a73e8 55%,#123a31 140%);color:#fff;padding:52px 0 40px}
+.cover h1{font-size:38px;line-height:1.1;margin:0 0 10px;font-weight:800;letter-spacing:-.015em}
+.cover .kicker{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.92;font-weight:700;margin:0 0 8px}
+.cover .sub{font-size:18px;opacity:.95;margin:0 0 16px;max-width:860px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 10px}.meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:5px 11px;border-radius:999px;font-size:12.5px}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:36px;padding:34px 0 70px}
+nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;border-right:1px solid var(--line);padding-right:14px}
+nav.toc h4{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:4px 0 10px}
+nav.toc ol{list-style:none;margin:0;padding:0}nav.toc li{margin:1px 0}
+nav.toc a{display:flex;gap:9px;color:var(--ink);font-size:13.2px;padding:5px 8px;border-radius:7px;line-height:1.3}
+nav.toc a:hover{background:var(--soft);text-decoration:none}.n{color:var(--red);font-weight:800;min-width:18px;text-align:right}
+main{min-width:0}section{margin:0 0 34px;scroll-margin-top:14px}
+h2{font-size:24px;font-weight:800;letter-spacing:-.01em;margin:8px 0 12px;padding-bottom:9px;border-bottom:2px solid var(--red);display:flex;align-items:baseline;gap:12px}
+.secnum{color:var(--red);font-size:16px;font-weight:800}h3{font-size:17px;font-weight:700;margin:22px 0 8px}
+p{margin:10px 0}.hl{background:linear-gradient(transparent 58%,#dbeafe 58%);padding:0 2px}
+ul,ol{margin:10px 0;padding-left:22px}li{margin:5px 0}
+code{font-family:"SFMono-Regular",Consolas,monospace;font-size:.86em;background:var(--soft);border:1px solid var(--line);padding:1px 5px;border-radius:5px;color:#174ea6}
+pre{background:#111827;color:#E5E7EB;padding:14px 16px;border-radius:10px;overflow:auto;font-size:12.5px;line-height:1.45}
+pre code{background:transparent;border:0;color:inherit;padding:0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--red);color:#fff;font-weight:700;font-size:12.5px;border-bottom:none}
+thead th:first-child{border-top-left-radius:7px}thead th:last-child{border-top-right-radius:7px}
+tbody tr:nth-child(even){background:var(--soft)}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.5}
+.badge.live{background:#E7F3E8;color:var(--green);border:1px solid #BcdFbf}
+.badge.partial{background:#FDF1DF;color:#9A6400;border:1px solid #F3D9AC}
+.badge.planned{background:#F1F2F2;color:#5B5F61;border:1px solid #D7D9DA}
+.badge.blocked{background:#FDECEC;color:#B42318;border:1px solid #F3B4B0}
+.note{background:var(--soft);border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:14.2px}
+.note.warn{border-left-color:var(--amber);background:#FFFaf0}
+.note.ok{border-left-color:var(--green);background:#F3FAF4}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card h4{margin:0 0 6px;font-size:14px}.card p{margin:0;font-size:13.2px;color:#333}
+.mermaid{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0;overflow:auto}
+figcaption{margin-top:8px;font-size:12.5px;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:22px 0 50px;color:var(--mut);font-size:13px}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}nav.toc{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line);padding:0 0 14px;margin-bottom:16px}.cover h1{font-size:28px}}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.actions a,.actions button{font:inherit;font-size:13px;font-weight:700;background:white;color:#174ea6;border:0;border-radius:7px;padding:9px 14px;cursor:pointer}.actions a:hover{text-decoration:none;background:#e8f0fe}
+nav.toc a[aria-current="location"]{background:#e8f0fe;color:#174ea6;font-weight:700}
+.diagram{margin:18px 0}.diagram .mermaid{margin:0;min-height:100px}.mermaid svg{display:block;margin:auto;max-width:none!important;height:auto}.diagram-tools{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:8px 0}.diagram-tools button{border:1px solid var(--line);background:white;padding:6px 10px;border-radius:6px;cursor:pointer;color:#174ea6}.diagram-tools span{color:var(--mut);font-size:12px}
+.diagram.expanded{position:fixed;inset:12px;z-index:10;background:white;padding:20px;overflow:auto;border:1px solid var(--line);box-shadow:0 12px 60px #0005;border-radius:12px}.diagram.expanded .mermaid{min-height:75vh;display:grid;align-items:center}.diagram.expanded svg{max-width:100%!important}
+.diagram pre{white-space:pre-wrap}.mermaid:not([data-processed]){font:12px/1.5 monospace;white-space:pre;overflow:auto}.diagram-error{color:#9a6400;font-size:13px}.table-wrap{overflow:auto}.skip{position:absolute;left:12px;top:-60px;background:white;padding:8px;z-index:20}.skip:focus{top:12px}:focus-visible{outline:3px solid #fbbc04;outline-offset:3px}
+@media print{.cover{background:white!important;color:#111;padding:20px 0}.meta span{border-color:#aaa}nav.toc,.actions,.diagram-tools button{display:none}.layout{display:block;padding:10px 0}.wrap{max-width:none;padding:0}.mermaid{overflow:visible;border:0;padding:4px}.mermaid svg{max-width:100%!important}.diagram{break-inside:avoid}section{break-inside:auto}h2{break-after:avoid}a{color:#174ea6}.card{box-shadow:none}.diagram.expanded{position:static;box-shadow:none}details{display:none}}
+</style></head><body><a class="skip" href="#main">Skip to content</a>
+<header class="cover"><div class="wrap"><p class="kicker">LabsDotGDE · Google for Developers Day: Nairobi</p><h1>AI Barista<br>Architecture &amp; Request Flow</h1><p class="sub">From a customer question to a menu-grounded answer: Google ADK, Gemini, Streamlit, and Cloud Run, with optional Firestore vector retrieval.</p><div class="meta"><span>November 13, 2026</span><span>8:00 AM–5:00 PM EAT</span><span>Sarit Expo Center · Westlands, Nairobi</span><span>Core lab + optional extension</span></div><div class="actions"><a href="#architecture">Explore architecture ↓</a><a href="README.md">Open lab guide</a><button type="button" id="print">Print / Save PDF</button></div></div></header>
+<div class="wrap"><div class="layout"><nav class="toc" aria-label="Document contents"><h4>Contents</h4><ol><li><a href="#overview"><span class="n">01</span>Workshop overview</a></li><li><a href="#architecture"><span class="n">02</span>Serverless agent architecture</a></li><li><a href="#sequence"><span class="n">03</span>Chat and tool-call sequence</a></li><li><a href="#components"><span class="n">04</span>Components and source files</a></li><li><a href="#vector"><span class="n">05</span>Firestore vector retrieval</a></li><li><a href="#deployment"><span class="n">06</span>Build and deployment path</a></li><li><a href="#tracks"><span class="n">07</span>Rehearsal and live resource map</a></li><li><a href="#validation"><span class="n">08</span>Behavior checks</a></li><li><a href="#cleanup"><span class="n">09</span>Resource lifecycle</a></li><li><a href="#lessons"><span class="n">10</span>Workshop document index</a></li></ol></nav><main id="main"><section id="overview"><h2><span class="secnum">01</span>Workshop overview</h2><p>Build a coffee shop assistant that recommends menu items, answers price questions, and responds to preferences using menu facts. The core lab reads eight records from a local JSON file. The optional extension adds semantic retrieval from Firestore.</p>
+<div class="grid2"><div class="card"><h4>Core lab · Local retrieval</h4><p>Streamlit + Google ADK + Gemini + Cloud Run. The menu tool returns all eight menu records for a menu lookup.</p></div><div class="card"><h4>Extension · Vector retrieval</h4><p>Firestore stores menu records and embeddings. A query returns up to three candidates using cosine distance.</p></div></div>
+<div class="note"><strong>Workshop scope.</strong> These diagrams describe the supplied lab implementation. Rehearsal observations come from the source guide; this document does not establish a new deployment or runtime verification.</div></section><section id="architecture"><h2><span class="secnum">02</span>Serverless agent architecture</h2><figure class="diagram" id="diagram-1"><div class="mermaid">flowchart LR
+    browser[&quot;Customer browser&quot;]
+    subgraph cloud[&quot;Google Cloud project&quot;]
+        subgraph run[&quot;Cloud Run container&quot;]
+            ui[&quot;Streamlit web interface · app.py&quot;]
+            subgraph runtime[&quot;Agent runtime&quot;]
+                runner[&quot;ADK InMemoryRunner&quot;]
+                agent[&quot;LlmAgent · barista_agent&quot;]
+                tool[&quot;Python tool · get_menu()&quot;]
+            end
+            menu[(&quot;Local menu.json · 8 items&quot;)]
+            ui --&gt;|&quot;Chat message&quot;| runner
+            runner --&gt;|&quot;Run agent with session history&quot;| agent
+            agent -.-&gt;|&quot;Tool request handled by ADK&quot;| tool
+            tool --&gt;|&quot;Read menu&quot;| menu
+            menu --&gt;|&quot;Menu records&quot;| tool
+            tool -.-&gt;|&quot;Tool result&quot;| runner
+            runner --&gt;|&quot;Answer for display&quot;| ui
+            ui --&gt;|&quot;Separate sidebar read&quot;| menu
+        end
+        gemini[&quot;Gemini · Vertex AI endpoint&quot;]
+        runner --&gt;|&quot;Message, instructions, tool definition / result&quot;| gemini
+        gemini --&gt;|&quot;Tool request or answer&quot;| runner
+    end
+    browser --&gt;|&quot;HTTPS · customer query&quot;| ui
+    ui --&gt;|&quot;Menu and chat response&quot;| browser
+    style cloud fill:#eef5ff,stroke:#4285f4,stroke-width:2px,color:#17365d
+    style run fill:#f8fafc,stroke:#64748b,color:#0f172a
+    style runtime fill:#dbeafe,stroke:#3b82f6,color:#0f172a
+</div><div class="diagram-tools"><span>Figure 1 · Scroll horizontally for detail</span><button type="button" class="expand" aria-expanded="false">Expand diagram</button></div><figcaption>Base architecture — Streamlit and ADK share one Cloud Run container; Gemini runs behind the Vertex AI endpoint.</figcaption><details><summary>View Mermaid source</summary><pre><code>flowchart LR
+    browser[&quot;Customer browser&quot;]
+    subgraph cloud[&quot;Google Cloud project&quot;]
+        subgraph run[&quot;Cloud Run container&quot;]
+            ui[&quot;Streamlit web interface · app.py&quot;]
+            subgraph runtime[&quot;Agent runtime&quot;]
+                runner[&quot;ADK InMemoryRunner&quot;]
+                agent[&quot;LlmAgent · barista_agent&quot;]
+                tool[&quot;Python tool · get_menu()&quot;]
+            end
+            menu[(&quot;Local menu.json · 8 items&quot;)]
+            ui --&gt;|&quot;Chat message&quot;| runner
+            runner --&gt;|&quot;Run agent with session history&quot;| agent
+            agent -.-&gt;|&quot;Tool request handled by ADK&quot;| tool
+            tool --&gt;|&quot;Read menu&quot;| menu
+            menu --&gt;|&quot;Menu records&quot;| tool
+            tool -.-&gt;|&quot;Tool result&quot;| runner
+            runner --&gt;|&quot;Answer for display&quot;| ui
+            ui --&gt;|&quot;Separate sidebar read&quot;| menu
+        end
+        gemini[&quot;Gemini · Vertex AI endpoint&quot;]
+        runner --&gt;|&quot;Message, instructions, tool definition / result&quot;| gemini
+        gemini --&gt;|&quot;Tool request or answer&quot;| runner
+    end
+    browser --&gt;|&quot;HTTPS · customer query&quot;| ui
+    ui --&gt;|&quot;Menu and chat response&quot;| browser
+    style cloud fill:#eef5ff,stroke:#4285f4,stroke-width:2px,color:#17365d
+    style run fill:#f8fafc,stroke:#64748b,color:#0f172a
+    style runtime fill:#dbeafe,stroke:#3b82f6,color:#0f172a
+</code></pre></details></figure><p><code>app.py</code> owns the browser interface, sidebar, session ID, and runner. <code>agent.py</code> defines <code>barista_agent</code> and <code>get_menu()</code>. ADK executes the Python tool when Gemini requests it.</p><p>The sidebar reads the menu separately from the chat tool. A populated sidebar confirms its read path; a correct recommendation tests the agent path.</p></section><section id="sequence"><h2><span class="secnum">03</span>Chat and tool-call sequence</h2><figure class="diagram" id="diagram-2"><div class="mermaid">sequenceDiagram
+    autonumber
+    actor Customer
+    participant UI as Streamlit
+    participant ADK as ADK runner
+    participant Gemini as Gemini via Vertex AI
+    participant Tool as Python get_menu()
+    participant Menu as Local menu.json
+
+    Customer-&gt;&gt;UI: Recommend something strong and warm
+    UI-&gt;&gt;ADK: Submit message with the current session ID
+    ADK-&gt;&gt;Gemini: Send message, history, instructions, and tool definition
+    Gemini--&gt;&gt;ADK: Request get_menu()
+    ADK-&gt;&gt;Tool: Execute get_menu()
+    Tool-&gt;&gt;Menu: Read packaged JSON file
+    Menu--&gt;&gt;Tool: Eight menu records
+    Tool--&gt;&gt;ADK: Return menu records as JSON
+    ADK-&gt;&gt;Gemini: Send tool result
+    Gemini--&gt;&gt;ADK: Generate recommendation using menu facts
+    ADK--&gt;&gt;UI: Return response events
+    UI--&gt;&gt;Customer: Display the answer and save chat history
+</div><div class="diagram-tools"><span>Figure 2 · Scroll horizontally for detail</span><button type="button" class="expand" aria-expanded="false">Expand diagram</button></div><figcaption>Chat sequence — the model requests a tool call, ADK executes Python, and Gemini uses the returned menu records.</figcaption><details><summary>View Mermaid source</summary><pre><code>sequenceDiagram
+    autonumber
+    actor Customer
+    participant UI as Streamlit
+    participant ADK as ADK runner
+    participant Gemini as Gemini via Vertex AI
+    participant Tool as Python get_menu()
+    participant Menu as Local menu.json
+
+    Customer-&gt;&gt;UI: Recommend something strong and warm
+    UI-&gt;&gt;ADK: Submit message with the current session ID
+    ADK-&gt;&gt;Gemini: Send message, history, instructions, and tool definition
+    Gemini--&gt;&gt;ADK: Request get_menu()
+    ADK-&gt;&gt;Tool: Execute get_menu()
+    Tool-&gt;&gt;Menu: Read packaged JSON file
+    Menu--&gt;&gt;Tool: Eight menu records
+    Tool--&gt;&gt;ADK: Return menu records as JSON
+    ADK-&gt;&gt;Gemini: Send tool result
+    Gemini--&gt;&gt;ADK: Generate recommendation using menu facts
+    ADK--&gt;&gt;UI: Return response events
+    UI--&gt;&gt;Customer: Display the answer and save chat history
+</code></pre></details></figure><div class="note ok"><strong>Example:</strong> “Recommend something strong and warm.” The expected recommendation is Espresso Solo, described as a single shot in the menu.</div><p>A greeting may skip tool execution. Session history lives in memory and can reset on refresh or a new connection. Continue follow-up questions in the same chat session.</p></section><section id="components"><h2><span class="secnum">04</span>Components and source files</h2><div class="table-wrap"><table><thead><tr><th>File or component</th><th>Responsibility</th><th>Lesson</th></tr></thead><tbody>
+<tr><td><code>menu.json</code></td><td>Eight items with names, descriptions, prices, tags, and allergens</td><td><a href="04_create_menu.md">Create menu</a></td></tr>
+<tr><td><code>agent.py</code></td><td>LlmAgent definition, instructions, and menu tool</td><td><a href="05_build_agent_and_ui.md">Build agent</a></td></tr>
+<tr><td><code>app.py</code></td><td>Streamlit sidebar, chat, in-memory runner, and response display</td><td><a href="05_build_agent_and_ui.md">Build UI</a></td></tr>
+<tr><td><code>requirements.txt</code></td><td>Package pins from the supplied workshop guide</td><td><a href="05_build_agent_and_ui.md">Dependencies</a></td></tr>
+<tr><td><code>menu_store.py</code> · optional</td><td>Shared embedding, menu listing, and vector search</td><td><a href="08_firestore_vector_search.md">Firestore extension</a></td></tr>
+<tr><td><code>seed.py</code> · optional</td><td>Embed and write menu items; insert the Matcha demo item</td><td><a href="08_firestore_vector_search.md">Seed menu</a></td></tr>
+<tr><td>Vertex AI</td><td>Gemini chat inference and optional text embeddings</td><td><a href="06_deploy_cloud_run.md">Runtime access</a></td></tr>
+</tbody></table></div></section><section id="vector"><h2><span class="secnum">05</span>Firestore vector retrieval</h2><figure class="diagram" id="diagram-3"><div class="mermaid">flowchart TD
+    subgraph seed[&quot;Preparation · Cloud Shell&quot;]
+        source[&quot;menu.json or Matcha demo item&quot;]
+        script[&quot;seed.py&quot;]
+        seedembed[&quot;Embed item name and description · 768 dimensions&quot;]
+        source --&gt; script --&gt; seedembed
+    end
+    model[&quot;Vertex AI embedding endpoint · us-central1&quot;]
+    seedembed --&gt;|&quot;Embedding request&quot;| model
+    model --&gt;|&quot;Item vector&quot;| seedembed
+    db[(&quot;Named Firestore database · menu collection and vector index&quot;)]
+    seedembed --&gt;|&quot;Write item fields and embedding&quot;| db
+
+    subgraph runtime[&quot;Cloud Run · vector service&quot;]
+        runner[&quot;ADK runner&quot;]
+        tool[&quot;get_menu(query) → search_menu(query)&quot;]
+        queryembed[&quot;Embed customer query · same model and 768 dimensions&quot;]
+        nearest[&quot;Cosine nearest-neighbor query · limit 3&quot;]
+        result[&quot;Return menu fields without stored embeddings&quot;]
+        sidebar[&quot;Streamlit sidebar · list_menu()&quot;]
+        runner --&gt;|&quot;Execute requested tool&quot;| tool
+        tool --&gt; queryembed
+        queryembed --&gt; nearest
+        nearest --&gt; result
+        result --&gt;|&quot;Tool result&quot;| runner
+    end
+    queryembed --&gt;|&quot;Embedding request&quot;| model
+    model --&gt;|&quot;Query vector&quot;| queryembed
+    nearest --&gt;|&quot;Search embedding index&quot;| db
+    db --&gt;|&quot;Up to 3 matching documents&quot;| nearest
+    sidebar --&gt;|&quot;List all menu documents&quot;| db
+    db --&gt;|&quot;Menu records for display&quot;| sidebar
+    chat[&quot;Gemini chat endpoint · global&quot;]
+    runner --&gt;|&quot;Message or tool result&quot;| chat
+    chat --&gt;|&quot;Tool request or grounded answer&quot;| runner
+</div><div class="diagram-tools"><span>Figure 3 · Scroll horizontally for detail</span><button type="button" class="expand" aria-expanded="false">Expand diagram</button></div><figcaption>Firestore extension — seed and query embeddings use the same model and 768 dimensions.</figcaption><details><summary>View Mermaid source</summary><pre><code>flowchart TD
+    subgraph seed[&quot;Preparation · Cloud Shell&quot;]
+        source[&quot;menu.json or Matcha demo item&quot;]
+        script[&quot;seed.py&quot;]
+        seedembed[&quot;Embed item name and description · 768 dimensions&quot;]
+        source --&gt; script --&gt; seedembed
+    end
+    model[&quot;Vertex AI embedding endpoint · us-central1&quot;]
+    seedembed --&gt;|&quot;Embedding request&quot;| model
+    model --&gt;|&quot;Item vector&quot;| seedembed
+    db[(&quot;Named Firestore database · menu collection and vector index&quot;)]
+    seedembed --&gt;|&quot;Write item fields and embedding&quot;| db
+
+    subgraph runtime[&quot;Cloud Run · vector service&quot;]
+        runner[&quot;ADK runner&quot;]
+        tool[&quot;get_menu(query) → search_menu(query)&quot;]
+        queryembed[&quot;Embed customer query · same model and 768 dimensions&quot;]
+        nearest[&quot;Cosine nearest-neighbor query · limit 3&quot;]
+        result[&quot;Return menu fields without stored embeddings&quot;]
+        sidebar[&quot;Streamlit sidebar · list_menu()&quot;]
+        runner --&gt;|&quot;Execute requested tool&quot;| tool
+        tool --&gt; queryembed
+        queryembed --&gt; nearest
+        nearest --&gt; result
+        result --&gt;|&quot;Tool result&quot;| runner
+    end
+    queryembed --&gt;|&quot;Embedding request&quot;| model
+    model --&gt;|&quot;Query vector&quot;| queryembed
+    nearest --&gt;|&quot;Search embedding index&quot;| db
+    db --&gt;|&quot;Up to 3 matching documents&quot;| nearest
+    sidebar --&gt;|&quot;List all menu documents&quot;| db
+    db --&gt;|&quot;Menu records for display&quot;| sidebar
+    chat[&quot;Gemini chat endpoint · global&quot;]
+    runner --&gt;|&quot;Message or tool result&quot;| chat
+    chat --&gt;|&quot;Tool request or grounded answer&quot;| runner
+</code></pre></details></figure><p>The chat endpoint uses <code>global</code>; embeddings use <code>us-central1</code> in the supplied guide. Seed writes and queries must use the same embedding model, database, and vector length. Changing models requires re-embedding the stored documents.</p><div class="note"><strong>Retrieval behavior.</strong> Similarity ranks candidates. Verify dietary preferences against explicit tags and listed allergens. Top-three retrieval can miss an item, so an exhaustive availability check needs an exact lookup.</div>
+<h3>Live Matcha update</h3><ol><li>Ask about matcha before insertion in a fresh vector-service session.</li><li>Run <code>python seed.py --matcha</code> in the configured vector folder.</li><li>Confirm direct search returns Matcha Green Tea Latte.</li><li>Refresh the app and verify the sidebar and chat show the listed $5.50 price.</li></ol><p>The database update is visible to subsequent reads without redeploying Cloud Run. The base service retains its original local menu.</p></section><section id="deployment"><h2><span class="secnum">06</span>Build and deployment path</h2><figure class="diagram" id="diagram-4"><div class="mermaid">flowchart LR
+    shell[&quot;Cloud Shell · source files&quot;]
+    deploy[&quot;gcloud run deploy --source .&quot;]
+    build[&quot;Cloud Build · Python buildpacks&quot;]
+    registry[(&quot;Artifact Registry · container image&quot;)]
+    run[&quot;Cloud Run revision · Streamlit application&quot;]
+    url[&quot;Service HTTPS URL&quot;]
+    identity[&quot;Dedicated runtime service account&quot;]
+    vertex[&quot;Vertex AI · Gemini and optional embeddings&quot;]
+    firestore[(&quot;Firestore · optional menu database&quot;)]
+
+    shell --&gt; deploy --&gt; build
+    build --&gt;|&quot;Push built image&quot;| registry
+    registry --&gt;|&quot;Deploy image&quot;| run
+    run --&gt; url
+    identity -.-&gt;|&quot;Attached runtime identity&quot;| run
+    run --&gt;|&quot;Vertex AI permission&quot;| vertex
+    run --&gt;|&quot;Firestore read permission for extension&quot;| firestore
+</div><div class="diagram-tools"><span>Figure 4 · Scroll horizontally for detail</span><button type="button" class="expand" aria-expanded="false">Expand diagram</button></div><figcaption>Deployment pipeline — source build, image storage, Cloud Run revision, and runtime API access.</figcaption><details><summary>View Mermaid source</summary><pre><code>flowchart LR
+    shell[&quot;Cloud Shell · source files&quot;]
+    deploy[&quot;gcloud run deploy --source .&quot;]
+    build[&quot;Cloud Build · Python buildpacks&quot;]
+    registry[(&quot;Artifact Registry · container image&quot;)]
+    run[&quot;Cloud Run revision · Streamlit application&quot;]
+    url[&quot;Service HTTPS URL&quot;]
+    identity[&quot;Dedicated runtime service account&quot;]
+    vertex[&quot;Vertex AI · Gemini and optional embeddings&quot;]
+    firestore[(&quot;Firestore · optional menu database&quot;)]
+
+    shell --&gt; deploy --&gt; build
+    build --&gt;|&quot;Push built image&quot;| registry
+    registry --&gt;|&quot;Deploy image&quot;| run
+    run --&gt; url
+    identity -.-&gt;|&quot;Attached runtime identity&quot;| run
+    run --&gt;|&quot;Vertex AI permission&quot;| vertex
+    run --&gt;|&quot;Firestore read permission for extension&quot;| firestore
+</code></pre></details></figure><p>Use the same Cloud Shell terminal so exported variables and the <code>deploy_barista</code> function remain available. The source build creates a container image in Artifact Registry, then deploys a Cloud Run revision.</p><div class="grid2"><div class="card"><h4>Deployer and builder</h4><p>The signed-in identity starts deployment and needs permission to act as the selected runtime account. Cloud Build uses its build identity to produce the image.</p></div><div class="card"><h4>Runtime identity</h4><p>The dedicated account receives the guide's Vertex AI role. The vector extension adds Firestore read access; the seeding identity needs write access.</p></div></div><p>Follow the complete commands in <a href="06_deploy_cloud_run.md">step 6</a>. A Service URL and a healthy revision are followed by browser and chat checks.</p></section><section id="tracks"><h2><span class="secnum">07</span>Rehearsal and live resource map</h2><p>The supplied guide names the project <code>labsdotgde</code> with ID <code>angelic-bee-193823</code>. Participants should substitute their own authorized project ID. The local repository and cloud project are separate resources.</p><div class="table-wrap"><table><thead><tr><th>Resource</th><th>Rehearsal · TRACK=test</th><th>Live · TRACK=lab</th></tr></thead><tbody>
+<tr><td>Base source directory</td><td><code>~/barista-test</code></td><td><code>~/barista-lab</code></td></tr>
+<tr><td>Base service</td><td><code>coffee-barista-test</code></td><td><code>coffee-barista-lab</code></td></tr>
+<tr><td>Runtime account ID</td><td><code>barista-test-sa</code></td><td><code>barista-agent-sa</code></td></tr>
+<tr><td>Vector service</td><td><code>coffee-barista-test-vector</code></td><td><code>coffee-barista-lab-vector</code></td></tr>
+<tr><td>Firestore database</td><td><code>coffee-menu-test</code></td><td><code>coffee-menu</code></td></tr>
+<tr><td>Cloud Run region</td><td><code>us-central1</code></td><td><code>us-central1</code></td></tr>
+</tbody></table></div><p>Rehearse first, then repeat the source creation, deployment, and base tests with the live track. Keep the working rehearsal available as a fallback through the session.</p></section><section id="validation"><h2><span class="secnum">08</span>Behavior checks</h2><table><thead><tr><th>Prompt or action</th><th>Expected behavior</th></tr></thead><tbody>
+<tr><td>Recommend something strong and warm.</td><td>Espresso Solo; menu says a single shot.</td></tr>
+<tr><td>Do you have a matcha frappuccino?</td><td>Explains the requested item is unavailable in the base menu; alternatives come from actual records.</td></tr>
+<tr><td>I'm lactose intolerant. What can I get?</td><td>Uses dairy-free tags and listed allergens, without a safety or cross-contact guarantee.</td></tr>
+<tr><td>What's hot, sweet, and dairy-free?</td><td>Oat Milk Honey Latte.</td></tr>
+<tr><td>How much is that?</td><td>$5.00 after the latte recommendation in the same session.</td></tr>
+<tr><td>Optional vector extension</td><td>Direct search works; the new Matcha item appears in both the refreshed sidebar and chat.</td></tr>
+</tbody></table><p>Use <a href="07_test_barista.md">step 7</a> for base checks and <a href="10_troubleshooting.md">step 10</a> for symptom-specific diagnostics. A build error belongs in the Cloud Build log; an error after deployment belongs in runtime logs.</p></section><section id="cleanup"><h2><span class="secnum">09</span>Resource lifecycle</h2><ol><li>Inventory the selected track's services, database, identity, and revision images.</li><li>Remove its Cloud Run services after the workshop.</li><li>Remove added IAM bindings and the dedicated runtime identity once no services use it.</li><li>Remove the named Firestore database only if it was created for this lab and its data can be discarded.</li><li>Review image digests and source archives; remove only confirmed workshop artifacts.</li></ol><p>The source guide uses a project that also contains other work. Preserve shared resources and follow the individual resource commands in <a href="09_cleanup.md">step 9</a>. Review billing usage after cleanup.</p></section><section id="lessons"><h2><span class="secnum">10</span>Workshop document index</h2><ol><li><a href="01_overview.md">Architecture and learning goals</a></li><li><a href="02_project_setup.md">Project, billing, and APIs</a></li><li><a href="03_choose_track.md">Select rehearsal or live track</a></li><li><a href="04_create_menu.md">Create the mock menu</a></li><li><a href="05_build_agent_and_ui.md">Build the agent and Streamlit UI</a></li><li><a href="06_deploy_cloud_run.md">Deploy to Cloud Run</a></li><li><a href="07_test_barista.md">Test the base behavior</a></li><li><a href="08_firestore_vector_search.md">Optional Firestore extension</a></li><li><a href="09_cleanup.md">Clean up workshop resources</a></li><li><a href="10_troubleshooting.md">Troubleshooting and completion</a></li></ol><p><a href="README.md">Lab README</a> · <a href="architecture.md">Editable Mermaid diagrams</a> · <a href="../README.md">Event overview</a> · <a href="https://codelabs.developers.google.com/codelabs/cloud-run/build-streamlit-rag-agent-google-adk-cloud-run">Original Google Cloud codelab</a></p><div class="note"><strong>Viewing this document.</strong> Open the HTML file in a browser. Diagrams load Mermaid from jsDelivr and need an internet connection. The diagram source remains available below each figure. Use Print / Save PDF for a shareable copy after rendering.</div></section></main></div><footer>LabsDotGDE · Ngesa Marvin · Developers Day Nairobi · November 13, 2026<br>Prepared from the supplied Barista workshop guide and architecture references.</footer></div>
+<script type="module">
+const figures = [...document.querySelectorAll('.diagram')];
+for (const figure of figures) {
+  const button = figure.querySelector('.expand');
+  button.addEventListener('click', () => {
+    const expanded = figure.classList.toggle('expanded');
+    button.setAttribute('aria-expanded', String(expanded));
+    button.textContent = expanded ? 'Close expanded view' : 'Expand diagram';
+  });
+}
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') for (const figure of figures) {
+    if (figure.classList.contains('expanded')) { figure.querySelector('.expand').click(); figure.querySelector('.expand').focus(); }
+  }
+});
+document.querySelector('#print').addEventListener('click', () => window.print());
+const links = [...document.querySelectorAll('nav.toc a')];
+const observer = new IntersectionObserver(entries => {
+  for (const entry of entries) if (entry.isIntersecting) {
+    for (const link of links) {
+      if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  }
+}, {rootMargin: '-5% 0px -65% 0px'});
+document.querySelectorAll('main section').forEach(section => observer.observe(section));
+try {
+  const {default: mermaid} = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+  mermaid.initialize({startOnLoad:false,theme:'base',securityLevel:'strict',themeVariables:{primaryColor:'#e8f0fe',primaryTextColor:'#172b4d',primaryBorderColor:'#4285f4',lineColor:'#64748b',secondaryColor:'#e6f4ea',tertiaryColor:'#f8fafc',fontFamily:'Arial, sans-serif'},flowchart:{htmlLabels:false,curve:'basis'},sequence:{useMaxWidth:false,wrap:true}});
+  for (const figure of figures) {
+    const node = figure.querySelector('.mermaid');
+    try { await mermaid.run({nodes:[node]}); }
+    catch { node.textContent = figure.querySelector('details code').textContent; node.removeAttribute('data-processed'); const message = document.createElement('p'); message.className='diagram-error'; message.textContent='Diagram could not render. Its editable source is shown below.'; figure.prepend(message); }
+  }
+} catch {
+  const message = document.createElement('p'); message.className='note'; message.textContent='Diagram rendering is unavailable. Connect to the internet and reload, or read the Mermaid source in each figure.'; document.querySelector('#architecture').prepend(message);
+}
+</script></body></html>
