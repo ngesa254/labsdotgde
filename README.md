@@ -1,5 +1,7 @@
 # LabsDotGDE™ — Google AI, Agentic Systems, MCP & Cloud Run Workshops
 
+**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/)**
+
 <p align="center">
   <img src="https://img.shields.io/badge/Google%20ADK-Agent%20Development%20Kit-EA4335?style=for-the-badge&logo=google&logoColor=white" alt="Google ADK">
   <img src="https://img.shields.io/badge/Gemini%202.5-Live%20API%20%26%20Vertex%20AI-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Gemini & Vertex AI">

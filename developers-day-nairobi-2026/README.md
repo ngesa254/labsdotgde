@@ -1,5 +1,7 @@
 # Google for Developers Day: Nairobi
 
+**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/)**
+
 > Hands-on engineering with Google's cloud and agentic stack.
 
 | Event detail | Information |

@@ -1,5 +1,7 @@
 # Deploy a RAG AI Barista with Google ADK, Streamlit, and Cloud Run
 
+**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/)**
+
 > Google for Developers Day: Nairobi · November 13, 2026 · Sarit Expo Center
 
 Build and deploy a coffee shop assistant that uses a menu tool to ground its recommendations. Start with eight menu items in a JSON file, then optionally add semantic retrieval with Firestore.
