@@ -36,7 +36,6 @@ The original greeter → planner → formatter chain is simplified to one tool-u
 
 Plan about 80 minutes including installation and source builds, plus permission delays. These are estimates, not a scheduled event duration. Cloud/model execution was not performed during authoring; expected outcomes below are acceptance criteria.
 
-**Author: Ngesa Marvin.** AI/ML Lead. Electrical Engineer. GDE ML/AI. Founder, [Nairobi AI](https://www.meetup.com/nairobiai/).
 
 ## Restore the Lab 1 handoff and check access
 Duration: 0:08:00

@@ -33,7 +33,7 @@ for lab in sorted((ROOT/'labs').iterdir()):
     assert sum(s[1] for s in parser.steps)==total
     data=json.loads((ROOT/'site/codelabs'/id/'codelab.json').read_text())
     assert data['id']==id and data['duration']==total and data['status']==['draft']
-    assert 'Author: Ngesa Marvin' in html
+    assert 'Author: Ngesa Marvin' not in html
     assert '<aside class=' in html if id=='decode-mpesa-mcp' else True
     assert 'codelab-gaid=""' in html and 'google-codelab-analytics' not in html
     assert 'UA-49880327-14' not in html
@@ -42,7 +42,7 @@ for lab in sorted((ROOT/'labs').iterdir()):
     assert '//fonts.googleapis.com/' not in html
     for block in re.findall(r'```bash\n(.*?)\n```',md,re.S):
         subprocess.run(['bash','-n'],input=block,text=True,check=True,capture_output=True)
-    checks.append(f'{id}: {len(steps)} steps, {int(total)} minutes, metadata, attribution, callouts and shell syntax passed')
+    checks.append(f'{id}: {len(steps)} steps, {int(total)} minutes, metadata, callouts and shell syntax passed')
 for html in (ROOT/'site').rglob('*.html'):
     parser=Links();parser.feed(html.read_text())
     for link in parser.links:

@@ -45,7 +45,7 @@ for lab in sorted((ROOT/'labs').iterdir()):
     html=html.replace('https://storage.googleapis.com/claat-public/','../../vendor/claat/')
     # Keep internal workshop navigation in the same tab.
     html=re.sub(r'(<a href="(?!https?:|mailto:)[^"]+") target="_blank"', r'\1', html)
-    # Renderer does not surface author metadata; overview contains visible attribution.
+    # Keep lab styling separate from the landing page trainer biography.
     html=html.replace('</head>','<link rel="stylesheet" href="../../codelab-overrides.css">\n</head>')
     html=html.replace('</body>', '<script src="../../codelab-navigation.js"></script>\n</body>')
     (out/'index.html').write_text(html)

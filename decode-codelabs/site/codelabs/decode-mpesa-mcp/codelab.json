@@ -2,7 +2,7 @@
   "environment": "web",
   "format": "html",
   "prefix": "https://storage.googleapis.com",
-  "updated": "2026-11-14T18:05:27+03:00",
+  "updated": "2026-11-14T21:51:14+03:00",
   "id": "decode-mpesa-mcp",
   "duration": 97,
   "title": "Build an M-Pesa Daraja MCP Server on Cloud Run",

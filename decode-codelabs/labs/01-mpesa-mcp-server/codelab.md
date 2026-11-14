@@ -40,7 +40,6 @@ The core path has six tools and performs **no payment API calls**. The optional 
 
 Durations are estimates: about 100 minutes including installation and cloud waits; allow extra time for organization permissions. You can complete the local checkpoints without a cloud project or Daraja credentials.
 
-**Author: Ngesa Marvin.** AI/ML Lead. Electrical Engineer. GDE ML/AI. Founder, [Nairobi AI](https://www.meetup.com/nairobiai/).
 
 > aside positive
 > Checkpoint: identify the component that can decide whether to send a payment request. It is server-side code, not the model's wording.
