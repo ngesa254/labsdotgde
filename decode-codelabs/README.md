@@ -77,6 +77,6 @@ Participant exercises copy samples into ignored `.work/` directories to preserve
 
 [VALIDATION.md](VALIDATION.md) records actual results, failures and limits. [REFERENCES.md](REFERENCES.md) records primary sources and access dates. [FACILITATOR_NOTES.md](FACILITATOR_NOTES.md) separates presentation guidance from participant instructions. [PUBLISHING.md](PUBLISHING.md) describes a future publication path only.
 
-Ngesa Marvin — AI/ML Tech Lead. Electrical Engineer. GDE ML/AI. Founder, [Nairobi AI](https://www.meetup.com/nairobiai/).
+Ngesa Marvin — AI/ML Lead. Electrical Engineer. GDE ML/AI. Founder, [Nairobi AI](https://www.meetup.com/nairobiai/).
 
 The editorial engineering perspective does not imply Google employment, endorsement or review. No human technical or curriculum review is claimed. No commit, push, publication, cloud provisioning or payment execution was performed for this edition.

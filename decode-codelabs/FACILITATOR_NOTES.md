@@ -34,7 +34,7 @@ The generated labs now serve the guided runtime and fonts locally. If controls a
 
 ## Author and attribution
 
-Ngesa Marvin — AI/ML Tech Lead. Electrical Engineer. GDE ML/AI. Founder, [Nairobi AI](https://www.meetup.com/nairobiai/).
+Ngesa Marvin — AI/ML Lead. Electrical Engineer. GDE ML/AI. Founder, [Nairobi AI](https://www.meetup.com/nairobiai/).
 
 Keep that biography separate from the requested editorial engineering perspective. Do not attribute employment at Google DeepMind, internal review or endorsement to the author.
 
