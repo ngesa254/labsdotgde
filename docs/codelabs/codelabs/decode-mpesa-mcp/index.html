@@ -1,0 +1,372 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Build an M-Pesa Daraja MCP Server on Cloud Run</title>
+  <link rel="stylesheet" href="../../vendor/claat/fonts.css">
+  <link rel="stylesheet" href="../../vendor/claat/icons.css">
+  <link rel="stylesheet" href="../../vendor/claat/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+<link rel="stylesheet" href="../../codelab-overrides.css">
+</head>
+<body>
+  
+  <google-codelab codelab-gaid=""
+                  id="decode-mpesa-mcp"
+                  title="Build an M-Pesa Daraja MCP Server on Cloud Run"
+                  environment="web"
+                  feedback-link="https://github.com/ngesa254/labsdotgde/issues">
+    
+      <google-codelab-step label="From catalog to a trustworthy tool boundary" duration="5">
+        <p>A Nairobi merchant asks, &#34;What do two conference passes cost, and can you prepare an M-Pesa request?&#34; A model can interpret the question. Your server must own the prices, validate the input and control whether an external operation is possible.</p>
+<p>This is Lab 1 of <strong>From Code to Cash: Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud</strong>. You will build a Model Context Protocol (MCP) server with the standalone <code>fastmcp</code> distribution, test it locally, and deploy a protected Cloud Run endpoint. Lab 2 adds a Google Agent Development Kit (ADK) agent.</p>
+<h2 is-upgraded>Outcomes</h2>
+<ul>
+<li>Expose a catalog, basket calculation and payment preparation as typed tools.</li>
+<li>Explain the difference between validation, submission and confirmed payment.</li>
+<li>Require Cloud Run IAM authentication and connect a read-only MCP client.</li>
+<li>Identify where Apigee would sit and which controls still belong in code.</li>
+</ul>
+<p class="image-container"><img alt="Two-lab architecture and trust boundaries" src="img/30207ad9bc6f4ad8.svg"></p>
+<p><a href="assets/architecture.svg">Open this diagram at full size</a></p>
+<p>Solid ordered stages describe the implemented core. The Daraja network call is optional and disabled by default. The callback receiver and Apigee proxy are future components, not resources created by this lab.</p>
+<h2 is-upgraded>Teaching contract</h2>
+<p>The core path has six tools and performs <strong>no payment API calls</strong>. The optional seventh tool submits once to the sandbox only after an operator enables it. No order is persisted; there is no callback receiver or reconciliation service. Prices (KES 5, 3 and 1) are fictional teaching fixtures, not market prices.</p>
+<p>Durations are estimates: about 100 minutes including installation and cloud waits; allow extra time for organization permissions. You can complete the local checkpoints without a cloud project or Daraja credentials.</p>
+<p><strong>Author: Ngesa Marvin.</strong> AI/ML Tech Lead. Electrical Engineer. GDE ML/AI. Founder, <a href="https://www.meetup.com/nairobiai/" target="_blank">Nairobi AI</a>.</p>
+<aside class="special"><p> Checkpoint: identify the component that can decide whether to send a payment request. It is server-side code, not the model&#39;s wording.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Choose your workspace and get an early result" duration="10">
+        <h2 is-upgraded>Start here</h2>
+<p>Use a terminal with Bash-compatible commands, Python <strong>3.11</strong> and <code>pip</code>. Python 3.14 is not the tested participant runtime. Cloud Shell is the recommended environment for cloud steps; a local terminal with Google Cloud CLI also works. Do not alternate between them without copying your files and restoring variables.</p>
+<p>This edition is local authoring output until published. Open the supplied <code>decode-codelabs/</code> folder in your editor. For Cloud Shell, upload this folder through the editor before continuing. Run the following from that folder (the one containing <code>labs/</code> and <code>scripts/</code>).</p>
+<pre><code language="language-bash" class="language-bash">export WORKSHOP_ROOT=&#34;$PWD&#34;
+mkdir -p &#34;$WORKSHOP_ROOT/.work&#34;
+test ! -e &#34;$WORKSHOP_ROOT/.work/lab1&#34; &amp;&amp; cp -R labs/01-mpesa-mcp-server/sample-code &#34;$WORKSHOP_ROOT/.work/lab1&#34;
+cd &#34;$WORKSHOP_ROOT/.work/lab1&#34;
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.lock
+python -m unittest -v test_domain
+</code></pre>
+<p>Creating the copy is a one-time operation and intentionally refuses an existing path. On a retry, enter the existing <code>.work/lab1</code> directory and activate its environment; do not replace your edited files. Installation may take several minutes. All project-local environments are ignored. The lock is the validated dependency resolution; <code>requirements.txt</code> lists direct pins.</p>
+<p>If you only have the website, <a href="../../downloads/lab1.zip">download Lab 1 sample code</a>, create an empty <code>decode-codelabs</code> directory and a <code>.work</code> subdirectory, unzip it there, and rename the extracted <code>sample-code</code> directory to <code>lab1</code>. Set <code>WORKSHOP_ROOT</code> to that <code>decode-codelabs</code> directory. The archive includes all code and locks required by this lab.</p>
+<p><strong>Expected:</strong> five unit tests pass. These tests use pure functions, disabled initiation and mocked HTTP. No Daraja credentials are needed; no payment API is called.</p>
+<p><strong>Recovery: </strong><code>python3.11: command not found</code> means you need that interpreter installed through your approved environment, or a Cloud Shell environment providing it. A package resolution failure is different from a cloud IAM failure: inspect the package error first. Do not remove the lock or upgrade packages mid-workshop.</p>
+<p><strong>Unlock:</strong> a deterministic result before touching cloud infrastructure.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Trace catalog prices and reject invalid baskets" duration="8">
+        <h2 is-upgraded>Inspect the execution boundary</h2>
+<p>Stay in <code>.work/lab1</code> with its environment active. Open <code>domain.py</code> and inspect <code>PRODUCTS</code>, <code>BasketItem</code>, <code>get_product</code> and <code>calculate_order_total</code>. Product IDs and fixture prices match the original workshop: <code>conf-pass-001</code> → KES 5, <code>tee-001</code> → KES 3, <code>coffee-001</code> → KES 1.</p>
+<pre><code language="language-bash" class="language-bash">python - &lt;&lt;&#39;CHECK&#39;
+from domain import calculate_order_total
+print(calculate_order_total([{&#34;product_id&#34;: &#34;conf-pass-001&#34;, &#34;quantity&#34;: 2}]))
+print(calculate_order_total([{&#34;product_id&#34;: &#34;coffee-001&#34;, &#34;quantity&#34;: 0}]))
+CHECK
+</code></pre>
+<p><strong>Expected:</strong> the first result has <code>order_total_kes: 10</code> and <code>currency: KES</code>. The second has <code>error: invalid_basket_item</code>. This is calculation, not an order or reservation.</p>
+<p>The server rejects empty baskets, unknown products, extra item fields, non-integer quantities, booleans, zero and negative quantities. The teaching limits are 20 lines and 100 units per line; they are workshop constraints, not Safaricom limits. Prices come from the catalog, never from a client-provided amount in a basket.</p>
+<p><strong>Checkpoint:</strong> change quantity to <code>"2"</code> (a string). It must be rejected rather than silently coerced. Run <code>python -m unittest -v test_domain</code> after edits. These read-only checks are safe to repeat.</p>
+<p><strong>Recovery:</strong> if the total differs, compare <code>domain.py</code> to the supplied sample before changing the expected test value. The source originally coerced quantities using <code>int(...)</code>, accepting values that should have been rejected.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Prepare an M-Pesa request without sending it" duration="10">
+        <h2 is-upgraded>Predict, then inspect</h2>
+<p>Will a valid request mean money moved? No: the preparation tool is a pure function and has no HTTP client.</p>
+<pre><code language="language-bash" class="language-bash">python - &lt;&lt;&#39;CHECK&#39;
+from domain import validate_stk_push_payload, parse_stk_callback
+print(validate_stk_push_payload(&#34;254700000000&#34;, 10))
+print(parse_stk_callback({&#34;Body&#34;: {&#34;stkCallback&#34;: {
+    &#34;ResultCode&#34;: 0, &#34;CheckoutRequestID&#34;: &#34;fixture-checkout&#34;}}}))
+CHECK
+</code></pre>
+<p><code>254700000000</code> is an explicitly fictional syntax fixture; never send it to a payment provider. The prepared result contains <code>status: prepared_only</code> and <code>payment_verified: False</code>. It is an <strong>example payload</strong>, with placeholders for server-derived fields and a deliberately non-routable callback domain. It is not ready for submission.</p>
+<p><code>PaymentInput</code> validates 12-digit Kenyan <code>2541...</code> / <code>2547...</code> syntax, integer KES amounts from 1 to 1000 and account references up to 12 alphanumeric/hyphen characters. These workshop bounds do not prove that a subscriber exists or that an amount meets current provider limits. The optional integration supports <code>CustomerPayBillOnline</code>; Buy Goods is outside this sample.</p>
+<p>Callback parsing returns <code>reported_success: True</code> for the fixture but always <code>payment_verified: False</code>. Anyone can paste JSON. A deployed receiver would need trustworthy provenance, correlation with an initiation ID, expected merchant, amount and authoritative reconciliation before a business action.</p>
+<p class="image-container"><img alt="Payment stages and missing asynchronous receiver" src="img/ebfda888593275f0.svg"></p>
+<p><a href="assets/payment-flow.svg">Open this diagram at full size</a></p>
+<aside class="warning"><p> Never accept &#34;I paid,&#34; model text, HTTP 200, or Daraja <code>ResponseCode: 0</code> as proof of a completed payment. A successful initiation only establishes acceptance for processing.</p>
+</aside>
+<p><strong>Checkpoint: </strong><code>domain.py</code> cannot contact Daraja; <code>payments.py</code> is the only external payment integration. Invalid phone letters and boolean amounts fail the tests. This unlocks safe tool discovery.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Expose the tools over Streamable HTTP" duration="8">
+        <h2 is-upgraded>Run locally</h2>
+<p>Read <code>server.py</code>. It registers six functions using <code>FastMCP</code> imported from <code>fastmcp</code>, not <code>mcp.server.fastmcp</code>. The pinned standalone distribution is <strong>2.12.4</strong>; <code>httpx</code> is <strong>0.28.1</strong>. MCP SDK <strong>1.14.1</strong> and Pydantic <strong>2.11.9</strong> are explicitly pinned in this edition.</p>
+<pre><code language="language-bash" class="language-bash">export ENABLE_SANDBOX_INITIATION=false
+export PORT=8080
+python server.py
+</code></pre>
+<p>Keep this terminal running. In a second terminal, restore the workspace path, enter <code>.work/lab1</code>, and activate its <code>.venv</code> before running:</p>
+<pre><code language="language-bash" class="language-bash">python smoke_client.py
+</code></pre>
+<p><strong>Expected:</strong> six tool names and a basket total of KES 10. A browser GET at <code>/</code> is not an MCP test. The transport is Streamable HTTP at <strong><code>/mcp</code></strong>; <code>http</code> is FastMCP&#39;s transport alias. The client context opens, initializes and closes its MCP session. The server uses stateless HTTP to avoid relying on instance-local session routing in Cloud Run.</p>
+<p>The service binds <code>0.0.0.0</code> and reads Cloud Run&#39;s <code>PORT</code>. Local mode does not implement IAM; keep this development listener within your trusted environment. Stop it with Ctrl-C after the check. If 8080 is occupied, choose another port and set <code>MCP_ENDPOINT=http://127.0.0.1:YOUR_PORT/mcp</code> in the client terminal. Do not terminate another process.</p>
+<p><strong>Checkpoint:</strong> discovery lists <code>validate_stk_push_payload</code> but not <code>initiate_stk_push</code> or a token-generation tool. Credentials are not model-visible capabilities.</p>
+<p><strong>Recovery:</strong> connection refused → server/port; 404 → <code>/mcp</code> path; schema error → input shape. This isolates transport issues before IAM is introduced.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Select a project and prepare the identities" duration="12">
+        <h2 is-upgraded>Switch to the cloud path</h2>
+<p>From here, commands create or change cloud resources <strong>when you choose to run them</strong>. They were not run while authoring this edition. Use a project approved for training, with billing enabled. Review current pricing and your budget; no fixed cost or free-trial eligibility is promised. Use your organization account when policy requires it.</p>
+<p>In Cloud Shell, or a local Google Cloud CLI terminal containing your workshop files:</p>
+<pre><code language="language-bash" class="language-bash">export PROJECT_ID=&#34;PROJECT_ID&#34;
+export REGION=&#34;europe-west1&#34;
+export MCP_SERVICE_NAME=&#34;decode-mpesa-mcp&#34;
+export AGENT_SERVICE_NAME=&#34;decode-payment-agent&#34;
+export MCP_RUNTIME_SERVICE_ACCOUNT=&#34;decode-mcp@${PROJECT_ID}.iam.gserviceaccount.com&#34;
+export RUNTIME_SERVICE_ACCOUNT=&#34;decode-agent@${PROJECT_ID}.iam.gserviceaccount.com&#34;
+gcloud auth list
+gcloud config set project &#34;$PROJECT_ID&#34;
+gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com iam.googleapis.com --project=&#34;$PROJECT_ID&#34;
+</code></pre>
+<p>Replace <code>PROJECT_ID</code> with the actual project ID, not its display name. <code>europe-west1</code> preserves the source region as a teaching default; choose an approved supported region before creating resources. Model availability is checked separately in Lab 2.</p>
+<p>An authorized administrator must arrange these permissions. Do not compensate for a missing role by switching to a default runtime identity.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Identity</p>
+</td><td colspan="1" rowspan="1"><p>Required responsibility</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Administrator</p>
+</td><td colspan="1" rowspan="1"><p>Enable APIs, create dedicated service accounts, manage IAM and billing under organization policy</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Human deployer</p>
+</td><td colspan="1" rowspan="1"><p><code>roles/run.sourceDeveloper</code>, <code>roles/serviceusage.serviceUsageConsumer</code> on project; <code>roles/iam.serviceAccountUser</code> on runtime identity</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Build identity</p>
+</td><td colspan="1" rowspan="1"><p><code>roles/run.builder</code> on project for Cloud Run source build; distinct from the runtime</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>MCP runtime</p>
+</td><td colspan="1" rowspan="1"><p>No project-level role needed for core catalog/preparation</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Agent runtime (Lab 2)</p>
+</td><td colspan="1" rowspan="1"><p>Service-level MCP invoker and Vertex AI access</p>
+</td></tr>
+</table>
+<p>Create the two dedicated runtime accounts once:</p>
+<pre><code language="language-bash" class="language-bash">gcloud iam service-accounts create decode-mcp --display-name=&#34;DECODE MCP runtime&#34; --project=&#34;$PROJECT_ID&#34;
+gcloud iam service-accounts create decode-agent --display-name=&#34;DECODE agent runtime&#34; --project=&#34;$PROJECT_ID&#34;
+</code></pre>
+<p><code>ALREADY_EXISTS</code> is a cue to inspect ownership, not delete an account. Current source deployment can use the Compute default service account as build identity; existing projects may differ. Have the administrator confirm the build identity and grant <code>roles/run.builder</code> to that identity. Keep it separate from <code>decode-mcp</code> and <code>decode-agent</code>. See <a href="https://cloud.google.com/run/docs/deploying-source-code" target="_blank">Cloud Run source deployment</a> for current IAM prerequisites.</p>
+<p><strong>Checkpoint: </strong><code>gcloud iam service-accounts describe "$MCP_RUNTIME_SERVICE_ACCOUNT" --project="$PROJECT_ID"</code> identifies the dedicated runtime. API enablement and IAM propagation can take several minutes. Permission denied belongs with the administrator; do not broaden runtime permissions.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Build and deploy a protected MCP service" duration="12">
+        <h2 is-upgraded>Deploy from the prepared source</h2>
+<p>Starting state: local tests passed, administrator prerequisites complete, project/region/runtime variables restored. In the terminal containing the files:</p>
+<pre><code language="language-bash" class="language-bash">cd &#34;$WORKSHOP_ROOT/.work/lab1&#34;
+gcloud run deploy &#34;$MCP_SERVICE_NAME&#34; --project=&#34;$PROJECT_ID&#34; --region=&#34;$REGION&#34; \
+  --source=. --service-account=&#34;$MCP_RUNTIME_SERVICE_ACCOUNT&#34; \
+  --no-allow-unauthenticated --set-env-vars=ENABLE_SANDBOX_INITIATION=false \
+  --min-instances=0 --max-instances=2 --timeout=180
+export MCP_SERVICE_URL=$(gcloud run services describe &#34;$MCP_SERVICE_NAME&#34; \
+  --project=&#34;$PROJECT_ID&#34; --region=&#34;$REGION&#34; --format=&#39;value(status.url)&#39;)
+printf &#39;%s\n&#39; &#34;$MCP_SERVICE_URL&#34;
+</code></pre>
+<p>This creates a service or replaces its revision. Do not reuse a service name owned by another exercise. The Dockerfile uses <code>python:3.11.14-slim</code>, installs the resolved lock, runs without root, and starts <code>server.py</code>. Container base tags are versioned but not digest-locked; see the validation limitations. Google source build uses the Dockerfile, so Docker is not required on your laptop.</p>
+<p><strong>Long operation:</strong> source build and provisioning may take 5–10 minutes or longer. On the first source deployment, Cloud Run may create the regional <code>cloud-run-source-deploy</code> Artifact Registry repository. It can be shared by other services; record what this lab actually created.</p>
+<p><strong>Expected:</strong> deployment reports a revision and URL. This text is an expected result, not evidence of a deployment performed during authoring. Always discover the actual URL; do not construct it from project number or service name.</p>
+<pre><code language="language-bash" class="language-bash">curl -s -o /dev/null -w &#39;%{http_code}\n&#39; &#34;$MCP_SERVICE_URL/mcp&#34;
+</code></pre>
+<p>An unauthenticated call should be rejected (typically 403; authentication failures can also surface as 401). A 200 is a failed security checkpoint: inspect the service&#39;s IAM policy and invoker authentication setting before continuing. <code>--no-allow-unauthenticated</code> is not a substitute for reviewing a pre-existing service&#39;s configuration.</p>
+<p><strong>Recovery:</strong> build error → dependency/build logs; startup error → container logs and <code>PORT</code>; <code>actAs</code> denied → deployer&#39;s service-account permission. Keep the dedicated runtime identity.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Authenticate a client and connect Gemini CLI" duration="10">
+        <h2 is-upgraded>Verify IAM separately from the model</h2>
+<p>The administrator grants your signed-in account invoker permission on this MCP service only:</p>
+<pre><code language="language-bash" class="language-bash">export CALLER_ACCOUNT=$(gcloud config get-value account)
+gcloud run services add-iam-policy-binding &#34;$MCP_SERVICE_NAME&#34; --project=&#34;$PROJECT_ID&#34; \
+  --region=&#34;$REGION&#34; --member=&#34;user:${CALLER_ACCOUNT}&#34; --role=roles/run.invoker
+export ID_TOKEN=$(gcloud auth print-identity-token)
+export MCP_ENDPOINT=&#34;${MCP_SERVICE_URL}/mcp&#34;
+python smoke_client.py
+</code></pre>
+<p>Use the lab1 Python environment. Do not echo the token. <code>gcloud auth print-identity-token</code> is the documented human development token path. Runtime service-to-service tokens in Lab 2 require an audience equal to the receiving <strong>service origin</strong>, without <code>/mcp</code>. These are Google ID tokens, not Daraja OAuth tokens and not Google API access tokens.</p>
+<p><strong>Expected:</strong> six tools and KES 10 from the remote service. If that fails, solve it before adding Gemini. Tokens are short-lived (commonly about one hour); refresh before reconnecting. This smoke client does not refresh an open connection automatically.</p>
+<h2 is-upgraded>Optional Gemini CLI demonstration</h2>
+<p>Use an already installed, authenticated Gemini CLI; run <code>gemini --version</code> and record it in your own test notes. Its installation and model sign-in are separate prerequisites, not authoring dependencies. The current <a href="https://geminicli.com/docs/tools/mcp-server/" target="_blank">official MCP configuration reference</a> supports <code>httpUrl</code>, <code>headers</code> and environment substitution.</p>
+<p>In an empty demonstration directory under <code>.work/lab1</code>, create <code>.gemini/settings.json</code> using an editor:</p>
+<pre><code language="language-json" class="language-json">{
+  &#34;mcpServers&#34;: {
+    &#34;decode-merchant&#34;: {
+      &#34;httpUrl&#34;: &#34;${MCP_ENDPOINT}&#34;,
+      &#34;headers&#34;: {&#34;Authorization&#34;: &#34;Bearer ${ID_TOKEN}&#34;}
+    }
+  }
+}
+</code></pre>
+<p>For example, <code>mkdir -p "$WORKSHOP_ROOT/.work/lab1/demo/.gemini"</code>, save the file there, then <code>cd "$WORKSHOP_ROOT/.work/lab1/demo"</code>. This avoids overwriting your personal settings. The JSON contains literal variable references, not a token. Export <code>MCP_ENDPOINT</code> and <code>ID_TOKEN</code> in the same terminal before launching <code>gemini</code>. Use <code>/mcp</code> to inspect discovery, then ask:</p>
+<pre><code language="language-text" class="language-text">List the catalog. Calculate the total for two conf-pass-001 items. Do not initiate payment.
+</code></pre>
+<p>Inspect the tool calls and their results, not only the model&#39;s prose. Leave normal tool approval enabled. Exit with <code>/quit</code>. After token expiry, quit, regenerate <code>ID_TOKEN</code> and restart the CLI so it reads the new environment. This explicit refresh replaces the original instruction to overwrite global settings with a baked token.</p>
+<p><strong>Recovery:</strong> 401/403 → identity, invoker binding or expiry; wrong endpoint → service origin plus <code>/mcp</code>; model login failure → Gemini CLI authentication. The CLI&#39;s chosen model is separate from Lab 2&#39;s Vertex model.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Understand the optional sandbox integration" duration="10">
+        <h2 is-upgraded>Read before enabling anything</h2>
+<p>The core is complete without Daraja credentials. Inspect <code>payments.py</code>: it contains an optional real network integration with a fixed sandbox base URL. The operator must set <code>ENABLE_SANDBOX_INITIATION=true</code> at process startup to register the initiation tool; a prompt cannot enable it. Lab 2&#39;s allowlist excludes it even if the server registers it.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Variable</p>
+</td><td colspan="1" rowspan="1"><p>Source and sensitivity</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code>DARAJA_CONSUMER_KEY</code> / <code>DARAJA_CONSUMER_SECRET</code></p>
+</td><td colspan="1" rowspan="1"><p>Your sandbox app in the Daraja portal; sensitive credentials</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code>DARAJA_BUSINESS_SHORTCODE</code></p>
+</td><td colspan="1" rowspan="1"><p>Your portal&#39;s M-Pesa Express sandbox setup; server configuration</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code>DARAJA_PASSKEY</code></p>
+</td><td colspan="1" rowspan="1"><p>Portal-provided passkey; sensitive; never a tool argument</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code>DARAJA_CALLBACK_URL</code></p>
+</td><td colspan="1" rowspan="1"><p>Merchant-controlled HTTPS receiver; its authenticity and data handling must be reviewed</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><code>ENABLE_SANDBOX_INITIATION</code></p>
+</td><td colspan="1" rowspan="1"><p>Operator gate; false for this workshop&#39;s core deployment</p>
+</td></tr>
+</table>
+<p>The example <code>.env.example</code> contains placeholders; it is <strong>not loaded automatically</strong> by <code>server.py</code>. Do not copy real credentials into source or command history. For a later authorized cloud extension, an administrator can provide pre-created, versioned Secret Manager references using Cloud Run <code>--set-secrets</code>, granting secret-level <code>roles/secretmanager.secretAccessor</code> only to the MCP runtime. Secret creation and integration are outside this core path; <a href="https://cloud.google.com/run/docs/configuring/services/secrets" target="_blank">Cloud Run secrets documentation</a> explains the workflow.</p>
+<p>The optional implementation performs OAuth Basic exchange at <code>/oauth/v1/generate?grant_type=client_credentials</code>, keeps the bearer token private, computes Base64(<code>shortcode + passkey + UTC timestamp</code>) immediately before a single STK POST to <code>/mpesa/stkpush/v1/processrequest</code>, and returns only acceptance and request IDs. Production uses a different provider base URL (<code>https://api.safaricom.co.ke</code>) and onboarding; this code deliberately has no production-host switch.</p>
+<p>It does not return credentials, passwords or full request bodies to the model. It does not automatically retry. A timeout after submission returns <code>outcome_unknown</code>; a resubmission can duplicate the transaction. There is no durable idempotency ledger or order/amount binding in this standalone initiation function. The small amount cap is not proof of customer consent. Human confirmation in a chat is not a server-enforced authorization record.</p>
+<p><strong>Local checkpoint:</strong> the mocked acceptance and timeout cases in <code>test_domain.py</code> verify the shape and no-retry behavior without contacting Daraja. Provider portal details require sign-in and were not fully retrievable during authoring. Before any later sandbox demonstration, verify current endpoint fields, test subscriber rules, shortcode/passkey and callback behavior in <a href="https://developer.safaricom.co.ke/apis/MpesaExpressSimulate" target="_blank">Daraja&#39;s M-Pesa Express page</a>. Do not promise that a sandbox prompt reaches a handset, deducts no money, or reverses production payments automatically.</p>
+<aside class="warning"><p> This edition supplies no callback receiver, status-query tool or durable reconciliation. Do not enable real initiation as an unattended agent capability. No actual payment request is needed to finish either lab.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Place Apigee and diagnose failures" duration="7">
+        <h2 is-upgraded>Apigee is an extension, not an installed gateway</h2>
+<p>The original workshop describes an Apigee-ready edge but supplies no proxy bundle or policies. This edition preserves that design discussion without drawing Apigee as deployed.</p>
+<p class="image-container"><img alt="Future Apigee trust boundaries" src="img/5addd033de89628.svg"></p>
+<p><a href="assets/apigee.svg">Open this diagram at full size</a></p>
+<p>A later proxy would authenticate callers, authorize capabilities, enforce quotas and forward Streamable HTTP correctly. Its own Google identity would need service-level invoker on the MCP origin and an ID token for that origin. Gateway authentication does not replace server validation or customer payment authorization. Restrict direct access to the origin if the intended policy is mandatory gateway use. Read <a href="https://cloud.google.com/apigee/docs/api-platform/security/google-auth/overview" target="_blank">Apigee Google authentication</a> and <a href="https://cloud.google.com/apigee/docs/api-platform/apigee-mcp/apigee-mcp-overview" target="_blank">MCP in Apigee</a> before designing that extension.</p>
+<h2 is-upgraded>Recovery by failing boundary</h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Symptom</p>
+</td><td colspan="1" rowspan="1"><p>Inspect first</p>
+</td><td colspan="1" rowspan="1"><p>Recovery</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Install/import error</p>
+</td><td colspan="1" rowspan="1"><p>Active Python and lock</p>
+</td><td colspan="1" rowspan="1"><p>Activate lab1 environment; reinstall its lock</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Local connection refused</p>
+</td><td colspan="1" rowspan="1"><p>Server terminal and chosen port</p>
+</td><td colspan="1" rowspan="1"><p>Start it; set client endpoint to same port</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Source build failed</p>
+</td><td colspan="1" rowspan="1"><p>Cloud Build log</p>
+</td><td colspan="1" rowspan="1"><p>Resolve dependencies/build identity; redeploy deliberately</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Container failed to listen</p>
+</td><td colspan="1" rowspan="1"><p>Cloud Run startup logs</p>
+</td><td colspan="1" rowspan="1"><p>Check <code>PORT</code>, files and startup command</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Remote 401/403</p>
+</td><td colspan="1" rowspan="1"><p>Caller identity, audience, expiry and IAM</p>
+</td><td colspan="1" rowspan="1"><p>Refresh human token; verify service-level invoker</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>MCP 404 or discovery failure</p>
+</td><td colspan="1" rowspan="1"><p>URL and transport</p>
+</td><td colspan="1" rowspan="1"><p>Use Streamable HTTP at <code>/mcp</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Agent guesses catalog data</p>
+</td><td colspan="1" rowspan="1"><p>Tool trace</p>
+</td><td colspan="1" rowspan="1"><p>Compare tool result; move to Lab 2&#39;s tool contract</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Daraja OAuth failure (extension)</p>
+</td><td colspan="1" rowspan="1"><p>Sandbox app configuration</p>
+</td><td colspan="1" rowspan="1"><p>Operator checks credentials privately</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>STK timeout (extension)</p>
+</td><td colspan="1" rowspan="1"><p>Request correlation</p>
+</td><td colspan="1" rowspan="1"><p>Outcome unknown; reconcile before resubmitting</p>
+</td></tr>
+</table>
+<pre><code language="language-bash" class="language-bash">gcloud run services logs read &#34;$MCP_SERVICE_NAME&#34; --project=&#34;$PROJECT_ID&#34; --region=&#34;$REGION&#34; --limit=20
+</code></pre>
+<p>Logs establish request execution, not payment settlement. Do not log headers, subscriber data, passkeys or request payloads. The sample returns sanitized errors; use cloud request/build logs to distinguish network and infrastructure failures. Read-only inspection is safe to repeat.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Hand off to Lab 2 and clean up at the right time" duration="5">
+        <h2 is-upgraded>Keep the MCP service for Lab 2</h2>
+<p>Carry forward <strong><code>PROJECT_ID</code></strong></p>
+<p><strong>, </strong></p>
+<p><strong><code>REGION</code></strong></p>
+<p><strong>, </strong></p>
+<p><strong><code>MCP_SERVICE_NAME</code></strong></p>
+<p><strong>, </strong></p>
+<p><strong><code>MCP_SERVICE_URL</code></strong></p>
+<p><strong>, </strong></p>
+<p><strong><code>AGENT_SERVICE_NAME</code></strong></p>
+<p><strong>, </strong></p>
+<p><strong><code>MCP_RUNTIME_SERVICE_ACCOUNT</code></strong></p>
+<p><strong>, </strong></p>
+<p><strong><code>RUNTIME_SERVICE_ACCOUNT</code></strong> and the local <code>WORKSHOP_ROOT</code> path. No Daraja credential or temporary ID token is needed by Lab 2. Save only non-secret configuration in <code>.work/workshop.env</code> using an editor:</p>
+<pre><code language="language-bash" class="language-bash">export PROJECT_ID=&#34;PROJECT_ID&#34;
+export REGION=&#34;europe-west1&#34;
+export MCP_SERVICE_NAME=&#34;decode-mpesa-mcp&#34;
+export AGENT_SERVICE_NAME=&#34;decode-payment-agent&#34;
+export MCP_SERVICE_URL=&#34;https://MCP_SERVICE_HOST.run.app&#34;
+export MCP_RUNTIME_SERVICE_ACCOUNT=&#34;decode-mcp@PROJECT_ID.iam.gserviceaccount.com&#34;
+export RUNTIME_SERVICE_ACCOUNT=&#34;decode-agent@PROJECT_ID.iam.gserviceaccount.com&#34;
+</code></pre>
+<p>Replace placeholders with your values. In a fresh terminal, set <code>WORKSHOP_ROOT</code> to the supplied folder, run <code>source "$WORKSHOP_ROOT/.work/workshop.env"</code>, then enter the relevant lab directory and activate its <code>.venv</code>. Rediscover the URL with <code>gcloud run services describe</code> after a redeployment. Do not save tokens or secrets in this file.</p>
+<p><strong>Completion checkpoint:</strong> local unit tests passed, remote read-only smoke client returned KES 10, and unauthenticated access was denied. If you skipped cloud deployment, record &#34;local only&#34;; Lab 2&#39;s cloud path requires the protected endpoint.</p>
+<p><a href="../decode-adk-payment-agent/">Continue to Lab 2: Build an ADK payment preparation agent</a></p>
+<h2 is-upgraded>Only if you are stopping here</h2>
+<p>These commands delete the named lab service and dedicated runtime; inspect the names and project first. They are instructions, not actions taken during authoring.</p>
+<pre><code language="language-bash" class="language-bash">gcloud run services describe &#34;$MCP_SERVICE_NAME&#34; --project=&#34;$PROJECT_ID&#34; --region=&#34;$REGION&#34; --format=&#39;value(status.url)&#39;
+gcloud run services delete &#34;$MCP_SERVICE_NAME&#34; --project=&#34;$PROJECT_ID&#34; --region=&#34;$REGION&#34;
+gcloud iam service-accounts delete &#34;$MCP_RUNTIME_SERVICE_ACCOUNT&#34; --project=&#34;$PROJECT_ID&#34;
+</code></pre>
+<p>Delete <code>decode-agent</code> only if this lab created it and Lab 2 will not use it. Keep shared Artifact Registry repositories, projects, APIs and billing intact. Inspect images/build source storage created by your deployments and delete only identified lab artifacts through the console; service deletion does not remove those artifacts. See Lab 2 for final scoped IAM cleanup. Remove local credentials/tokens from your session (<code>unset ID_TOKEN</code>) when finished.</p>
+<p><a href="../../index.html">Return to the workshop landing page</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="../../vendor/claat/native-shim.js"></script>
+  <script src="../../vendor/claat/custom-elements.min.js"></script>
+  <script src="../../vendor/claat/prettify.js"></script>
+  <script src="../../vendor/claat/codelab-elements.js"></script>
+  
+
+<script src="../../codelab-navigation.js"></script>
+</body>
+</html>
