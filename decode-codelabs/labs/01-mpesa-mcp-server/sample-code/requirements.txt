@@ -1,0 +1,4 @@
+fastmcp==2.12.4
+httpx==0.28.1
+mcp==1.14.1
+pydantic==2.11.9

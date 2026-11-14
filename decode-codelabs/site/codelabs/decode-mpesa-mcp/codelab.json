@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "updated": "2026-11-14T18:05:27+03:00",
+  "id": "decode-mpesa-mcp",
+  "duration": 97,
+  "title": "Build an M-Pesa Daraja MCP Server on Cloud Run",
+  "summary": "Build merchant tools, prepare payment requests and protect a remote MCP endpoint.",
+  "source": "labs/01-mpesa-mcp-server/codelab.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "python",
+    "googlecloud",
+    "mcp"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/ngesa254/labsdotgde/issues",
+  "url": "decode-mpesa-mcp"
+}

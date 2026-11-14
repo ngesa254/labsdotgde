@@ -1,0 +1,606 @@
+{
+  "files": [
+    {
+      "file": "TOOLCHAIN.md",
+      "bytes": 7739,
+      "sha256": "55897cf22b8a93476af220e99dd6a59272b3fb40c426ca86685854fbe226bebc"
+    },
+    {
+      "file": "requirements-dev.lock",
+      "bytes": 2595,
+      "sha256": "47a5b7d6d614fee8b6d982851017518bf936676f83c7aae35ebfcd96fcde7dce"
+    },
+    {
+      "file": "PUBLISHING.md",
+      "bytes": 3340,
+      "sha256": "dd12099e4855d9551741bcdd41cb7c4415ba82b01ae5b454a3e659e608312b1e"
+    },
+    {
+      "file": "SOURCE_AUDIT.md",
+      "bytes": 18431,
+      "sha256": "97ed908b88c8249dc95977e1e99a0b63b7018aa23efba92e3fef3a6955f9f9ca"
+    },
+    {
+      "file": "ATTRIBUTION.md",
+      "bytes": 1473,
+      "sha256": "b8a712c5148bf76498f4588aa006d7f6f9d9b210477798b334a37ec4d095b847"
+    },
+    {
+      "file": "VALIDATION.md",
+      "bytes": 13115,
+      "sha256": "fcd2522bc961fd05017d4831370f61ab26b5cfc7ecb2cd1bf28a94fc2a66ce24"
+    },
+    {
+      "file": "README.md",
+      "bytes": 5774,
+      "sha256": "24bc2d4b2d9faa97d0407c89ae19a6ba5fa86b662cfcdb5c8627f25a73ed5716"
+    },
+    {
+      "file": "REFERENCES.md",
+      "bytes": 7084,
+      "sha256": "6e136077b3ba3032bbad70226cfb0a92005739125043dc621bddba3e77a938de"
+    },
+    {
+      "file": ".gitignore",
+      "bytes": 107,
+      "sha256": "bfafb3c665a8482f3f35fc9a134b29ff716b3f3da3e4298c67f9f0ece6a09895"
+    },
+    {
+      "file": "FACILITATOR_NOTES.md",
+      "bytes": 5488,
+      "sha256": "7405381e87f9b5a4e92f444cbbfffccb15b5d624577a26b55bbc65b8da805365"
+    },
+    {
+      "file": "evidence/linux-lab2.log",
+      "bytes": 20359,
+      "sha256": "c1c99a4fba2e41a0bb42d2a71809524cf0180c313dab90119149c1c1710b20bb"
+    },
+    {
+      "file": "evidence/scope-results.json",
+      "bytes": 209,
+      "sha256": "c3d1fc37e1ea5e5c78e397e726c21e93f7118a1c9a31105c6c72a2bbfdeded43"
+    },
+    {
+      "file": "evidence/validation.log",
+      "bytes": 1914,
+      "sha256": "54ce28d7a98c3e17339f26deb31f080330f89796773a3f0bf5761acaff010b6c"
+    },
+    {
+      "file": "evidence/dependency-install.log",
+      "bytes": 42577,
+      "sha256": "e0cfde1ecf454d0af4e6cac33a33ff3d8294b90531f993297341fb02714d1c8e"
+    },
+    {
+      "file": "evidence/structural-results.json",
+      "bytes": 648,
+      "sha256": "c27c0e84334b570f7a293f0bbb7f5b12ce5d4dc5d2b8652ce56fe519bbf7da78"
+    },
+    {
+      "file": "evidence/initial-state.json",
+      "bytes": 2281241,
+      "sha256": "de91bcf211872c5ee87436b53edaaae806a11e2b1fcc0849bc635d9029194fb5"
+    },
+    {
+      "file": "evidence/browser.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "evidence/linux-lab1.log",
+      "bytes": 11237,
+      "sha256": "ed694a200214e896714e6d8b9c47b1f54691ab53bbf3daaffba9ab2e397b11fd"
+    },
+    {
+      "file": "evidence/source-inventory.json",
+      "bytes": 14041,
+      "sha256": "5948220887ccd93a6f00e5eceec00ad8c3126f62070162732bdd284964681261"
+    },
+    {
+      "file": "evidence/lab2-mobile.png",
+      "bytes": 88616,
+      "sha256": "2f300469f569b1dab3b17375f917a0a606020f959c40719010b9ac6b7445acb3"
+    },
+    {
+      "file": "evidence/decode-mpesa-mcp-desktop.png",
+      "bytes": 218895,
+      "sha256": "1a7dd7580f6d58a84fa27761922a27bfe3d4e314678214e8e719c6a16b2fe640"
+    },
+    {
+      "file": "evidence/integration-results.json",
+      "bytes": 357,
+      "sha256": "77edb12e4fa72617630c8ce9ecb30cdc72a44309da84d25a8a992081c23b6635"
+    },
+    {
+      "file": "evidence/authoring-environment.txt",
+      "bytes": 2595,
+      "sha256": "47a5b7d6d614fee8b6d982851017518bf936676f83c7aae35ebfcd96fcde7dce"
+    },
+    {
+      "file": "evidence/browser-root.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "evidence/linux-lab1.json",
+      "bytes": 650060,
+      "sha256": "a07de07a098a981c3a6de78756aad5f2176d4056703b5aef1ee23461a6ffa0f3"
+    },
+    {
+      "file": "evidence/navigation-root-local-runtime.log",
+      "bytes": 8649,
+      "sha256": "5d505f847e2fd8d70d3e27dbcf0320d1a484b244c5d704fecce44e14c812d1ff"
+    },
+    {
+      "file": "evidence/navigation-local-runtime.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "evidence/integration.log",
+      "bytes": 10498,
+      "sha256": "57f5c010a044d62d0b98aa696ba7cfb593a5c16b6d70cc0a0ac1776109d8ce25"
+    },
+    {
+      "file": "evidence/landing-mobile.png",
+      "bytes": 249415,
+      "sha256": "a07dd87115fa91ab11c58c8a38e16d10f8ded9bc33065411d508e5037e563710"
+    },
+    {
+      "file": "evidence/browser-subdirectory-results.json",
+      "bytes": 592,
+      "sha256": "7a97ee0e3cfd07b972e402eab32a154ce2b11b088e6ac0e53b400da1167bb742"
+    },
+    {
+      "file": "evidence/scope.log",
+      "bytes": 209,
+      "sha256": "c3d1fc37e1ea5e5c78e397e726c21e93f7118a1c9a31105c6c72a2bbfdeded43"
+    },
+    {
+      "file": "evidence/linux-lab2.json",
+      "bytes": 1073285,
+      "sha256": "a7c2d1dae39dbec7fa6b09c3c9463cb0d20cb4dbdffd3bf7cf131ea2289cd585"
+    },
+    {
+      "file": "evidence/browser-results.json",
+      "bytes": 667,
+      "sha256": "64ef0b64e7505614591936406157ad8e767922539995998af2c559eff6e0800b"
+    },
+    {
+      "file": "evidence/protected-paths.txt",
+      "bytes": 2502,
+      "sha256": "9b873edb46a9d73b7a088e75f40c701118e5256e1003bbe68c1e17b408d82517"
+    },
+    {
+      "file": "evidence/landing-desktop.png",
+      "bytes": 317606,
+      "sha256": "0ca7c5c6370b63403423f728bbb34630c10883b89ea143d01620e19baf396ebf"
+    },
+    {
+      "file": "evidence/browser-root-results.json",
+      "bytes": 659,
+      "sha256": "788508cf69bc72cb4cb268a0088cdd2eb6a3b1e784714687663024a646699937"
+    },
+    {
+      "file": "evidence/lab1-mobile.png",
+      "bytes": 79922,
+      "sha256": "e36accaf702c085bba93655c56ef77790cccb2527e72cfe9077d38072621386d"
+    },
+    {
+      "file": "evidence/build.log",
+      "bytes": 114,
+      "sha256": "66d71f1b00717c687770d51b623badfd6d67d75ed8131056ea66b0ba2ebfd783"
+    },
+    {
+      "file": "evidence/decode-adk-payment-agent-desktop.png",
+      "bytes": 188137,
+      "sha256": "5464392fc967c97b0b76b2300663bbea20050935e760b7cf0499d5a8db8e7176"
+    },
+    {
+      "file": "scripts/build.py",
+      "bytes": 4265,
+      "sha256": "a0ef37586ece6cb4496b00389fae168d8e961f96faa4d09bf3a83bb06d262c8d"
+    },
+    {
+      "file": "scripts/preview.py",
+      "bytes": 1309,
+      "sha256": "d9ad8db175d945eff4479dbbb3eb731c9cf5145856af69a7fa697994280bbc5e"
+    },
+    {
+      "file": "scripts/install_claat.py",
+      "bytes": 1068,
+      "sha256": "769715eac34fd76d648b4fc43080a306a764f2449e8e43054f39f7be5a4c62e7"
+    },
+    {
+      "file": "scripts/integration_check.py",
+      "bytes": 2641,
+      "sha256": "a07133b3a16579a9503c3156021ff14922d3c395404060db4627a05a831996fc"
+    },
+    {
+      "file": "scripts/validate.py",
+      "bytes": 4605,
+      "sha256": "53f280c2829f382bb46144e86577d33369139cb80dd2c9394dbae37e6775cb2b"
+    },
+    {
+      "file": "scripts/browser_check.py",
+      "bytes": 5288,
+      "sha256": "1bf032194e51e63a753e604e7f379e681bbdcde4ea4fa47748aad41159313389"
+    },
+    {
+      "file": "scripts/vendor_runtime.py",
+      "bytes": 3179,
+      "sha256": "d8b4195285d59532c4fb0da696b39b78727b0d3e954a6fc6bb21f29d668d5034"
+    },
+    {
+      "file": "scripts/lock_dependencies.py",
+      "bytes": 1651,
+      "sha256": "9f86200bdfa7e9bbcb88cd977b1bc6671c6b3dde81b296097134953374efee84"
+    },
+    {
+      "file": "scripts/diagrams.py",
+      "bytes": 4225,
+      "sha256": "0fe5d1202811a8e7714ac4dcd73ea07edf91caf4f3cb778827bab4c0ce7413b3"
+    },
+    {
+      "file": "scripts/check_scope.py",
+      "bytes": 1566,
+      "sha256": "05236e5582db248100cea6cfa10bfeec5319f8e18399f7d149cd01ec94c8e005"
+    },
+    {
+      "file": "site/workshop.css",
+      "bytes": 7453,
+      "sha256": "3e7654769606d4fda2988aea2387f6270b5ae2d5ea7d5096b37c13204c53212a"
+    },
+    {
+      "file": "site/index.html",
+      "bytes": 5094,
+      "sha256": "a5a7b58ea442557d53c8134fcb5b80497650a156971d0c91c043761b9de4dc63"
+    },
+    {
+      "file": "site/codelab-overrides.css",
+      "bytes": 346,
+      "sha256": "ec354fee242788f07d2700f7b2b3c5fa3527b8cadf70bc956a9361a93c2fce4c"
+    },
+    {
+      "file": "site/codelab-navigation.js",
+      "bytes": 482,
+      "sha256": "7a87b8d5a9f8da1737a3e3f44824ad42df50d8b7c1b9896901d75f4246d44f84"
+    },
+    {
+      "file": "site/downloads/lab1.zip",
+      "bytes": 7837,
+      "sha256": "d0c0ebdedff3ea8be8d75731f1a29caa4c45c2a58235f2ebe2ec12c11f68ccb5"
+    },
+    {
+      "file": "site/downloads/lab2.zip",
+      "bytes": 5961,
+      "sha256": "cba071ab8e84e0e1a47feb2cf0b396b47a1fbf1a514c3598c9e973da6a9be947"
+    },
+    {
+      "file": "site/vendor/claat/custom-elements.min.js",
+      "bytes": 19147,
+      "sha256": "99b92c417578fb3b24927955dd48ca81c00f5b924dfe02dc6f91e629198aa15b"
+    },
+    {
+      "file": "site/vendor/claat/LICENSE-Roboto.txt",
+      "bytes": 4394,
+      "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+    },
+    {
+      "file": "site/vendor/claat/LICENSE-codelab-components.txt",
+      "bytes": 11340,
+      "sha256": "9937659e3541a0e31c73957fcecbec505138140e5b4942cc7e7200f911fdeee0"
+    },
+    {
+      "file": "site/vendor/claat/RobotoMono.ttf",
+      "bytes": 183700,
+      "sha256": "66a80e79d17e4c7cabd162e2916578a4cc08fd19eef6e2a643305eae9c567b2b"
+    },
+    {
+      "file": "site/vendor/claat/LICENSE-SourceCodePro.txt",
+      "bytes": 4622,
+      "sha256": "cb30d3086a8b3ce0b9e3690bf48d6620402b61160bc658076f95180ccd9e9dae"
+    },
+    {
+      "file": "site/vendor/claat/LICENSE-MaterialIcons.txt",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "file": "site/vendor/claat/prettify.js",
+      "bytes": 65457,
+      "sha256": "4cb15feaea6118a726b10875dfd1575becc8f3e9be2980bfdda8bfad3bb834ed"
+    },
+    {
+      "file": "site/vendor/claat/codelab-elements.js",
+      "bytes": 107046,
+      "sha256": "9cc11eeb892d920f71c310b9fd5c3140e1096cfab639575fb76eaaf17cc6b581"
+    },
+    {
+      "file": "site/vendor/claat/SourceCodePro.ttf",
+      "bytes": 212340,
+      "sha256": "b400fc584e10aff25d0e775ce181b4fc1c5ea1b5dc37b81aeb2084375b945790"
+    },
+    {
+      "file": "site/vendor/claat/README.md",
+      "bytes": 1624,
+      "sha256": "e5280aee30ec03c6c0f362245c1b7185a3df7f1b4cd3d58bd8c5abe0fc7a7b2b"
+    },
+    {
+      "file": "site/vendor/claat/Roboto.ttf",
+      "bytes": 488584,
+      "sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134"
+    },
+    {
+      "file": "site/vendor/claat/native-shim.js",
+      "bytes": 2089,
+      "sha256": "d077b4678a442ff7475948878b587a9116092f29e08806a3f5114e68102b7066"
+    },
+    {
+      "file": "site/vendor/claat/manifest.json",
+      "bytes": 2921,
+      "sha256": "24564dcb4a2c1ccb13e6977e0e7adda1e08400e594cdf01fb15f7c21d12f1cee"
+    },
+    {
+      "file": "site/vendor/claat/codelab-elements.css",
+      "bytes": 27359,
+      "sha256": "4c8e34fea342d357f3723d82d64de9c023b152a4ce2a0aad485880360f99f064"
+    },
+    {
+      "file": "site/vendor/claat/LICENSE-RobotoMono.txt",
+      "bytes": 4395,
+      "sha256": "50ab8dd54680d3473f649c9db86fece88434d097c7834475c1c72d2f8c429215"
+    },
+    {
+      "file": "site/vendor/claat/Roboto-Italic.ttf",
+      "bytes": 530944,
+      "sha256": "9725a847af6b460ffca162ae66d20dad48b01876137947180b42d7dcd7887182"
+    },
+    {
+      "file": "site/vendor/claat/fonts.css",
+      "bytes": 632,
+      "sha256": "ea74911190ed24f8050f175d605f3386c4f1e540888c048e04dab94516bb7fe9"
+    },
+    {
+      "file": "site/vendor/claat/icons.css",
+      "bytes": 505,
+      "sha256": "b3ebd3422cecfdf32273ff26159bd2e881aac3ef2a9e3618b90b0e9524770a5c"
+    },
+    {
+      "file": "site/vendor/claat/MaterialIcons.ttf",
+      "bytes": 356840,
+      "sha256": "ef149f08bdd2ff09a4e2c8573476b7b0f3fbb15b623954ade59899e7175bedda"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/index.html",
+      "bytes": 35290,
+      "sha256": "e5864ffe9e9cb033252d1ea8832767a730957ffcded2cbd2e4e4f0b40c33f511"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/codelab.json",
+      "bytes": 620,
+      "sha256": "afc4d97da840a8a3db21ca018e3b3b54676db946650caf95abfcae33a3214076"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/index.html",
+      "bytes": 28269,
+      "sha256": "c0cbc595a202ea51b6326f4e564aa52dacb4a03e4925e2e4433166701969f9d7"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/codelab.json",
+      "bytes": 643,
+      "sha256": "a5992c35a3e2d8425b20c6b4b0e2a974d476ab0b84ced2c616decda4e31ae17c"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/img/e9a104dafaf098e1.svg",
+      "bytes": 2560,
+      "sha256": "94d7caa5e13672c58ec285e64663a9117d58b06f07da7a0a2ea6db75c959d0fc"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/assets/agent-sequence.svg",
+      "bytes": 2560,
+      "sha256": "94d7caa5e13672c58ec285e64663a9117d58b06f07da7a0a2ea6db75c959d0fc"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/assets/payment-flow.svg",
+      "bytes": 2630,
+      "sha256": "08a25bb3cbe4835e92462ccd6500dc04a86187216666503ab8391d0ae971c770"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/assets/apigee.svg",
+      "bytes": 2241,
+      "sha256": "3fb03ec15552398df40426e0c9b9f16bd411ec6b1256f36f7004d81ab29a9921"
+    },
+    {
+      "file": "site/codelabs/decode-adk-payment-agent/assets/architecture.svg",
+      "bytes": 2627,
+      "sha256": "4c158057960efb48a3d08639d892da5b1defa73311cd55f7258d24acca9b3338"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/img/ebfda888593275f0.svg",
+      "bytes": 2630,
+      "sha256": "08a25bb3cbe4835e92462ccd6500dc04a86187216666503ab8391d0ae971c770"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/img/30207ad9bc6f4ad8.svg",
+      "bytes": 2627,
+      "sha256": "4c158057960efb48a3d08639d892da5b1defa73311cd55f7258d24acca9b3338"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/img/5addd033de89628.svg",
+      "bytes": 2241,
+      "sha256": "3fb03ec15552398df40426e0c9b9f16bd411ec6b1256f36f7004d81ab29a9921"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/assets/agent-sequence.svg",
+      "bytes": 2560,
+      "sha256": "94d7caa5e13672c58ec285e64663a9117d58b06f07da7a0a2ea6db75c959d0fc"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/assets/payment-flow.svg",
+      "bytes": 2630,
+      "sha256": "08a25bb3cbe4835e92462ccd6500dc04a86187216666503ab8391d0ae971c770"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/assets/apigee.svg",
+      "bytes": 2241,
+      "sha256": "3fb03ec15552398df40426e0c9b9f16bd411ec6b1256f36f7004d81ab29a9921"
+    },
+    {
+      "file": "site/codelabs/decode-mpesa-mcp/assets/architecture.svg",
+      "bytes": 2627,
+      "sha256": "4c158057960efb48a3d08639d892da5b1defa73311cd55f7258d24acca9b3338"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/codelab.md",
+      "bytes": 26494,
+      "sha256": "bfdc07857009d447f4c664afb1b0e3a14c2b569e0230dc52bbdfbca786a31e08"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/codelab.md",
+      "bytes": 21716,
+      "sha256": "031e5d3c029674221d046623f7fa035047bbbbb50d206299682ce51e415035c9"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/test_agent.py",
+      "bytes": 3205,
+      "sha256": "844fae6e7e172b4185c4fb781210e1830aad6f9e45b6f312556a4442d459cbf3"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/requirements.txt",
+      "bytes": 157,
+      "sha256": "b4c3970332d192df0da6547062a67b4e3ea31c239d89d187a92b5ed970675af1"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/Dockerfile",
+      "bytes": 287,
+      "sha256": "0d639527f65af494d0ef0d8dc110df0f58b88a3b2320649a3494a3f9570115fe"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/.dockerignore",
+      "bytes": 38,
+      "sha256": "39f5e91f8f79ac9eb4188291ea930e4dbc0063ab49cd492ac194a04e45a11475"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/agent.py",
+      "bytes": 1622,
+      "sha256": "087fa0a26803769d59941b79bc637b080ceb01b6f98b6af6662c7ebe5f1d6597"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/app.py",
+      "bytes": 3093,
+      "sha256": "7c45e5c30b3537d50f484e50a906360f206a21a7107724578a978b002394b39a"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/.env.example",
+      "bytes": 164,
+      "sha256": "8d6069dfab66e0ad0f63a46d009e49e2520ab33b5f04a0507574ca26c83fcdde"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/.gcloudignore",
+      "bytes": 55,
+      "sha256": "c80ca3aad88bdba0912d35593fa8f03c806afbc8237dbcaf733a4fada385e5a8"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/sample-code/requirements.lock",
+      "bytes": 2249,
+      "sha256": "55923dbda411d5b80ff05de2b10c4f6afaf3f011ba545f08fe693e8b5dcc2575"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/assets/agent-sequence.svg",
+      "bytes": 2560,
+      "sha256": "94d7caa5e13672c58ec285e64663a9117d58b06f07da7a0a2ea6db75c959d0fc"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/assets/payment-flow.svg",
+      "bytes": 2630,
+      "sha256": "08a25bb3cbe4835e92462ccd6500dc04a86187216666503ab8391d0ae971c770"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/assets/apigee.svg",
+      "bytes": 2241,
+      "sha256": "3fb03ec15552398df40426e0c9b9f16bd411ec6b1256f36f7004d81ab29a9921"
+    },
+    {
+      "file": "labs/02-adk-payment-agent/assets/architecture.svg",
+      "bytes": 2627,
+      "sha256": "4c158057960efb48a3d08639d892da5b1defa73311cd55f7258d24acca9b3338"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/server.py",
+      "bytes": 857,
+      "sha256": "a8605ebeb9edab198a9c17d128cb95b429bf92d366feb1d07a86d8f9de2b7fdd"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/payments.py",
+      "bytes": 3289,
+      "sha256": "7991a4747dd8a0499f99fd6abc9567aae40d74d605c6cb46341dfe6357c95390"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/requirements.txt",
+      "bytes": 59,
+      "sha256": "c738e1bb09ea4d7bd920557bdb36d3141a8a4c6f325e823df6f05a998217d6d8"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/domain.py",
+      "bytes": 4525,
+      "sha256": "41774409b0a9e31eb859aae4ec4050b9d1095b463d486483029c1af3fee9fcc5"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/Dockerfile",
+      "bytes": 234,
+      "sha256": "163bc2106274291f592ccdf92874cf741635f28161750b47cbe066c510717ce5"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/.dockerignore",
+      "bytes": 38,
+      "sha256": "39f5e91f8f79ac9eb4188291ea930e4dbc0063ab49cd492ac194a04e45a11475"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/test_domain.py",
+      "bytes": 3247,
+      "sha256": "9b482bb2ae7f0a761cf87d63c527b24b1750538e9c8365cd159acf1caf8cd266"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/smoke_client.py",
+      "bytes": 798,
+      "sha256": "ef8a681894875d9fde9ba099d76f89410ad0b9f704aec7ab8ba547f486305279"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/.env.example",
+      "bytes": 350,
+      "sha256": "662f15c6aeff8316ebf528f89d32ee2eb8098ea2954b474b8797a8d15a2ff2a8"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/.gcloudignore",
+      "bytes": 55,
+      "sha256": "c80ca3aad88bdba0912d35593fa8f03c806afbc8237dbcaf733a4fada385e5a8"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/sample-code/requirements.lock",
+      "bytes": 1214,
+      "sha256": "25aa05e0f439e48b1a52e1246d9902ab8f159fe149887f45e7fa8f49d4deca4b"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/assets/agent-sequence.svg",
+      "bytes": 2560,
+      "sha256": "94d7caa5e13672c58ec285e64663a9117d58b06f07da7a0a2ea6db75c959d0fc"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/assets/payment-flow.svg",
+      "bytes": 2630,
+      "sha256": "08a25bb3cbe4835e92462ccd6500dc04a86187216666503ab8391d0ae971c770"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/assets/apigee.svg",
+      "bytes": 2241,
+      "sha256": "3fb03ec15552398df40426e0c9b9f16bd411ec6b1256f36f7004d81ab29a9921"
+    },
+    {
+      "file": "labs/01-mpesa-mcp-server/assets/architecture.svg",
+      "bytes": 2627,
+      "sha256": "4c158057960efb48a3d08639d892da5b1defa73311cd55f7258d24acca9b3338"
+    }
+  ],
+  "file_count": 120,
+  "all_additions_under": "decode-codelabs/"
+}

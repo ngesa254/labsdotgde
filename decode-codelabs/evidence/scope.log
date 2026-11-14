@@ -1,0 +1,9 @@
+{
+  "pre_existing_files_checked": 12943,
+  "changed_outside_destination": [],
+  "new_outside_destination": [],
+  "branch_unchanged": true,
+  "commit_unchanged": true,
+  "publication_scope": true,
+  "git_status": "?? decode-codelabs/\n?? docs/codelabs/\n"
+}

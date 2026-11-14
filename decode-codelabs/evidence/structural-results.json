@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "decode-mpesa-mcp: 11 steps, 97 minutes, metadata, attribution, callouts and shell syntax passed",
+    "decode-adk-payment-agent: 9 steps, 79 minutes, metadata, attribution, callouts and shell syntax passed",
+    "All generated local image, download, stylesheet, navigation and handoff links resolve without root-relative paths",
+    "All sample and tooling Python files parse",
+    "Docker CMD arrays parse; container images not built",
+    "10 non-networked sample tests and pip check passed in authoring environment",
+    "Placeholder examples and private-key/API-key pattern checks passed; no secret stores inspected"
+  ]
+}

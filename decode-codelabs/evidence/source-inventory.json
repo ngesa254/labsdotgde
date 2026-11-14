@@ -1,0 +1,434 @@
+{
+  "source_inventory": [
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/01_intro.md",
+      "lines": 36,
+      "headings": [
+        "# How to Deploy a Secure Safaricom M-PESA Express MCP Server on Cloud Run",
+        "## Introduction",
+        "### Overview",
+        "### What You'll Do",
+        "### What You'll Learn"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/02_setup.md",
+      "lines": 15,
+      "headings": [
+        "# Project Setup",
+        "## Create a Google Cloud Account"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/03_cloudshell.md",
+      "lines": 119,
+      "headings": [
+        "# Open Cloud Shell Editor",
+        "## Launch Cloud Shell Editor",
+        "## Open the Terminal",
+        "## Verify Your Account and Project",
+        "### Check Current Authenticated Accounts",
+        "### Check Current Project",
+        "### List Available Projects",
+        "## Set Your Project",
+        "## Switch Accounts (If Needed)",
+        "### Login with the Correct Account",
+        "### Set the Active Account",
+        "### Confirm the Active Account"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/04_enabling_apis.md",
+      "lines": 27,
+      "headings": [
+        "# Enable APIs",
+        "## What These APIs Do"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/05_prep_project.md",
+      "lines": 46,
+      "headings": [
+        "# Prepare Your Python Project",
+        "## Create the Project Folder",
+        "## Initialize the Python Project",
+        "## Verify the Project Configuration"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/06_create_mcp_server.md",
+      "lines": 816,
+      "headings": [
+        "# Build the MPESA Express MCP Server with FastMCP",
+        "## Why One MCP Server",
+        "## Product Catalog Model",
+        "## What We Are Wrapping",
+        "## Test the APIs Before Coding",
+        "### Set Your Daraja Credentials",
+        "### Step 1: Generate an Access Token",
+        "### Step 2: Compute the Password and Timestamp",
+        "### Why You Need a Callback URL (webhook.site)",
+        "### Step 3: Send an STK Push Request",
+        "### Step 4: Check the Callback",
+        "## How This Maps to the MCP Server Code",
+        "## Add FastMCP and HTTP Client Dependencies",
+        "## Create the Server File",
+        "## Add the Server Code",
+        "## What to Customize",
+        "### What You Do NOT Change in server.py",
+        "## Understanding the Code",
+        "## Why This Matters for the Rest of the Lab"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/07_deploy_on_cloudrun.md",
+      "lines": 170,
+      "headings": [
+        "# Deploying to Cloud Run",
+        "## Create the Dockerfile",
+        "## Create a Service Account",
+        "## Return to the Project Directory",
+        "## Set Daraja Sandbox Credentials",
+        "### How to Get Your Credentials",
+        "### Export Your Credentials",
+        "### About the Sandbox",
+        "## Deploy to Cloud Run",
+        "### Troubleshooting: Service Account Permission Error",
+        "## Confirm Artifact Registry Creation",
+        "## Verify Deployment"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/08_addmcp_to_gemini_cli.md",
+      "lines": 174,
+      "headings": [
+        "# Connect the Remote MCP Server to Gemini CLI",
+        "## Grant Invoke Permission",
+        "## Generate an ID Token",
+        "## Create the Gemini Settings File",
+        "## Start Gemini CLI",
+        "## Verify MCP Connection",
+        "## Test the MCP Server",
+        "### Step 1: Browse the Catalog",
+        "### Step 2: Buy a Product",
+        "### Step 3: Complete the Payment",
+        "### Step 4: Verify Payment via Callback",
+        "### Money Reversal Notice"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/09_verify_logs.md",
+      "lines": 18,
+      "headings": [
+        "# Verify Logs"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/10_add_mcp_prompt.md",
+      "lines": 56,
+      "headings": [
+        "# (Optional) Add MCP Prompt to Server",
+        "## Add the Prompt to Your Server",
+        "## Re-deploy to Cloud Run",
+        "## Refresh Your ID Token",
+        "## Test the Custom Command"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/11.5_cleanup.md",
+      "lines": 112,
+      "headings": [
+        "# (Optional) Clean Up Lab Resources",
+        "## When to Use This",
+        "## Delete Cloud Run Service",
+        "## Delete Service Account",
+        "## Delete Local Project Files",
+        "## Delete Artifact Registry Repository",
+        "## Verify the Cleanup",
+        "## Start the Lab Again",
+        "## Recommended Approach",
+        "## Quick Redeploy (Without Full Cleanup)"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/11_gemini_flash_lite.md",
+      "lines": 42,
+      "headings": [
+        "# (Optional) Use Gemini Flash Lite",
+        "## Switch to Flash Lite",
+        "## Try a Faster Flow",
+        "## When This Helps"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/12_conclusion.md",
+      "lines": 35,
+      "headings": [
+        "# Conclusion",
+        "## What You Accomplished",
+        "## Key Improvements Applied",
+        "## Continue to the Next Lab"
+      ]
+    },
+    {
+      "file": "decode/01-mpesa-daraja-mcp-server-with-apigee/readme.md",
+      "lines": 188,
+      "headings": [
+        "# Lab 1: Build the MPESA Express MCP Server with Apigee on Cloud Run",
+        "## Overview",
+        "## Duration",
+        "## What You'll Learn",
+        "## Prerequisites",
+        "## Lab Structure",
+        "## \ud83c\udfd7\ufe0f Architecture",
+        "## MCP Tools You'll Build",
+        "## Quick Start",
+        "# 1. Enable APIs",
+        "# 2. Create project",
+        "# 3. Create server.py and Dockerfile (see step 06 & 07)",
+        "# 4. Deploy",
+        "# 5. Configure Gemini CLI (see step 08)",
+        "## Related Labs",
+        "## Resources",
+        "## Getting Help",
+        "##  Cleanup",
+        "# Delete the Cloud Run service",
+        "# Or delete the entire project",
+        "# Clean up local files"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/01_intro.md",
+      "lines": 51,
+      "headings": [
+        "# Introduction",
+        "## Background",
+        "## Architecture",
+        "## Prerequisites",
+        "## What You'll Learn"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/02_why_cloudrun.md",
+      "lines": 48,
+      "headings": [
+        "# Why Deploy to Cloud Run?",
+        "## Key Features",
+        "### Runs Containers Anywhere",
+        "### Automatic Scaling",
+        "### Stateless by Default",
+        "### Supports Any Language or Framework",
+        "### Pay for What You Use",
+        "## Why Cloud Run for ADK Agents?"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/03_setup.md",
+      "lines": 72,
+      "headings": [
+        "# Setup and Requirements",
+        "## Self-Paced Environment Setup",
+        "### 1. Create or Select a Project",
+        "### 2. Enable Billing",
+        "## Start Cloud Shell",
+        "### 3. Navigate to Cloud Shell Editor",
+        "### 4. Set Your Project",
+        "### 5. Authorize if Prompted",
+        "### 6. Verify Success"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/04_enable_apis.md",
+      "lines": 34,
+      "headings": [
+        "# Before You Begin",
+        "## Enable APIs and Set Environment Variables",
+        "### Expected Output",
+        "## What These APIs Do"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/05_create_project.md",
+      "lines": 77,
+      "headings": [
+        "# Create the Project Folder",
+        "## Create the Project Directory",
+        "## Create the Requirements File",
+        "## Set Environment Variables",
+        "## Create the Service Account",
+        "## Configure the Agent Environment"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/06_create_agent_workflow.md",
+      "lines": 145,
+      "headings": [
+        "# Create Agent Workflow",
+        "## Create `__init__.py`",
+        "## Create `agent.py`",
+        "## Architecture Overview"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/07_prepare_deployment.md",
+      "lines": 100,
+      "headings": [
+        "# Prepare the Application for Deployment",
+        "## Re-export Environment Variables",
+        "## Grant Cloud Run Invoker Permission",
+        "## Grant Vertex AI Permissions",
+        "## Verify Your File Structure",
+        "## Understanding the IAM Roles"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/08_deploy_agent.md",
+      "lines": 26,
+      "headings": [
+        "# Deploy the Agent"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/09_test_agent.md",
+      "lines": 45,
+      "headings": [
+        "# Test the Deployed Agent",
+        "## Start a Conversation",
+        "## Test Prompts"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/10_cleanup.md",
+      "lines": 49,
+      "headings": [
+        "# Clean Up Environment",
+        "## Delete Cloud Run Service",
+        "## Delete Artifact Registry Repository",
+        "## Delete Service Account",
+        "## Delete Local Project Files",
+        "## Optional: Also Clean Up Lab 1 Resources"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/11_congratulations.md",
+      "lines": 21,
+      "headings": [
+        "# Congratulations",
+        "## What You Learned",
+        "## Related Labs"
+      ]
+    },
+    {
+      "file": "decode/02-google-adk-agent-for-mpesa-daraja-mcp/readme.md",
+      "lines": 195,
+      "headings": [
+        "# Lab 2: Google ADK Agent with Safaricom MCP Access on Cloud Run",
+        "## Overview",
+        "## Duration",
+        "## What You'll Learn",
+        "## Prerequisites",
+        "## Lab Structure",
+        "## \ud83c\udfd7\ufe0f Architecture",
+        "## Agent Components",
+        "## Quick Start",
+        "# 1. Enable APIs",
+        "# 2. Create project",
+        "# 3. Set up environment",
+        "# 4. Create service account and grant permissions",
+        "# 5. Create files (requirements.txt, .env, __init__.py, agent.py)",
+        "# 6. Deploy",
+        "## Related Labs",
+        "## Resources",
+        "## Getting Help",
+        "## Cleanup",
+        "# Delete the agent service",
+        "# Delete Artifact Registry",
+        "# (Optional) Delete the entire project"
+      ]
+    },
+    {
+      "file": "decode/README.md",
+      "lines": 203,
+      "headings": [
+        "# From Code to Cash: Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud",
+        "## Overview",
+        "## Duration",
+        "## How to Use This Workshop",
+        "## What You'll Build",
+        "## What You'll Learn",
+        "## Prerequisites",
+        "## Core References",
+        "## Workshop Structure",
+        "## Recommended Navigation",
+        "## Architecture",
+        "## Lab 1 Summary",
+        "## Lab 2 Summary",
+        "## Quick Start",
+        "# Start with the MCP server lab",
+        "# After Lab 1 is deployed, return and continue with the ADK agent lab",
+        "## Expected Outcomes",
+        "## Cleanup",
+        "## Notes for Developers"
+      ]
+    },
+    {
+      "file": "decode/README_.md",
+      "lines": 199,
+      "headings": [
+        "# From Code to Cash: Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud",
+        "## Overview",
+        "## Duration",
+        "## How to Use This Workshop",
+        "## What You'll Build",
+        "## What You'll Learn",
+        "## Prerequisites",
+        "## Core References",
+        "## Workshop Structure",
+        "## Recommended Navigation",
+        "## Architecture",
+        "## Lab 1 Summary",
+        "## Lab 2 Summary",
+        "## Quick Start",
+        "# Start with the MCP server lab",
+        "# After Lab 1 is deployed, return and continue with the ADK agent lab",
+        "## Expected Outcomes",
+        "## Cleanup",
+        "## Notes for Developers"
+      ]
+    }
+  ],
+  "missing_local_references": [
+    {
+      "source": "decode/01-mpesa-daraja-mcp-server-with-apigee/07_deploy_on_cloudrun.md",
+      "target": "image-daraja-myapps.png"
+    },
+    {
+      "source": "decode/01-mpesa-daraja-mcp-server-with-apigee/08_addmcp_to_gemini_cli.md",
+      "target": "image-webhook-callback.png"
+    }
+  ],
+  "external_links": [
+    "https://accounts.google.com/signup",
+    "https://cloud.google.com/apigee",
+    "https://cloud.google.com/billing/docs/how-to/modify-project",
+    "https://cloud.google.com/free",
+    "https://cloud.google.com/run/docs",
+    "https://console.cloud.google.com/",
+    "https://console.cloud.google.com/projectcreate",
+    "https://developer.safaricom.co.ke/",
+    "https://developer.safaricom.co.ke/apis/MpesaExpressSimulate",
+    "https://developer.safaricom.co.ke/dashboard/myapps",
+    "https://developer.safaricom.co.ke/go-live",
+    "https://github.com/PrefectHQ/FastMCP",
+    "https://github.com/google-gemini/gemini-cli",
+    "https://github.com/google/adk-python",
+    "https://github.com/google/adk-samples",
+    "https://google.github.io/adk-docs/",
+    "https://google.github.io/adk-docs/tools/",
+    "https://google.github.io/adk-docs/tools/mcp-tools/",
+    "https://modelcontextprotocol.io/",
+    "https://shell.cloud.google.com/?show=ide%2Cterminal",
+    "https://webhook.site",
+    "mailto:apisupport@safaricom.co.ke"
+  ]
+}

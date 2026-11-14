@@ -1,0 +1,12 @@
+.tools/
+.venv/
+.cache/
+.preview/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.gemini/
+workshop.env
+.work/

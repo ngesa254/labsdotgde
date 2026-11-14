@@ -1,0 +1,11 @@
+{
+  "results": [
+    "Landing page loaded; both lab links and downloads present.",
+    "decode-mpesa-mcp: same-tab handoff, landing click, local runtime with external requests blocked, all 11 steps, Back/Next, sidebar, exit paths, handoff and loaded SVG passed.",
+    "decode-adk-payment-agent: same-tab handoff, landing click, local runtime with external requests blocked, all 9 steps, Back/Next, sidebar, exit paths, handoff and loaded SVG passed.",
+    "390px landing/codelab fit viewport; mobile Next/menu/section selection passed; screenshots captured."
+  ],
+  "page_errors": [],
+  "url": "http://127.0.0.1:8765/workshop/",
+  "browser_version": "157.0.8103.78"
+}

@@ -1,0 +1,30 @@
+test_basket (test_domain.DomainTests.test_basket) ... ok
+test_callback_not_evidence (test_domain.DomainTests.test_callback_not_evidence) ... ok
+test_disabled_does_not_connect (test_domain.DomainTests.test_disabled_does_not_connect) ... ok
+test_preparation (test_domain.DomainTests.test_preparation) ... ok
+test_sandbox_mocked_acceptance_and_uncertainty (test_domain.DomainTests.test_sandbox_mocked_acceptance_and_uncertainty) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+OK
+test_allowlist_and_factory (test_agent.AgentTests.test_allowlist_and_factory) ... /Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/labs/02-adk-payment-agent/sample-code/agent.py:10: DeprecationWarning: MCPToolset class is deprecated, use `McpToolset` instead.
+  toolset = MCPToolset(connection_params=StreamableHTTPConnectionParams(
+ok
+test_cleanup_and_new_token_each_turn (test_agent.AgentTests.test_cleanup_and_new_token_each_turn) ... ok
+test_failure_closes_toolset (test_agent.AgentTests.test_failure_closes_toolset) ... ok
+test_health_and_input (test_agent.AgentTests.test_health_and_input) ... ok
+test_origin (test_agent.AgentTests.test_origin) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.029s
+
+OK
+No broken requirements found.
+decode-mpesa-mcp: 11 steps, 97 minutes, metadata, attribution, callouts and shell syntax passed
+decode-adk-payment-agent: 9 steps, 79 minutes, metadata, attribution, callouts and shell syntax passed
+All generated local image, download, stylesheet, navigation and handoff links resolve without root-relative paths
+All sample and tooling Python files parse
+Docker CMD arrays parse; container images not built
+10 non-networked sample tests and pip check passed in authoring environment
+Placeholder examples and private-key/API-key pattern checks passed; no secret stores inspected

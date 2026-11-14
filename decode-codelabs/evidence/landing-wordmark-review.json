@@ -1,0 +1,63 @@
+{
+  "sections": [
+    {
+      "width": 1440,
+      "section": "labs",
+      "top": 112,
+      "headerBottom": 78,
+      "scroll": 712,
+      "max": 1237,
+      "hash": "#labs"
+    },
+    {
+      "width": 1440,
+      "section": "before",
+      "top": 270,
+      "headerBottom": 78,
+      "scroll": 1237,
+      "max": 1237,
+      "hash": "#before"
+    },
+    {
+      "width": 1440,
+      "section": "trainer",
+      "top": 733,
+      "headerBottom": 78,
+      "scroll": 1237,
+      "max": 1237,
+      "hash": "#trainer"
+    },
+    {
+      "width": 390,
+      "section": "labs",
+      "top": 154,
+      "headerBottom": 110,
+      "scroll": 1323,
+      "max": 2565,
+      "hash": "#labs"
+    },
+    {
+      "width": 390,
+      "section": "before",
+      "top": 154,
+      "headerBottom": 110,
+      "scroll": 2257,
+      "max": 2565,
+      "hash": "#before"
+    },
+    {
+      "width": 390,
+      "section": "trainer",
+      "top": 597,
+      "headerBottom": 110,
+      "scroll": 2565,
+      "max": 2565,
+      "hash": "#trainer"
+    }
+  ],
+  "biography": "Electrical Engineer",
+  "wordmark": "DE{C0}DE 5.0",
+  "reduced_motion": "checked",
+  "font": "local Bricolage Grotesque",
+  "horizontal_overflow": false
+}

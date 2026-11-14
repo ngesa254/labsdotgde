@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "updated": "2026-11-14T18:05:28+03:00",
+  "id": "decode-adk-payment-agent",
+  "duration": 79,
+  "title": "Build an ADK Agent with Protected M-Pesa MCP Tools",
+  "summary": "Connect a bounded ADK agent turn to protected merchant tools with runtime identity.",
+  "source": "labs/02-adk-payment-agent/codelab.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "python",
+    "googlecloud",
+    "mcp"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/ngesa254/labsdotgde/issues",
+  "url": "decode-adk-payment-agent"
+}

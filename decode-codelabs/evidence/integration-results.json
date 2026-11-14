@@ -1,0 +1,11 @@
+{
+  "transport": "local Streamable HTTP /mcp",
+  "catalog_tools": 6,
+  "basket_total_kes": 10,
+  "invalid_basket": "rejected",
+  "adk_discovery": "six safe tools; Gemini declarations generated; ADK basket invocation returned KES 10",
+  "cleanup": "toolsets closed",
+  "cloud_IAM": "not tested",
+  "model_inference": "not tested",
+  "Daraja": "not called"
+}

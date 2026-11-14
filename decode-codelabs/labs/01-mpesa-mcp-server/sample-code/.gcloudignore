@@ -1,0 +1,6 @@
+.gcloudignore
+.venv/
+.env
+.env.*
+__pycache__/
+.gemini/

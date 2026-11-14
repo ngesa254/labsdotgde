@@ -1,0 +1,122 @@
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/fastmcp/server/auth/providers/jwt.py:10: AuthlibDeprecationWarning: authlib.jose module is deprecated, please use joserfc instead.
+It will be compatible before version 2.0.0.
+  from authlib.jose import JsonWebKey, JsonWebToken
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/authlib/integrations/httpx_client/assertion_client.py:5: AuthlibDeprecationWarning: The httpx module is deprecated; please use httpx2 instead.
+  from ._compat import httpx2
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/websockets/legacy/__init__.py:6: DeprecationWarning: websockets.legacy is deprecated; see https://websockets.readthedocs.io/en/stable/howto/upgrade.html for upgrade instructions
+  warnings.warn(  # deprecated in 14.0 - 2024-11-09
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/uvicorn/protocols/websockets/websockets_impl.py:17: DeprecationWarning: websockets.server.WebSocketServerProtocol is deprecated
+  from websockets.server import WebSocketServerProtocol
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/labs/02-adk-payment-agent/sample-code/agent.py:10: DeprecationWarning: MCPToolset class is deprecated, use `McpToolset` instead.
+  toolset = MCPToolset(connection_params=StreamableHTTPConnectionParams(
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:164: DeprecationWarning: MCPTool class is deprecated, use `McpTool` instead.
+  mcp_tool = MCPTool(
+/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:88: UserWarning: [EXPERIMENTAL] BaseAuthenticatedTool: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__(
+WARNING:google_adk.google.adk.tools.base_authenticated_tool:auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+WARNING:google_adk.google.adk.tools.base_authenticated_tool:auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+WARNING:google_adk.google.adk.tools.base_authenticated_tool:auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+WARNING:google_adk.google.adk.tools.base_authenticated_tool:auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+WARNING:google_adk.google.adk.tools.base_authenticated_tool:auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+WARNING:google_adk.google.adk.tools.base_authenticated_tool:auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/abc/_streams.py", line 37, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ngesamarvine/Documents/Terminal F/labsdotgde/decode-codelabs/.venv/lib/python3.11/site-packages/anyio/streams/memory.py", line 141, in receive
+    raise ClosedResourceError from None
+anyio.ClosedResourceError
+{
+  "transport": "local Streamable HTTP /mcp",
+  "catalog_tools": 6,
+  "basket_total_kes": 10,
+  "invalid_basket": "rejected",
+  "adk_discovery": "six safe tools; Gemini declarations generated; ADK basket invocation returned KES 10",
+  "cleanup": "toolsets closed",
+  "cloud_IAM": "not tested",
+  "model_inference": "not tested",
+  "Daraja": "not called"
+}
