@@ -1,5 +1,11 @@
 # LabsDotGDE™ — Google AI, Agentic Systems, MCP & Cloud Run Workshops
 
+**[Launch DECODE labs — From Code to Cash](https://ngesa254.github.io/labsdotgde/codelabs/index.html)**
+
+Build an M-Pesa MCP server and a Google ADK payment agent with guided, step-by-step labs.
+
+[Start Lab 1: M-Pesa MCP server](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-mpesa-mcp/) · [Start Lab 2: ADK agent](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-adk-payment-agent/)
+
 **[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/)**
 
 <p align="center">

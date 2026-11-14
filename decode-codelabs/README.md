@@ -1,5 +1,11 @@
 # From Code to Cash
 
+**[Launch DECODE labs — From Code to Cash](https://ngesa254.github.io/labsdotgde/codelabs/index.html)**
+
+Build an M-Pesa MCP server and a Google ADK payment agent with guided, step-by-step labs.
+
+[Start Lab 1: M-Pesa MCP server](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-mpesa-mcp/) · [Start Lab 2: ADK agent](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-adk-payment-agent/)
+
 Building Agentic Payment Systems with M-Pesa, Apigee, and Google Cloud — guided DECODE codelab edition by **Ngesa Marvin**.
 
 The generated landing page is [site/index.html](site/index.html). Lab 1 has 11 guided steps (97 estimated minutes); Lab 2 has 9 (79 minutes). Allow additional time for account setup, permissions and provisioning. These are estimates, not an event schedule.
