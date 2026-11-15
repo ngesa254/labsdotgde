@@ -1,7 +1,7 @@
 <h1 align="center">LabsDotGDE</h1>
 
 <p align="center">
-  <strong>Hands-on labs, practical workshops, and shared know-how for engineers across Afrika.</strong>
+  <strong>Practical workshops, Hands-on labs, and shared know-how for engineers across Afrika.</strong>
 </p>
 
 <p align="center">
