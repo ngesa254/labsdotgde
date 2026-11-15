@@ -23,3 +23,7 @@ URLs are taken from the supplied official page, rather than guessed targets.
 Edit `labs.json` to maintain entries; `source: google-gear` places an entry in the
 external panel. Run `python3 website/scripts/stage-github-pages.py` from the
 repository root to rebuild and stage all Pages copies.
+
+The Labs page shares the homepage cyanotype color and blueprint grid. Both
+resource groups use the ivory graph-paper panels; source is communicated by
+labels and links rather than a separate page theme or purple panel.

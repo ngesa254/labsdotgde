@@ -25,7 +25,7 @@ def panel(id, title, description, items, theme, note):
     cards = '\n'.join(card(lab, index) for index, lab in enumerate(items, 1))
     plain_title = title.replace('<br>', ' ')
     title = title.replace('<br>', '<br> ')
-    eyebrow = '' if theme == 'violet' else '<p class="guide-eyebrow mono">BUILT AT LABSDOTGDE</p>'
+    eyebrow = '' if id == 'google' else '<p class="guide-eyebrow mono">BUILT AT LABSDOTGDE</p>'
     source_note = '<p class="guide-source">' + note + '</p>' if note else ''
     return f'''<section class="guide-panel guide-panel--{theme}" data-guide-panel aria-labelledby="{id}-title">
 <div class="guide-ticker mono" aria-hidden="true"><span>// — codelabs &nbsp; * &nbsp; code samples &nbsp; * &nbsp; tutorials — // &nbsp; — codelabs &nbsp; * &nbsp; code samples &nbsp; * &nbsp; tutorials — // &nbsp; — codelabs &nbsp; * &nbsp; code samples &nbsp; * &nbsp; tutorials — //</span></div>
@@ -37,7 +37,7 @@ local = [lab for lab in labs if lab.get('source') != 'google-gear']
 google = [lab for lab in labs if lab.get('source') == 'google-gear']
 assert local and google
 panels = panel('workshop', 'Start.<br>Build. Grow.', 'Our hands-on workshops. Build the tool layer, connect an agent, or trace a request from question to answer.', local, 'paper', 'Start with DECODE Lab 1, then continue to Lab 2. The Barista guide is a separate starting point.')
-panels += panel('google', 'Step-by-step<br>guides', 'Keep building with official Google codelabs covering agents, tools, evaluation, and deployment.', google, 'violet', '')
+panels += panel('google', 'Step-by-step<br>guides', 'Google-authored codelabs, hosted on Google’s sites. Explore agents, tools, evaluation, and deployment.', google, 'paper', '')
 options = ''.join(f'<option value="{e(tag)}">{e(tag)}</option>' for tag in sorted({tag for lab in labs for tag in lab['tags']}))
 page = '''<!doctype html>
 <html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +45,7 @@ page = '''<!doctype html>
 <title>Labs · labsdotgde.afrika</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/fonts.css"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../assets/labs-catalogue.css">
 <script type="module" src="../assets/labs-catalogue.js"></script></head>
-<body class="catalogue-page"><a class="catalogue-skip" href="#catalogue">Skip to labs</a>
+<body class="catalogue-page sheet--cyanotype"><a class="catalogue-skip" href="#catalogue">Skip to labs</a>
 <header class="catalogue-header"><div class="catalogue-wrap"><a class="wordmark mono" href="../index.html">labsdotgde<span class="wordmark__dot">.</span>afrika</a>
 <nav aria-label="Main navigation"><a href="../index.html">← Home</a><a href="../index.html#invite">Request a Lab ↗</a></nav></div></header>
 <main class="catalogue-wrap" id="catalogue"><div class="catalogue-intro"><div><p class="section-eyebrow mono">THE ENGINEER’S WORKBENCH</p><h1>Less watching.<br><span>More building.</span></h1></div><p>Pick a guide. Open your terminal. Leave with something you can run.<br><a href="#workshop-title">Our workshops ↓</a> <a href="#google-title">Step-by-step guides ↓</a></p></div>
