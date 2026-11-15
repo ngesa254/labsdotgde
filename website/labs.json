@@ -9,8 +9,8 @@
       "Cloud Run"
     ],
     "href": "../codelabs/codelabs/decode-mpesa-mcp/",
-    "label": "Open the MCP lab \u2192",
-    "track": "DECODE \u00b7 Lab 1"
+    "label": "Open the MCP lab →",
+    "track": "DECODE · Lab 1"
   },
   {
     "id": "adk-agent",
@@ -22,8 +22,8 @@
       "MCP"
     ],
     "href": "../codelabs/codelabs/decode-adk-payment-agent/",
-    "label": "Open the agent lab \u2192",
-    "track": "DECODE \u00b7 Lab 2"
+    "label": "Open the agent lab →",
+    "track": "DECODE · Lab 2"
   },
   {
     "id": "ai-barista",
@@ -35,7 +35,132 @@
       "Google ADK"
     ],
     "href": "../decode/",
-    "label": "Open the barista guide \u2192",
+    "label": "Open the barista guide →",
     "track": "Developers Day Nairobi"
+  },
+  {
+    "id": "gear-mcp-a2a",
+    "title": "Getting Started with MCP, ADK and A2A",
+    "description": "Connect a currency agent to cloud tools and expose agent-to-agent communication.",
+    "tags": [
+      "Google ADK",
+      "MCP",
+      "A2A",
+      "Cloud Run"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-mcp-a2a",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-multi-agent",
+    "title": "Building a Multi-Agent System",
+    "description": "Coordinate specialist agents and connect distributed services through A2A.",
+    "tags": [
+      "Google ADK",
+      "A2A",
+      "Cloud Run"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-multiagentsystem",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-skills-tools",
+    "title": "Building ADK Agents with Skills and Tools",
+    "description": "Explore a planner combining reusable skills with Maps-backed MCP tools.",
+    "tags": [
+      "Google ADK",
+      "MCP",
+      "Google Maps"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-agentskillstools",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-cloud-plugins",
+    "title": "Google Cloud Developer plugin for AI Coding Agents",
+    "description": "Extend coding assistants with Google Cloud skills and tool integrations.",
+    "tags": [
+      "MCP",
+      "Google Cloud",
+      "AI Coding"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-gcdevplugins",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-evaluation",
+    "title": "Evaluating Agents with ADK",
+    "description": "Create repeatable evaluations to inspect agent behavior.",
+    "tags": [
+      "Google ADK",
+      "Evaluation"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-adkeval",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-runtime",
+    "title": "Deploy an ADK agent to Agent Runtime using Agents CLI",
+    "description": "Package and deploy an agent workflow with Agents CLI.",
+    "tags": [
+      "Google ADK",
+      "Deployment"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-runtime",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-workspace",
+    "title": "Integrate Agents with Google Workspace",
+    "description": "Connect agents to Workspace data, actions, and interfaces.",
+    "tags": [
+      "Google Workspace",
+      "Google ADK"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-workspace-agents",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
+  },
+  {
+    "id": "gear-workflows",
+    "title": "Design Agentic Workflows with ADK",
+    "description": "Compose workflows with knowledge and memory.",
+    "tags": [
+      "Google ADK",
+      "Workflows"
+    ],
+    "href": "https://g.dev/cloud/gear-webpage-codelab-agenticworkflows-adk",
+    "label": "Open Google codelab ↗",
+    "track": "Google GEAR",
+    "source": "google-gear",
+    "reference": "https://developers.google.com/program/gear/",
+    "checked": "2026-11-15"
   }
 ]

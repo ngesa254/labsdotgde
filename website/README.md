@@ -43,6 +43,10 @@ program or promise acceptance, funding, cloud credits or other program benefits.
 “Browse labs” in the header and “Explore the labs” in the hero open the dedicated
 `labs/` catalogue, with search and technology filters. Add entries to `website/labs.json`
 and run `python3 website/scripts/stage-github-pages.py` from the repository root.
+The catalogue groups three local labs and eight external Google GEAR codelabs in
+graph-paper panels with scroll controls. External entries are labeled and link
+to Google; their descriptions are brief summaries. See [GEAR-REFERENCE.md](GEAR-REFERENCE.md)
+for the source and maintenance notes.
 Three catalogue cards open local, published resources from this repository:
 
 | Catalogue card | Local page | Canonical source |
