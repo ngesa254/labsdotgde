@@ -22,7 +22,7 @@ another port.
 ## Page structure
 
 1. Hero — rotating headlines, matching city coordinates, Browse labs, Book a call,
-   Request a Lab, and the intro: “Practical workshops, Hands-on labs, and shared
+   Request a Lab, and the intro: “Practical workshops, hands-on labs, and shared
    know-how for engineers across Afrika.”
 2. Shosholoza — a blueprint illustration and three practical
    principles, adapted from the supplied profnandaa visual reference.

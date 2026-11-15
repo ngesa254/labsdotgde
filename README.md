@@ -1,7 +1,7 @@
 <h1 align="center">LabsDotGDE</h1>
 
 <p align="center">
-  <strong>Practical workshops, Hands-on labs, and shared know-how for engineers across Afrika.</strong>
+  <strong>Practical workshops, hands-on labs, and shared know-how for engineers across Afrika.</strong>
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
   <a href="https://ngesa254.github.io/labsdotgde/">ngesa254.github.io/labsdotgde</a><br>
   <a href="https://ngesa254.github.io/labsdotgde/#labs">Browse labs</a> ·
   <a href="https://ngesa254.github.io/labsdotgde/#invite">Request a lab</a> ·
-  <a href="https://www.meetup.com/nairobiai/">Nairobi AI community</a>
+  <a href="https://www.meetup.com/nairobiai/">The Nairobi AI</a>
 </p>
 
 Build useful systems with AI, agents, MCP, and cloud tools. The website brings the guided workshops together; this repository holds their source, sample code, notebooks, and architecture references.
