@@ -1,6 +1,6 @@
 # labsdotgde.afrika
 
-**[Open the website](https://ngesa254.github.io/labsdotgde/website/)**
+**[Open the website](https://ngesa254.github.io/labsdotgde/)**
 
 A self-contained local home for Ngesa Marvin's labs, technical talks, and developer
 advocacy across Afrika. The original blueprint design, motion, city-linked
@@ -24,7 +24,7 @@ another port.
 1. Hero — rotating headlines, matching city coordinates, Browse labs, Book a call,
    Request a Lab, and the intro: “Hands-on labs, practical workshops, and shared
    know-how for developers across Afrika.”
-2. Build. Teach. Play. Ship it. — a blueprint illustration and three practical
+2. Shosholoza — a blueprint illustration and three practical
    principles, adapted from the supplied profnandaa visual reference.
 3. Start. Build. Grow. — three working local lab links.
 4. Thuma Mina. From Cape To Cairo — separate six-city route:
@@ -47,7 +47,7 @@ Three catalogue cards open local, published resources from this repository:
 | --- | --- | --- |
 | Merchant MCP tools | `dist/codelabs/codelabs/decode-mpesa-mcp/` | `../docs/codelabs/codelabs/decode-mpesa-mcp/` |
 | ADK payment agent | `dist/codelabs/codelabs/decode-adk-payment-agent/` | `../docs/codelabs/codelabs/decode-adk-payment-agent/` |
-| AI Barista guide | `dist/barista/index.html` | `../docs/index.html` |
+| AI Barista guide | `dist/barista/index.html` | `../developers-day-nairobi-2026/01-ai-barista-cloud-run/BARISTA_CLOUD_RUN_ARCHITECTURE.html` |
 
 `dist/codelabs/` is a copy of the existing published `../docs/codelabs/`, including
 its locally vendored fonts, scripts, illustrations, sample archives and licenses.
@@ -118,7 +118,7 @@ Coordinates: [Nairobi](https://www.geonames.org/184745/nairobi.html),
 ## Privacy and hosting
 
 The website is committed at the user’s request. `website/dist/` is staged to
-`docs/website/` for GitHub Pages. The existing Barista and DECODE URLs are preserved.
+`docs/` (and `docs/website/` for existing links) for GitHub Pages. The existing Barista and DECODE URLs are preserved.
 Publication requires a successful Pages deployment; a custom domain is not configured.
 See [PUBLISHING.md](PUBLISHING.md) and [SOURCE-PRIVACY.md](SOURCE-PRIVACY.md).
 The homepage loads local assets only and blocks remote connections with CSP.

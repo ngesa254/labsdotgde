@@ -1,6 +1,6 @@
 # Deploy a RAG AI Barista with Google ADK, Streamlit, and Cloud Run
 
-**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/)**
+**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/decode/)**
 
 > Google for Developers Day: Nairobi · November 13, 2026 · Sarit Expo Center
 

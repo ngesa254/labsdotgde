@@ -17,8 +17,8 @@ def github_link(match):
 
 
 page = re.sub(r'href="([^"]+)"', github_link, SOURCE.read_text())
-output = ROOT / 'docs'
+output = ROOT / 'docs/decode'
 output.mkdir(exist_ok=True)
 (output / 'index.html').write_text(page)
-(output / '.nojekyll').touch()
-print('Built docs/index.html from the canonical architecture guide.')
+(ROOT / 'docs/.nojekyll').touch()
+print('Built docs/decode/index.html from the canonical architecture guide.')

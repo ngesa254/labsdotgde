@@ -35,7 +35,7 @@ export function PracticeSection() {
       h('div', { className: 'practice-layout' },
         h('div', { className: 'practice-copy' },
           h('p', { className: 'section-eyebrow mono' }, 'THE LABSDOTGDE WAY'),
-          h('h2', { id: 'practice-title', className: 'practice-title' }, 'Build. Teach.', h('br', {}), h('span', {}, 'Play. Ship it.')),
+          h('h2', { id: 'practice-title', className: 'practice-title' }, h('a', { href: 'https://en.wikipedia.org/wiki/Shosholoza', target: '_blank', rel: 'noopener noreferrer' }, 'Shosholoza'), h('br', {}), h('span', {}, 'Ship it.')),
           h('p', { className: 'practice-lede' }, 'A lab is where an idea becomes something you can run. We write the code, explain the why, and make room to experiment.'),
           h('ol', { className: 'practice-principles' },
             h('li', {}, h('span', { className: 'mono' }, '① code'), h('p', {}, 'Build useful systems with AI, MCP, and cloud tools. Start small. Make it work. Ship it.')),
@@ -57,7 +57,7 @@ export function PracticeSection() {
 const labs = [
   { number: '01', title: 'Give your agent useful tools.', text: 'Build a merchant MCP service with FastMCP. Validate baskets, prepare payment payloads, and learn the Cloud Run identity boundary.', tags: ['MCP', 'FastMCP', 'Cloud Run'], href: './codelabs/codelabs/decode-mpesa-mcp/', label: 'Open the MCP lab →' },
   { number: '02', title: 'Connect reasoning to tools.', text: 'Connect a Google ADK agent to your MCP service. Inspect tool calls, test the boundaries, and work through verified results.', tags: ['Google ADK', 'Vertex AI', 'MCP'], href: './codelabs/codelabs/decode-adk-payment-agent/', label: 'Open the agent lab →' },
-  { number: '03', title: 'Meet your AI barista.', text: 'Explore an ADK and Streamlit barista on Cloud Run, from the architecture to deployment, with an optional Firestore search extension.', tags: ['Gemini', 'Cloud Run', 'Google ADK'], href: './barista/index.html', label: 'Open the barista guide →' },
+  { number: '03', title: 'Meet your AI barista.', text: 'Explore an ADK and Streamlit barista on Cloud Run, from the architecture to deployment, with an optional Firestore search extension.', tags: ['Gemini', 'Cloud Run', 'Google ADK'], href: './decode/index.html', label: 'Open the barista guide →' },
 ];
 
 export function LabsSection() {

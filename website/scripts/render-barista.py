@@ -3,7 +3,14 @@ import re, html, textwrap
 PROJECT=Path(__file__).resolve().parents[1]
 p=PROJECT/'dist/barista/index.html'
 p.parent.mkdir(parents=True,exist_ok=True)
-s=(PROJECT.parent/'docs/index.html').read_text()
+LAB=Path('developers-day-nairobi-2026/01-ai-barista-cloud-run')
+s=(PROJECT.parent/LAB/'BARISTA_CLOUD_RUN_ARCHITECTURE.html').read_text()
+def guide_link(match):
+ target=match[1]
+ if target.startswith(('#','https://','http://','mailto:')):return match[0]
+ relative=(PROJECT.parent/LAB/target).resolve().relative_to(PROJECT.parent)
+ return 'href="https://github.com/ngesa254/labsdotgde/blob/main/'+relative.as_posix()+'"'
+s=re.sub(r'href="([^"]+)"',guide_link,s)
 blocks=re.findall(r'<div class="mermaid">(.*?)</div>',s,re.S)
 assert len(blocks)==4
 assets=p.parent/'assets';assets.mkdir(exist_ok=True)
@@ -63,4 +70,6 @@ for i,encoded in enumerate(blocks,1):
 a=s.index('try {\n  const {default: mermaid}')
 s=s[:a]+s[s.index('</script>',a):]
 p.write_text(s)
+import shutil
+shutil.copytree(p.parent, PROJECT/'dist/decode', dirs_exist_ok=True)
 print('Rendered all four diagrams locally; editable source and guide content retained.')

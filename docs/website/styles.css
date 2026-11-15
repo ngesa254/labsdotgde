@@ -114,3 +114,6 @@ section[id]{scroll-margin-top:90px}
 @media(prefers-reduced-motion:reduce){
  .hero__nav .book-call-link,.sticky-nav__actions .book-call-link{transition:none}
 }
+
+/* The community heading uses the same white ink as Build. */
+.practice-title a{color:var(--linework);text-decoration:none}.practice-title a:hover{text-decoration:underline;text-underline-offset:.1em}

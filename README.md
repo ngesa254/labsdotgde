@@ -1,6 +1,6 @@
 # LabsDotGDE™ — Google AI, Agentic Systems, MCP & Cloud Run Workshops
 
-**[Explore the LabsDotGDE website](https://ngesa254.github.io/labsdotgde/website/)**
+**[Explore the LabsDotGDE website](https://ngesa254.github.io/labsdotgde/)**
 
 **[Launch DECODE labs — From Code to Cash](https://ngesa254.github.io/labsdotgde/codelabs/index.html)**
 
@@ -8,7 +8,7 @@ Build an M-Pesa MCP server and a Google ADK payment agent with guided, step-by-s
 
 [Start Lab 1: M-Pesa MCP server](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-mpesa-mcp/) · [Start Lab 2: ADK agent](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-adk-payment-agent/)
 
-**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/)**
+**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/decode/)**
 
 <p align="center">
   <img src="https://img.shields.io/badge/Google%20ADK-Agent%20Development%20Kit-EA4335?style=for-the-badge&logo=google&logoColor=white" alt="Google ADK">
