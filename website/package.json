@@ -1,0 +1,9 @@
+{
+  "name": "labsdotgde-afrika",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "python3 serve.py",
+    "dev": "python3 serve.py"
+  }
+}

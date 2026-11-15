@@ -1,0 +1,75 @@
+{
+  "retrieved": "2026-11-14",
+  "assets": [
+    {
+      "file": "codelab-elements.css",
+      "url": "https://storage.googleapis.com/claat-public/codelab-elements.css",
+      "sha256": "4c8e34fea342d357f3723d82d64de9c023b152a4ce2a0aad485880360f99f064",
+      "bytes": 27359
+    },
+    {
+      "file": "native-shim.js",
+      "url": "https://storage.googleapis.com/claat-public/native-shim.js",
+      "sha256": "d077b4678a442ff7475948878b587a9116092f29e08806a3f5114e68102b7066",
+      "bytes": 2089
+    },
+    {
+      "file": "custom-elements.min.js",
+      "url": "https://storage.googleapis.com/claat-public/custom-elements.min.js",
+      "sha256": "99b92c417578fb3b24927955dd48ca81c00f5b924dfe02dc6f91e629198aa15b",
+      "bytes": 19147
+    },
+    {
+      "file": "codelab-elements.js",
+      "url": "https://storage.googleapis.com/claat-public/codelab-elements.js",
+      "sha256": "9cc11eeb892d920f71c310b9fd5c3140e1096cfab639575fb76eaaf17cc6b581",
+      "bytes": 107046
+    },
+    {
+      "file": "prettify.js",
+      "url": "https://raw.githubusercontent.com/google/code-prettify/master/src/prettify.js",
+      "sha256": "4cb15feaea6118a726b10875dfd1575becc8f3e9be2980bfdda8bfad3bb834ed",
+      "bytes": 65457
+    },
+    {
+      "file": "Roboto.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/roboto/Roboto%5Bwdth,wght%5D.ttf",
+      "sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+      "bytes": 488584
+    },
+    {
+      "file": "Roboto-Italic.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/roboto/Roboto-Italic%5Bwdth,wght%5D.ttf",
+      "sha256": "9725a847af6b460ffca162ae66d20dad48b01876137947180b42d7dcd7887182",
+      "bytes": 530944
+    },
+    {
+      "file": "RobotoMono.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/robotomono/RobotoMono%5Bwght%5D.ttf",
+      "sha256": "66a80e79d17e4c7cabd162e2916578a4cc08fd19eef6e2a643305eae9c567b2b",
+      "bytes": 183700
+    },
+    {
+      "file": "SourceCodePro.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/sourcecodepro/SourceCodePro%5Bwght%5D.ttf",
+      "sha256": "b400fc584e10aff25d0e775ce181b4fc1c5ea1b5dc37b81aeb2084375b945790",
+      "bytes": 212340
+    },
+    {
+      "file": "MaterialIcons.ttf",
+      "url": "https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIcons-Regular.ttf",
+      "sha256": "ef149f08bdd2ff09a4e2c8573476b7b0f3fbb15b623954ade59899e7175bedda",
+      "bytes": 356840
+    },
+    {
+      "file": "fonts.css",
+      "sha256": "ea74911190ed24f8050f175d605f3386c4f1e540888c048e04dab94516bb7fe9",
+      "note": "Local font-face declarations for upstream fonts"
+    },
+    {
+      "file": "icons.css",
+      "sha256": "b3ebd3422cecfdf32273ff26159bd2e881aac3ef2a9e3618b90b0e9524770a5c",
+      "note": "Local font-face declarations for upstream fonts"
+    }
+  ]
+}
