@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://ngesa254.github.io/labsdotgde/">ngesa254.github.io/labsdotgde</a><br>
-  <a href="https://ngesa254.github.io/labsdotgde/#labs">Browse labs</a> ·
+  <a href="https://ngesa254.github.io/labsdotgde/labs/">Browse labs</a> ·
   <a href="https://ngesa254.github.io/labsdotgde/#invite">Request a lab</a> ·
   <a href="https://www.meetup.com/nairobiai/">The Nairobi AI</a>
 </p>

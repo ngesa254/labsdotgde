@@ -7,6 +7,7 @@ import shutil
 WEBSITE = Path(__file__).resolve().parents[1]
 SOURCE = WEBSITE / 'dist'
 DOCS = WEBSITE.parent / 'docs'
+runpy.run_path(str(WEBSITE / 'scripts/build-labs.py'), run_name='__main__')
 runpy.run_path(str(WEBSITE / 'scripts/render-barista.py'), run_name='__main__')
 # Root is the main site; /website remains an alias for existing shared links.
 for destination in [DOCS, DOCS / 'website']:

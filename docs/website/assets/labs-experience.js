@@ -42,7 +42,7 @@ export function PracticeSection() {
             h('li', {}, h('span', { className: 'mono' }, '② teach'), h('p', {}, 'Turn what you learn into a talk, a guided lab, or a better explanation for the next developer.')),
             h('li', {}, h('span', { className: 'mono' }, '③ play'), h('p', {}, 'Try the odd idea. Test the assumption. Leave with a working example and a new question.')),
           ),
-          h('a', { className: 'practice-link', href: '#labs' }, 'Find your next lab →'),
+          h('a', { className: 'practice-link', href: './labs/' }, 'Find your next lab →'),
         ),
         h('figure', { className: 'practice-drawing' },
           h('img', { src: './assets/start-build-grow.svg', width: 540, height: 440, loading: 'lazy', alt: 'The labsdotgde blueprint: code with git push --ship-it, teach community labs, and play with ideas.' }),
@@ -51,34 +51,6 @@ export function PracticeSection() {
       ),
     ),
     h('div', { className: 'title-block' }, 'SHEET 02 OF 06'),
-  );
-}
-
-const labs = [
-  { number: '01', title: 'Give your agent useful tools.', text: 'Build a merchant MCP service with FastMCP. Validate baskets, prepare payment payloads, and learn the Cloud Run identity boundary.', tags: ['MCP', 'FastMCP', 'Cloud Run'], href: './codelabs/codelabs/decode-mpesa-mcp/', label: 'Open the MCP lab →' },
-  { number: '02', title: 'Connect reasoning to tools.', text: 'Connect a Google ADK agent to your MCP service. Inspect tool calls, test the boundaries, and work through verified results.', tags: ['Google ADK', 'Vertex AI', 'MCP'], href: './codelabs/codelabs/decode-adk-payment-agent/', label: 'Open the agent lab →' },
-  { number: '03', title: 'Meet your AI barista.', text: 'Explore an ADK and Streamlit barista on Cloud Run, from the architecture to deployment, with an optional Firestore search extension.', tags: ['Gemini', 'Cloud Run', 'Google ADK'], href: './decode/index.html', label: 'Open the barista guide →' },
-];
-
-export function LabsSection() {
-  return h('section', { id: 'labs', className: 'sheet sheet--paper labs-sheet', 'aria-labelledby': 'labs-title' },
-    h('div', { className: 'sheet__inner' },
-      h('div', { className: 'labs-heading' },
-        h('div', {}, h('p', { className: 'section-eyebrow mono' }, 'PICK A STARTING POINT'), h('h2', { id: 'labs-title', className: 'section-title' }, 'Start. Build. Grow.')),
-        h('p', {}, 'The labs are right here. Open a guide, follow the steps, and get your hands on the code.'),
-      ),
-      h('div', { className: 'lab-grid' }, ...labs.map(lab => h('article', { className: 'lab-card', key: lab.number },
-        h('span', { className: 'lab-card__number mono' }, lab.number),
-        h('h3', {}, lab.title), h('p', {}, lab.text),
-        h('ul', { className: 'lab-tags', 'aria-label': 'Technologies' }, ...lab.tags.map(tag => h('li', { key: tag }, tag))),
-        h('a', { href: lab.href }, lab.label),
-      ))),
-      h('div', { className: 'labs-bottom' },
-        h('a', { href: './codelabs/index.html' }, 'Browse the DECODE workshop →'),
-        h('a', { href: 'https://github.com/ngesa254/labsdotgde', target: '_blank', rel: 'noopener noreferrer' }, 'Explore the full lab repository ↗'),
-      ),
-    ),
-    h('div', { className: 'title-block' }, 'SHEET 03 OF 06'),
   );
 }
 

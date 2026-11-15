@@ -26,7 +26,7 @@ another port.
    know-how for engineers across Afrika.”
 2. Shosholoza — a blueprint illustration and three practical
    principles, adapted from the supplied profnandaa visual reference.
-3. Start. Build. Grow. — three working local lab links.
+3. The lab catalogue lives on its own `labs/` page, keeping the homepage focused.
 4. Thuma Mina. From Cape To Cairo — separate six-city route:
    Nairobi → Dala → Accra → Cape Town → Kigali → Addis.
 5. Request a Lab — terminal or plain form, collecting topic, audience and outcome.
@@ -40,7 +40,9 @@ program or promise acceptance, funding, cloud credits or other program benefits.
 
 ## Where visitors find the labs
 
-“Browse labs” in the header and “Explore the labs” in the hero lead to `#labs`.
+“Browse labs” in the header and “Explore the labs” in the hero open the dedicated
+`labs/` catalogue, with search and technology filters. Add entries to `website/labs.json`
+and run `python3 website/scripts/stage-github-pages.py` from the repository root.
 Three catalogue cards open local, published resources from this repository:
 
 | Catalogue card | Local page | Canonical source |
