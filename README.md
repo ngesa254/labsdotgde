@@ -1,27 +1,34 @@
-# LabsDotGDE™ — Google AI, Agentic Systems, MCP & Cloud Run Workshops
-
-**[Explore the LabsDotGDE website](https://ngesa254.github.io/labsdotgde/)**
-
-**[Launch DECODE labs — From Code to Cash](https://ngesa254.github.io/labsdotgde/codelabs/index.html)**
-
-Build an M-Pesa MCP server and a Google ADK payment agent with guided, step-by-step labs.
-
-[Start Lab 1: M-Pesa MCP server](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-mpesa-mcp/) · [Start Lab 2: ADK agent](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-adk-payment-agent/)
-
-**[View the rendered AI Barista architecture guide](https://ngesa254.github.io/labsdotgde/decode/)**
+<h1 align="center">LabsDotGDE</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Google%20ADK-Agent%20Development%20Kit-EA4335?style=for-the-badge&logo=google&logoColor=white" alt="Google ADK">
-  <img src="https://img.shields.io/badge/Gemini%202.5-Live%20API%20%26%20Vertex%20AI-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Gemini & Vertex AI">
-  <img src="https://img.shields.io/badge/MCP-Model%20Context%20Protocol-00ADD8?style=for-the-badge" alt="MCP">
-  <img src="https://img.shields.io/badge/Cloud%20Run-Serverless%20Containers-34A853?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Cloud Run">
-  <img src="https://img.shields.io/badge/Apigee-API%20Management-FF6D00?style=for-the-badge&logo=googlecloud&logoColor=white" alt="Apigee">
-  <img src="https://img.shields.io/badge/Keras%203%20%26%20Gemma%202-Open%20Models-D00000?style=for-the-badge&logo=keras&logoColor=white" alt="Keras & Gemma">
+  <strong>Hands-on labs, practical workshops, and shared know-how for engineers across Afrika.</strong>
 </p>
 
-Welcome to **LabsDotGDE™** (`labsdotgde`) — a comprehensive, production-inspired collection of hands-on Developer Relations (DevRel) codelabs, architectural blueprints, reference implementations, and interactive notebooks.
+<p align="center">
+  <a href="https://ngesa254.github.io/labsdotgde/">
+    <img src="https://img.shields.io/badge/Explore_the_website-%E2%86%97-0f3b6e?style=for-the-badge" alt="Explore the LabsDotGDE website">
+  </a>
+</p>
 
-This monorepo powers developer workshops across Africa and globally—spanning **DevFest**, **PyCON Africa**, **Deep Learning Indaba** **Build With AI (Nairobi, Kisumu, Cape Town, Kigali, Accra, JHB,)**, **Safaricom DECODE**, **Open Digital Health Summit (OSDH)**, **AMLD Africa**, and **GDSC / Campus Connect** bootcamps.
+<p align="center">
+  <a href="https://ngesa254.github.io/labsdotgde/">ngesa254.github.io/labsdotgde</a><br>
+  <a href="https://ngesa254.github.io/labsdotgde/#labs">Browse labs</a> ·
+  <a href="https://ngesa254.github.io/labsdotgde/#invite">Request a lab</a> ·
+  <a href="https://www.meetup.com/nairobiai/">Nairobi AI community</a>
+</p>
+
+Build useful systems with AI, agents, MCP, and cloud tools. The website brings the guided workshops together; this repository holds their source, sample code, notebooks, and architecture references.
+
+### Choose a lab
+
+| Workshop | What you will build | Open the guide | Source |
+|---|---|---|---|
+| **DECODE · From Code to Cash** | A merchant MCP service and an ADK agent for catalog and payment preparation workflows | [Start the workshop](https://ngesa254.github.io/labsdotgde/codelabs/) | [Codelabs and samples](decode-codelabs/README.md) |
+| **Lab 1 · M-Pesa MCP server** | Typed tools with FastMCP and a protected Cloud Run endpoint | [Open Lab 1](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-mpesa-mcp/) | [Lab 1 source](decode-codelabs/labs/01-mpesa-mcp-server/codelab.md) |
+| **Lab 2 · Google ADK agent** | An agent connected to the remote MCP tools | [Open Lab 2](https://ngesa254.github.io/labsdotgde/codelabs/codelabs/decode-adk-payment-agent/) | [Lab 2 source](decode-codelabs/labs/02-adk-payment-agent/codelab.md) |
+| **AI Barista · Developers Day Nairobi** | A Streamlit and ADK assistant on Cloud Run, with optional Firestore retrieval | [Explore architecture and flow](https://ngesa254.github.io/labsdotgde/decode/) | [Step-by-step lab](developers-day-nairobi-2026/01-ai-barista-cloud-run/README.md) |
+
+The collection also includes Build With AI, DevFest, community bootcamps, healthcare AI, and multimodal workshops. Use the repository guide below to explore the full curriculum.
 
 ---
 

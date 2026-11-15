@@ -23,7 +23,7 @@ another port.
 
 1. Hero — rotating headlines, matching city coordinates, Browse labs, Book a call,
    Request a Lab, and the intro: “Hands-on labs, practical workshops, and shared
-   know-how for developers across Afrika.”
+   know-how for engineers across Afrika.”
 2. Shosholoza — a blueprint illustration and three practical
    principles, adapted from the supplied profnandaa visual reference.
 3. Start. Build. Grow. — three working local lab links.
