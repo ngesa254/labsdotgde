@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 440" role="img" aria-labelledby="title desc">
+ <title id="title">Code, teach, play — the labsdotgde blueprint</title>
+ <desc id="desc">A technical drawing of a terminal with commands for shipping code, teaching community labs, and experimenting with ideas. Start. Build. Grow.</desc>
+ <defs><marker id="tick" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M2 8 8 2" fill="none" stroke="#e07a2f" stroke-width="1.4"/></marker></defs>
+ <g fill="none" stroke="#e07a2f" stroke-width="1.2">
+  <path d="M80 25v45M440 25v45M80 35h110m140 0h110"/>
+  <path d="M80 35h1M440 35h1" marker-start="url(#tick)" marker-end="url(#tick)"/>
+  <path d="M455 88h50M455 360h50M495 88v80m0 110v82"/>
+  <path d="M495 88v1M495 360v1" marker-start="url(#tick)" marker-end="url(#tick)"/>
+ </g>
+ <g fill="#e07a2f" font-family="'IBM Plex Mono',monospace" font-size="13">
+  <text x="260" y="39" text-anchor="middle">w = one idea</text>
+  <text x="495" y="224" text-anchor="middle" transform="rotate(90 495 224)">h = shared impact</text>
+ </g>
+ <path d="M90 98h360v272H90Z" fill="#e8f0f8"/>
+ <path d="M80 88h360v272H80Z" fill="#10284a" stroke="#e8f0f8" stroke-width="2"/>
+ <path d="M80 123h360" stroke="#e8f0f8" stroke-width="1.5"/>
+ <g fill="none" stroke="#e8f0f8" stroke-width="1.5"><circle cx="96" cy="106" r="4"/><circle cx="113" cy="106" r="4"/><circle cx="130" cy="106" r="4"/></g>
+ <text x="280" y="110" text-anchor="middle" fill="#a9bed7" font-family="'IBM Plex Mono',monospace" font-size="13">~/labsdotgde</text>
+ <g fill="#e8f0f8" font-family="'IBM Plex Mono',monospace" font-size="17">
+  <text x="105" y="161">$ git push --ship-it</text>
+  <text x="105" y="225">$ teach --labs --community</text>
+  <text x="105" y="289">$ play --ideas --repeat</text>
+  <text x="105" y="338" fill="#e07a2f">$</text>
+ </g>
+ <g stroke="#a9bed7" stroke-width="3" stroke-linecap="round" opacity=".4"><path d="M120 177h190"/><path d="M120 241h240"/><path d="M120 305h160"/></g>
+ <path d="M127 323v19" stroke="#e07a2f" stroke-width="2"/>
+ <g fill="none" stroke="#e8f0f8" stroke-width="1.2"><path d="M37 154h54M37 218h54M37 282h54" stroke-dasharray="3 4"/><circle cx="23" cy="154" r="13"/><circle cx="23" cy="218" r="13"/><circle cx="23" cy="282" r="13"/></g>
+ <g fill="#e8f0f8" font-family="'IBM Plex Mono',monospace" font-size="13" text-anchor="middle"><text x="23" y="159">1</text><text x="23" y="223">2</text><text x="23" y="287">3</text></g>
+ <text x="80" y="403" fill="#a9bed7" font-family="'IBM Plex Mono',monospace" font-size="16">① code  ② teach  ③ play</text>
+ <text x="80" y="430" fill="#e07a2f" font-family="'IBM Plex Mono',monospace" font-size="12">START. BUILD. GROW.</text>
+</svg>

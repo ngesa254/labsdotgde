@@ -1,0 +1,6 @@
+/* Preserve the original light claat theme and blue guided navigation. */
+google-codelab-step img{max-width:100%;height:auto}
+pre{overflow-x:auto;tab-size:4}pre code{font-size:13px}
+a:focus-visible{outline:3px solid #a94f20;outline-offset:3px}
+table{display:block;max-width:100%;overflow-x:auto}
+@media(max-width:600px){pre code{font-size:12px}}

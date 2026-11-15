@@ -1,5 +1,7 @@
 # labsdotgde.afrika
 
+**[Open the website](https://ngesa254.github.io/labsdotgde/website/)**
+
 A self-contained local home for Ngesa Marvin's labs, technical talks, and developer
 advocacy across Afrika. The original blueprint design, motion, city-linked
 headlines, and terminal interaction remain; content is now organised around
@@ -115,10 +117,9 @@ Coordinates: [Nairobi](https://www.geonames.org/184745/nairobi.html),
 
 ## Privacy and hosting
 
-The website is prepared for version control at the user’s request. The root
-`.gitlab-ci.yml` publishes only `website/dist/` on the GitLab default branch.
-The existing GitHub Pages `docs/` output is unchanged. GitLab publication requires
-a target project and a successful Pages pipeline; a custom domain is not configured.
+The website is committed at the user’s request. `website/dist/` is staged to
+`docs/website/` for GitHub Pages. The existing Barista and DECODE URLs are preserved.
+Publication requires a successful Pages deployment; a custom domain is not configured.
 See [PUBLISHING.md](PUBLISHING.md) and [SOURCE-PRIVACY.md](SOURCE-PRIVACY.md).
 The homepage loads local assets only and blocks remote connections with CSP.
 Social links and program-resource links navigate externally only when clicked.
