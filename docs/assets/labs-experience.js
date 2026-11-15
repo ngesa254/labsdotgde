@@ -35,7 +35,7 @@ export function PracticeSection() {
       h('div', { className: 'practice-layout' },
         h('div', { className: 'practice-copy' },
           h('p', { className: 'section-eyebrow mono' }, 'THE LABSDOTGDE WAY'),
-          h('h2', { id: 'practice-title', className: 'practice-title' }, h('a', { href: 'https://en.wikipedia.org/wiki/Shosholoza', target: '_blank', rel: 'noopener noreferrer' }, 'Shosholoza'), h('br', {}), h('span', {}, 'Ship it.')),
+          h('h2', { id: 'practice-title', className: 'practice-title' }, h('a', { href: 'https://en.wikipedia.org/wiki/Shosholoza', target: '_blank', rel: 'noopener noreferrer' }, 'Shosholoza')),
           h('p', { className: 'practice-lede' }, 'A lab is where an idea becomes something you can run. We write the code, explain the why, and make room to experiment.'),
           h('ol', { className: 'practice-principles' },
             h('li', {}, h('span', { className: 'mono' }, '① code'), h('p', {}, 'Build useful systems with AI, MCP, and cloud tools. Start small. Make it work. Ship it.')),

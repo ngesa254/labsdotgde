@@ -51,9 +51,8 @@ Three catalogue cards open local, published resources from this repository:
 
 `dist/codelabs/` is a copy of the existing published `../docs/codelabs/`, including
 its locally vendored fonts, scripts, illustrations, sample archives and licenses.
-The Barista copy replaces its CDN-based diagram renderer with four locally rendered SVG relationship/sequence diagrams; editable Mermaid source remains in each figure. Refresh copied content when canonical resources change. Cloud exercises and
-outbound documentation links may require internet; viewing the copied guides
-does not require an external asset service.
+The Barista copy preserves the original Mermaid architecture and sequence diagrams, including the interactive renderer. Mermaid loads from jsDelivr and requires an internet connection. Refresh copied content when canonical resources change. Cloud exercises and
+outbound documentation links may require internet; the Barista diagrams require jsDelivr access, while the DECODE guides serve their runtime assets locally.
 
 ## Booking and lab requests
 
@@ -125,5 +124,5 @@ The homepage loads local assets only and blocks remote connections with CSP.
 Social links and program-resource links navigate externally only when clicked.
 
 To refresh the local guide copies after editing canonical published docs, run
-`python3 scripts/sync-labs.py` from the website directory. This also renders
-the Barista relationship/sequence diagrams locally using Python only.
+`python3 scripts/sync-labs.py` from the website directory. This also refreshes
+the Barista guide while preserving its original Mermaid diagrams.
